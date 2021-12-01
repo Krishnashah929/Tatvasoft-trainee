@@ -127,7 +127,7 @@ a {
     /* display: none; */
   }
 }
-/*------------------- home_section_center_button------------------- */
+/*------------------- main_section_center_button------------------- */
 .main-btn-center {
   position: absolute;
   top: 483px;
@@ -534,28 +534,39 @@ a {
   }
 }
 /* Line-star */
-.main-heading{
-padding-top: 32px;
+.line-star .main-heading{
+margin-top: 38px;
+margin-bottom: 9px;
 font-size: 36px;
 font-weight: 550;
 text-align: center;
 color: #4f4f4f; 
 opacity: 1;
 }
+.line-star{
+  text-align: center;
+  align-items: center;
+}
 .line-star .row2{
-  margin-top: 9px;
+  margin-bottom: 20px;
+  width:100%;
+}
+.line-star .row{
+  margin-right: auto;
 }
 #separator{
   height: 25px;
   width: 24px;
   margin: 0px 9px;
+  overflow: hidden;
 }
-.line-star .row2 .line{
-  margin:auto 0px;
+.line-star .row .line{
+  margin: auto 0px;
   height:1px;
   width: 62px;
   background: #cccccc;
 }
+
 /* Line-star */
 
 .main-content{
@@ -686,3 +697,294 @@ opacity: 1;
     margin-right: 15px;
   }
 }
+/***********************************************************Pricies********************************************************************/
+.prices{
+  margin-top: 42px;
+}
+.prices-card{
+  width: 553px;
+  height: 304px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #B0C9CE;
+  border-radius:0px;
+  opacity: 1;
+  margin: 0 auto;
+  
+}
+@media (max-width: 555px) {
+  .prices-card {
+    width: 100%;
+  }
+}
+
+.prices-card-header{
+  height: 59px;
+  background: #1D7A8C 0% 0% no-repeat padding-box;
+  opacity: 1;   
+}
+.prices-card-header-text{
+  text-align: center;
+  letter-spacing: 0px;
+  font-size: 28px;
+  font-family: "Roboto";
+  color: #FFFFFF;
+  opacity: 1;
+  font-weight: 550;
+  padding-top: 10px;
+}
+.prices-card-body-up{
+  display: inline;
+  margin: 0 auto;
+}
+.prices-card-logo{
+  width: 31px;
+  height: 36px;
+  background: #646464 0% 0% no-repeat padding-box;
+  opacity: 1;
+  margin-left: 209px;
+  margin-top: 42px;
+}
+.prices-text1{
+  font-size: 30px;
+  line-height: 0.8;
+  text-align: center;
+  color: #646464;
+}
+.prices-text2 {
+  font-size: 48px;
+  font-weight: bold;
+}
+.prices-card-body-down{
+  display: inline;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.prices-1{
+  margin-bottom: 9px;
+}
+.Lower-prices {
+  width: 90px;
+  height: 15px;
+  margin-left: 8px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: left;
+  color: #646464;
+  
+}
+
+
+
+/* ---------extra services ----------------------------------------------------- */
+
+.extra-services{
+  width: 1141px;
+  height: 325px;
+  /* border: 1px solid red; */
+  margin: auto;
+  margin-top: 51px;
+  border-top: 1px solid #dcdcdc;
+  margin-bottom: 56px;
+}
+@media (max-width:1142px) {
+  .extra-services{
+    width: 100%;
+  }
+}
+.extra-services-card{
+  width: 108px;
+  min-height: 169px;
+  /* border: 1px solid black;/ */
+  margin-top: 39px;
+}
+
+
+.extra-services-card-img1{
+  width: 108px;
+  height: 108px;
+  border: 1px solid #b0c9ce;
+  border-radius: 108%;
+  background-image: url("../images/3.png");
+  background-repeat: no-repeat;
+  background-position-x: 36px;
+  background-position-y: 30px;
+  margin-bottom: 14px;
+}
+.small-t{
+  color:#646464;
+  font-size: 16px;
+}
+.minutes{
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #1d7a8c;
+  margin-top: -5px;
+}
+
+.extra-services-card-img2{
+  width: 108px;
+  height: 108px;
+  border: 1px solid #b0c9ce;
+  border-radius: 108%;
+  background-image: url("../images/5.png");
+  background-repeat: no-repeat;
+  background-position-x: 40px;
+  background-position-y: 24px;
+  margin-bottom: 14px;
+}
+.extra-services-card-img3{
+  width: 108px;
+  height: 108px;
+  border: 1px solid #b0c9ce;
+  border-radius: 108%;
+  background-image: url("../images/4.png");
+  background-repeat: no-repeat;
+  background-position-x: 28px;
+  background-position-y: 38px;
+  margin-bottom: 14px;
+}
+.extra-services-card-img4{
+  width: 108px;
+  height: 108px;
+  border: 1px solid #b0c9ce;
+  border-radius: 108%;
+  background-image: url("../images/2.png");
+  background-repeat: no-repeat;
+  background-position-x: 35px;
+  background-position-y: 31px;
+  margin-bottom: 14px;
+  margin-left: 12px;
+}
+.extra-services-card-img5{
+  width: 108px;
+  height: 108px;
+  border: 1px solid #b0c9ce;
+  border-radius: 108%;
+  background-image: url("../images/1.png");
+  background-repeat: no-repeat;
+  background-position-x: 31px;
+  background-position-y: 30px;
+  margin-bottom: 14px;
+  margin-left: 1px;
+}
+
+@media (max-width:952px){
+  .extra-services-card{
+    margin-left: 35%;
+  }
+}
+@media (max-width:576px){
+  .extra-services{
+    height: 1200px;
+  }
+}
+
+
+/* ---------What we include in cleaning---------- */
+
+#cleaning{
+  background-color: #F6F6F6;
+  padding-top: 73px;
+  color:#4F4F4F;
+  width: 100%;
+}
+#cleaning .cleaning{
+  margin-top:42px;
+}
+
+#cleaning .cleaning-area{
+  width: 360px;
+  height: 516px;
+  /* border: 1px solid black; */
+}
+@media (max-width:552px){
+  #cleaning, .cleaning .img2, .cleaning-area{
+    width: 100%;
+  }
+}
+@media (max-width:552px){
+  #cleaning, .img2{
+    width: 100%;
+    align-items:center;
+  }
+}
+@media (max-width:552px){
+  #cleaning, .cleaning-area{
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+#cleaning .Bedroom-and-Living-Room {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.2;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 17px;
+}
+
+#cleaning .cleaning-p{
+  font-size: 16px;
+  display: inline;
+  line-height: 36px;
+  margin-left: 9px;
+}
+
+
+/* --------------why helperland--------------- */
+#Why-Helperland{
+  width: 1047px;
+  height: 367px;
+  border: 1px solid black;
+  margin: auto;
+  color: #646464;
+  display: inline;
+}
+
+@media (max-width:1047px){
+  #Why-Helperland{
+    width: 100%;
+    /* padding: 15px; */
+    
+  }
+}
+@media (max-width:1100px){
+  #Why-Helperland .content-left, .content-right, .the-best{
+    display: block;
+    text-align-last: center;
+    width: 100%;
+  }
+}
+#Why-Helperland .content-left{
+  text-align: right;
+  width: 360px;
+}
+#Why-Helperland .content-right{
+  text-align: left;
+  width: 380px;
+  padding-right: 20px;
+  
+}
+#Why-Helperland .heading{
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: bold;
+  color: #646464;
+  margin-bottom: 9.5px;
+}
+#Why-Helperland .p{
+  font-family: Roboto;
+  font-size: 14px;
+  color: #646464;
+  display: flex;
+}
+/***********************************************************Pricies********************************************************************/
