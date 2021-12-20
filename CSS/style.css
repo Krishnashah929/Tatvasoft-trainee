@@ -1030,3 +1030,34 @@ opacity: 1;
   margin-top:20px;
 }
 /**************************************************************Contact***************************************************************/
+/*****************************************************************ABOUT PAGE***********************************************************/
+.paragraph-about{
+  width: 982px;
+  height: 231px;
+} 
+.first-paragraph-about{
+  text-align: center;
+  color: #646464;
+  font-size:16px;
+  line-height: 1.5;
+}
+.about-card-1{
+  border: hidden;
+}
+.second-about{
+  width: 982px;
+  height: 231px;
+} 
+.second-paragraph-about{
+  text-align: center;
+  color: #646464;
+  font-size:16px;
+  line-height: 1.5;
+}
+.about-card-2{
+  border: hidden;
+}
+.newslatter-button{
+  margin-top:20px;
+}
+/*****************************************************************ABOUT PAGE***********************************************************/
