@@ -988,3 +988,45 @@ opacity: 1;
   display: flex;
 }
 /***********************************************************Pricies********************************************************************/
+/**************************************************************Contact***************************************************************/
+.conatct-heading{
+  margin-bottom:30px;
+}
+.hr-line{
+  color: #4f4f4f;
+  height: 1px;
+  width: 70%;
+  margin-left:15%
+}
+.card-header{
+  background-color: white;
+  border: none;
+}
+.submit-button{
+  color:white; 
+  background-color: #1d7a8c; 
+  display: flex; 
+  margin:auto; 
+  border-radius: 23px;
+}
+.google-map{
+  margin-top:80px;
+}
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  height: 400px;
+  width: 100%;
+}
+.symbols-3{
+  font-family: Roboto;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+  color: #4f4f4f;
+}
+.newslatter-button{
+  margin-top:20px;
+}
+/**************************************************************Contact***************************************************************/
