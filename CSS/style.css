@@ -5,7 +5,7 @@
 }
 body {
   font-family: "Roboto", sans-serif;
-  color: white;
+  color: #4f4f4f;
 }
 a {
   color: #ffffff;
@@ -96,6 +96,7 @@ a {
   /* position: absolute; */
   top: 318px;
   left: 55px;
+  color: #ffffff;
 }
 @media (min-width:512px) and  (max-width: 1600px) {
   .main-text {
@@ -165,6 +166,7 @@ a {
   top: 650px;
   width: 100%;
   padding: 0 15%;
+  color: #ffffff;
   /* background-color: #fff; */
 }
 @media (max-width: 992px) {
@@ -417,10 +419,11 @@ a {
 /* footer */
 #footer {
   background: #111111;
+  color: #ffffff;
 }
 
 .foot-text {
-  columns: #f1f1f1;
+  
   font-size: 14px;
   font-weight: 400;
 }
@@ -429,6 +432,7 @@ a {
 
 #privacy-policy {
   background: #292929;
+  color: #ffffff;
 }
 
 #privacy-policy a {
@@ -988,6 +992,37 @@ opacity: 1;
   display: flex;
 }
 /***********************************************************Pricies********************************************************************/
+/*****************************************************************ABOUT PAGE***********************************************************/
+.paragraph-about{
+  width: 982px;
+  height: 231px;
+} 
+.first-paragraph-about{
+  text-align: center;
+  color: #646464;
+  font-size:16px;
+  line-height: 1.5;
+}
+.about-card-1{
+  border: hidden;
+}
+.second-about{
+  width: 982px;
+  height: 231px;
+} 
+.second-paragraph-about{
+  text-align: center;
+  color: #646464;
+  font-size:16px;
+  line-height: 1.5;
+}
+.about-card-2{
+  border: hidden;
+}
+.newslatter-button{
+  margin-top:20px;
+}
+/*****************************************************************ABOUT PAGE***********************************************************/
 /**************************************************************Contact***************************************************************/
 .conatct-heading{
   margin-bottom:30px;
@@ -1029,35 +1064,84 @@ opacity: 1;
 .newslatter-button{
   margin-top:20px;
 }
-/**************************************************************Contact***************************************************************/
-/*****************************************************************ABOUT PAGE***********************************************************/
-.paragraph-about{
-  width: 982px;
-  height: 231px;
-} 
-.first-paragraph-about{
+ 
+/**********************************************service provider*********************************************************************/
+ 
+.register-form-area-service-provider
+{
+  background-color: white;
+	border: 1px solid GREY;
+  margin: 0 auto;
+  font-size: 16px;
+  /* width: 430px; */
+	}
+.form-area-service-provider .form-group-service-provider{
+  margin: 8px 35px 8px 36px;
+  
+}
+.form-area .form-group .form-control{
+  font-size: 16px;
+  color: #A0A0A0;
+}
+.btn-blue-service-provider{
+  background-color: #1D7A8C;
+  color: white;
+  margin-left: 38%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-bottom: 5px;
+}
+
+#howitwork-service-provider{
+  padding-top: 63px;
+  padding-bottom: 44px;
+  position: relative;
+}
+.h2-service-provider{
+  font-size: 40px;
+  font-weight: bold;
   text-align: center;
-  color: #646464;
-  font-size:16px;
-  line-height: 1.5;
+  margin-bottom: 70px;
 }
-.about-card-1{
-  border: hidden;
+.how-it-work-ul-service-provider{
+  list-style: none;
+
 }
-.second-about{
-  width: 982px;
-  height: 231px;
-} 
-.second-paragraph-about{
-  text-align: center;
-  color: #646464;
-  font-size:16px;
-  line-height: 1.5;
+.how-it-work-ul-service-provider .h3-service-provider{
+  font-size: 30px;
+  margin-top: 52px;
+
 }
-.about-card-2{
-  border: hidden;
+.list-text-service-provider{
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: left;
+  padding: 5px;
+
 }
-.newslatter-button{
-  margin-top:20px;
+.list-text2-service-provider{
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: left;
+  padding: 5px;
 }
-/*****************************************************************ABOUT PAGE***********************************************************/
+.main-img-service-provider{
+  float: right;
+    width: 260px;
+    height: 260px;
+    border-radius: 260px;
+    display: block;
+    margin-top: -50px;
+    margin-left: 30px;
+    box-shadow: 0 0 30px rgb(0 0 0 / 15%);
+}
+.main-img2-service-provider{
+  float: left;
+    width: 260px;
+    height: 260px;
+    border-radius: 260px;
+    display: block;
+    margin-top: -50px;
+    margin-right: 30px;
+    box-shadow: 0 0 30px rgb(0 0 0 / 15%);
+}
