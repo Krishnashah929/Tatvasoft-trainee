@@ -1246,14 +1246,12 @@ table {
   color: white;
   border-radius:20px;
 }
- 
 .h4-entry-service-history{
   display: inline; 
   font-family: Roboto;
   font-size: 14px;
   line-height: 1.71;
   color: #646464;
-   
 }
 .h4-service-history{
   display: inline; 
@@ -1271,15 +1269,12 @@ table {
   display:inline;
   padding: 5px;
   background:none;
-
 }
 .nav-service-history{
  float: right;
-
 }
 @media (max-width:952px){
   .pagination-1 {
-    
     /* display: block;   */
   }
 }
@@ -1288,7 +1283,6 @@ table {
     margin-left: 10%;
   }
 }
-
 @media (max-width:952px){
   .nav-service-history{
     margin-top: 20px;
@@ -1324,7 +1318,6 @@ table {
   margin-top:18px;
   color: #646464;
   padding: 15px;
-  
 }
 .nav-item-user-management :hover{
   color: dimgray;
@@ -1377,7 +1370,6 @@ table {
     margin-bottom:20px;
   }
 }
-
 .form1 .form-control{
   font-size: 16px;
   border-radius: 4px;
@@ -1402,7 +1394,6 @@ table {
   color: #868383;
   border-radius: 4px;
 }
-
 .table {
   border: 1px solid #E1E1E1;
   border-collapse: collapse;
@@ -1469,31 +1460,32 @@ table {
   margin-bottom: 20px;
   margin-left: 5px;
 }
-
 /* pagination */
 .pagination-main {
   display: inline-block;
   background-color: #FFFFFF;
+  
 }
-
 .pagination-main a {
   color: black;
   float: left;
   padding: 8px 16px;
   text-decoration: none;
   border: 1px solid #D6D6D6;
-
 }
-
 .pagination-main a.active {
   background-color: #646464;
   color: white;
 } 
-
 .pagination-main a:hover:not(.active) {background-color: #ddd;}
-
 @media (max-width:780px){
   .pagination-main{
     margin-top: 20px;
   }
+}
+/********************************************************admin > service request********************************************************/
+.form2-request-history{
+  width: 170px;
+  display: inline;
+  color: #a0a0a0;
 }
