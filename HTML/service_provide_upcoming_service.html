@@ -13,56 +13,122 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="CSS/style.css">
-
 </head>
 
 <body>
-    <!--Navbar-->
-    <section id="nevbar" class="small-nav">
-        <nav class="navbar navbar-expand-lg navbar-dark  ">
-            <a class="navbar-brand" href="service_provide_upcoming_service.html">
-                <img src="images/logo-small.png" alt="Logo" class="small-logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mymenu"
-                aria-controls="mymenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse ms-auto" id="mymenu">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> Prices & services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Warranty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item contact-nav" style="margin-right:30px;">
-                        <a class="nav-link" href="#">Contact </a>
-                    </li>
-                    <div class="vr" style="color: white;"></div>
-                    <li class="nav-item dropdown notification-icon">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="images\icon-notification.png" alt="notification">
-                        </a>
-                    </li>
-                    <div class="vr" style="color: white;"></div>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="images\user.png" alt="Flag">
-                            <i class="bi bi-chevron-down"></i>
-                        </a>
-                         
-                    </li>
-                </ul>
+    <!-- Mobile sidebar and responsive Navbar-->
+    <div class="wrapper " id="sidebar-provider">
+        <nav id="sidebar">
+            <div class="container-fluid">
+                <div class="row row1">
+                    <b> Welcome,Sandeep.</b>
+                </div>
+                <div class="row row2">
+                    <ul class="nav nav-tabs flex-column" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link " data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#newservicerequests">New Service Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#upcomingservices">Upcoming
+                                Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#serviceschedule">Service Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#servicehistory">Service History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#myratings">My Ratings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Block Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Invoices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">My Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row3">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="pricing.html">Price & services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Warranty</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact.html">Contact </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row4">
+                    <img class="socialmedia" src="images/facebook-mobile-menu.png" alt="">
+                    <img class="socialmedia" src="images/instagram-mobile-menu.png" alt="">
+                </div>
+            </div>
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
             </div>
         </nav>
-    </section>
-    <!--Navbar-->
+        <div id="nevbar">
+            <section class="header small-nav" id="">
+                <nav class="navbar navbar-expand-lg navbar-dark mynav">
+                    <a class="navbar-brand" href="#"><img src="images/logo-small.png" alt=""></a>
 
+                    <button class="navbar-toggler" id="sidebarCollapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">Price & services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Warranty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact </a>
+                            </li>
+                            <div class="vr" style="color: white;"></div>
+                            <li class="nav-item dropdown notification-icon">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images\icon-notification.png" alt="notification">
+                                </a>
+                            </li>
+                            <div class="vr" style="color: white;"></div>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images\user.png" alt="Flag">
+                                    <i class="bi bi-chevron-down"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </section>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!--Mobile sidebar and Responsive Navbar-->
     <!--Welcome heading-->
     <section class="first-heading">
         <div class="welcome-heading">
@@ -96,6 +162,7 @@
                         </nav>
                     </div>
                 </div>
+
                 <div class="col-md-9 table-upcoming-services">
                     <table class="table">
                         <thead class="table-header-upcoming-services">
@@ -296,7 +363,31 @@
         </div>
     </section>
     <!--Main-section-->
-
+    <!--for mobile usage-->
+    <section id="mobile-card">
+        <br>
+        <div class="mobile-card">
+            <h2 style="text-align: center;"> <b>Upcoming Services</b></h2>
+            <div class="card upcoming-service-card">
+                <ul class="list-group ">
+                    <li class="list-group-item">323436</li>
+                    <li class="list-group-item">
+                        <img src="images\calendar2.png" alt=""> 09/04/2018
+                        <img src="images\layer-712.png" alt="" style="margin-left: 30px;"> 12:00 - 18:00
+                    </li>
+                    <li class="list-group-item">David Bough<br>
+                        <img src="images\layer-719.png" alt="">
+                        Musterstrabe 5,12345 Bonn
+                    </li>
+                    <li class="list-group-item">15 km</li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-upcoming-service">Cancle</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--for mobile usage-->
     <!-- footer section -->
     <section class="container-fluid" id="footer">
         <div class="row align-self-center">
@@ -349,6 +440,39 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+
+    <!--Script for side bar-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#dismiss, .overlay').on('click', function () {
+                // hide sidebar
+                $('#sidebar').removeClass('active');
+                // hide overlay
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                // open sidebar
+                $('#sidebar').addClass('active');
+                // fade in the overlay
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 
 </html>
