@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer > Service History</title>
+    <title>Customer > Service History Page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -19,76 +19,137 @@
 </head>
 
 <body>
-    <!--Navbar-->
-    <section id="nevbar" class="small-nav">
-        <nav class="navbar navbar-expand-lg navbar-dark  ">
-            <a class="navbar-brand" href="service_provide_upcoming_service.html">
-                <img src="images/logo-small.png" alt="Logo" class="small-logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mymenu"
-                aria-controls="mymenu" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse ms-auto" id="mymenu">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
-                            href="#book-a-cleaner">Book Now</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"> Prices & services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Warranty</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
-                    </li>
-                    <li class="nav-item contact-nav" style="margin-right:30px;">
-                        <a class="nav-link" href="#">Contact </a>
-                    </li>
-                    <div class="vr" style="color: white;"></div>
-                    <li class="nav-item dropdown notification-icon">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="images\icon-notification.png" alt="notification">
-                        </a>
-                    </li>
-                    <div class="vr" style="color: white;"></div>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            <img src="images\user.png" alt="Flag">
-                            <i class="bi bi-chevron-down"></i>
-                        </a>
-                    </li>
-                </ul>
+    <!-- mobile sidebar and responsive navbar-->
+    <div class="wrapper " id="sidebar-provider">
+        <nav id="sidebar">
+            <div class="container-fluid">
+                <div class="row row1">
+                    <b> Welcome,Sandeep.</b>
+                </div>
+                <div class="row row2">
+                    <ul class="nav nav-tabs flex-column" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link " data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#newservicerequests">New Service Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#upcomingservices">Upcoming
+                                Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#serviceschedule">Service Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#servicehistory">Service History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#myratings">My Ratings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Block Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Invoices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">My Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row3">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="service_provide.html">Price & services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Warranty</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact.html">Contact </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row4">
+                    <img class="socialmedia" src="images/facebook-mobile-menu.png" alt="">
+                    <img class="socialmedia" src="images/instagram-mobile-menu.png" alt="">
+                </div>
+            </div>
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
             </div>
         </nav>
-    </section>
-    <!--Navbar-->
+        <div id="nevbar">
+            <section class="header small-nav" id="">
+                <nav class="navbar navbar-expand-lg navbar-dark mynav">
+                    <a class="navbar-brand" href="#"><img src="images/logo-small.png" alt=""></a>
 
-    <!--Welcome heading-->
+                    <button class="navbar-toggler" id="sidebarCollapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">Price & services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Warranty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact </a>
+                            </li>
+                            <div class="vr" style="color: white;"></div>
+                            <li class="nav-item dropdown notification-icon">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images\icon-notification.png" alt="notification">
+                                </a>
+                            </li>
+                            <div class="vr" style="color: white;"></div>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images\user.png" alt="Flag">
+                                    <i class="bi bi-chevron-down"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </section>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!--mobile sidebar and responsive navbar-->
+    <!--Welcome heading of service history page-->
     <section class="first-heading">
         <div class="welcome-heading">
             <h6 class="Welcome ">Welcome,<b>Gaurang!</b></h6>
         </div>
     </section>
-    <!--Welcome heading-->
-    <!--Main-section-->
+    <!--Welcome heading of service history page-->
+    <!--Main-section of service history page-->
     <section class="main-section-upcoming-services">
         <div class="container-fluid pb-5">
             <div class="row">
-                <div class="col-12">
-                    <h5 class="heading-service-history">Service History
-                        <button type="button" class="btn btn-export-service-history">Export</button>
-                    </h5>
-                </div>
+
                 <div class="col-md-3">
-                    <div class=" nav-upcoming-sevices">
+                    <div class=" nav-upcoming-sevices" id="">
                         <nav class="side-nav  nav-upcoming-sevices">
                             <ul class="nav-menu">
-                                <li class="nav-item-upcoming-service pt-4"><a href="#"> Dashboard</a></li>
+                                <li class="nav-item-upcoming-service pt-4"><a href="customer_service_history.html">
+                                        Dashboard</a></li>
                                 <hr class="navbar-hr-line">
                                 <li class="nav-item-upcoming-service"><a href="#"> Service History</a></li>
                                 <hr class="navbar-hr-line">
@@ -105,9 +166,19 @@
                     </div>
                 </div>
                 <div class="col-md-9 table-upcoming-services">
-                    <table class="table">
+                    <div class="row">
+                        <div class="col-6">
+                            <h5 class="heading-service-history">Service History
+                            </h5>
+                        </div>
+                        <div class="col-6 button-export">
+                            <button type="button" class="btn btn-export-service-history">Export</button>
+                        </div>
+                    </div>
+                    <table class="table" id="service-table">
                         <thead class="table-header-upcoming-services">
                             <tr>
+                                <th scope="col"> Service ID <img src="images\sort.png" alt=""></th>
                                 <th scope="col"> Service Details <img src="images\sort.png" alt=""></th>
                                 <th scope="col"> Service Provider <img src="images\sort.png" alt=""> </th>
                                 <th scope="col">Payment <img src="images\sort.png" alt=""></th>
@@ -117,13 +188,13 @@
                         </thead>
                         <tbody class="tbody-upcoming-services">
                             <tr>
-                                <th scope="row" class="th-upcoming-service">
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -152,13 +223,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row" class="th-upcoming-service">
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -185,14 +256,15 @@
                                 <td>
                                     <button type="button" class="btn btn-rate-service-history">Rate SP</button>
                                 </td>
-                            </tr>    <tr>
-                                <th scope="row" class="th-upcoming-service">
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -219,14 +291,15 @@
                                 <td>
                                     <button type="button" class="btn btn-rate-service-history">Rate SP</button>
                                 </td>
-                            </tr>    <tr>
-                                <th scope="row" class="th-upcoming-service">
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -253,14 +326,15 @@
                                 <td>
                                     <button type="button" class="btn btn-rate-service-history">Rate SP</button>
                                 </td>
-                            </tr>    <tr>
-                                <th scope="row" class="th-upcoming-service">
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -287,14 +361,15 @@
                                 <td>
                                     <button type="button" class="btn btn-rate-service-history">Rate SP</button>
                                 </td>
-                            </tr>    <tr>
-                                <th scope="row" class="th-upcoming-service">
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -321,14 +396,15 @@
                                 <td>
                                     <button type="button" class="btn btn-rate-service-history">Rate SP</button>
                                 </td>
-                            </tr>    <tr>
-                                <th scope="row" class="th-upcoming-service">
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -355,14 +431,15 @@
                                 <td>
                                     <button type="button" class="btn btn-rate-service-history">Rate SP</button>
                                 </td>
-                            </tr>    <tr>
-                                <th scope="row" class="th-upcoming-service">
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -389,14 +466,50 @@
                                 <td>
                                     <button type="button" class="btn btn-rate-service-history">Rate SP</button>
                                 </td>
-                            </tr>    <tr>
-                                <th scope="row" class="th-upcoming-service">
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
                                     <img src="images\calendar2.png" alt="">
-                                    09/04/2018
-                                    <br>
+                                    09/04/2018<br>
                                     <img src="images\layer-712.png" alt="">
                                     12:00 - 18:00
-                                </th>
+                                </td>
+                                <td>
+                                    <div class="row cap-1">
+                                        <div class="col-auto">
+                                            <img src="images\cap.png" alt="" class="cap-customer-history">
+                                        </div>
+                                        <div class="col-auto cap-1">
+                                            Lyum Watson
+                                            <br>
+                                            <img src="images\yellow-small-star.png" alt=""><img
+                                                src="images\yellow-small-star.png" alt=""><img
+                                                src="images\yellow-small-star.png" alt=""><img
+                                                src="images\yellow-small-star.png" alt=""><img
+                                                src="images\grey-small-star.png" alt="">
+                                            4
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment-service-history">€ 63</p>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-status-service-history">Completed</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-rate-service-history">Rate SP</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="th-upcoming-service">323436</th>
+                                <td>
+                                    <img src="images\calendar2.png" alt="">
+                                    09/04/2018<br>
+                                    <img src="images\layer-712.png" alt="">
+                                    12:00 - 18:00
+                                </td>
                                 <td>
                                     <div class="row cap-1">
                                         <div class="col-auto">
@@ -479,9 +592,97 @@
 
         </div>
     </section>
+    <!--Main-section of service history page-->
+    <!--mobile cards for table of service history-->
+    <section id="mobile-card">
+        <br>
+        <div class="mobile-card">
+            <h2 style="text-align: center;"> <b>Services History</b></h2>
+            <div class="card upcoming-service-card">
+                <ul class="list-group ">
+                    <li class="list-group-item">
+                        323436
+                    </li>
+                    <li class="list-group-item">
+                        <img src="images\calendar2.png" alt=""> 09/04/2018
+                        <img src="images\layer-712.png" alt="" style="margin-left: 30px;"> 12:00 - 18:00
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-2">
+                                <img src="images\cap.png" alt="" class="cap-customer-history">
+                            </div>
+                            <div class="col-10">
+                                Lyum Watson <br>
+                                <img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png"
+                                    alt=""><img src="images\yellow-small-star.png" alt=""><img
+                                    src="images\yellow-small-star.png" alt=""><img src="images\grey-small-star.png"
+                                    alt="">
+                                4
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="payment-service-history">€ 63</p>
+                    </li>
+                    <li class="list-group-item">
+                        <button type="button" class="btn btn-status-service-history">Completed</button>
+                        <button type="button" class="btn btn-rate-service-history">Rate SP</button>
+                    </li>
+                </ul>
+            </div>
 
-    <!--Main-section-->
+            <div class="row pagination-1">
+                <div class="col-12">
+                    <h5 class="h4-service-history" style="margin-left:20%;"> Show
+                        <button class="p-service-history"> 10 <img src="images\keyboard-right-arrow-button.png"
+                                alt=""></button>
+                        entries | Total Record: 55
+                    </h5>
+                </div>
+                <div class="col-12 nav-service-history " style="margin: auto;">
+                    <nav class="nav-service-history">
+                        <ul class="pagination">
+                            <li class="page-item disabled" title="next">
+                                <a href="homepage.html" class="page-link rounded-circle m-1">
+                                    <img src="images\first-page.png" alt="">
+                                </a>
+                            </li>
+                            <li class="page-item disabled " title="previous">
+                                <a href="homepage.html" class="page-link rounded-circle m-1">
+                                    <img src="images\keyboard-right-arrow-button-copy.png" alt="">
+                                </a>
+                            </li>
+                            <li class="page-item active" title=" ">
+                                <a href="" class="page-link rounded-circle m-1" style="background-color:#1d7a8c;">1</a>
+                            </li>
+                            <li class="page-item disabled" title=" ">
+                                <a href="" class="page-link rounded-circle m-1">2</a>
+                            </li>
+                            <li class="page-item disabled" title=" ">
+                                <a href="" class="page-link rounded-circle m-1">3</a>
+                            </li>
+                            <li class="page-item disabled" title=" ">
+                                <a href="" class="page-link rounded-circle m-1">4</a>
+                            </li>
+                            <li class="page-item disabled" title="next">
+                                <a href="homepage.html" class="page-link rounded-circle m-1">
+                                    <img src="images\first-page.png" alt="">
+                                </a>
+                            </li>
+                            <li class="page-item disabled" title="next">
+                                <a href="homepage.html" class="page-link rounded-circle m-1">
+                                    <img src="images\keyboard-right-arrow-button-copy.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
+    </section>
+    <!--mobile cards for table of service history-->
     <!-- footer section -->
     <section class="container-fluid" id="footer">
         <div class="row align-self-center">
@@ -528,6 +729,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+    <!--script for sidebar -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#dismiss, .overlay').on('click', function () {
+                // hide sidebar
+                $('#sidebar').removeClass('active');
+                // hide overlay
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                // open sidebar
+                $('#sidebar').addClass('active');
+                // fade in the overlay
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 
 </html>
