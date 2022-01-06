@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONTACT</title>
+    <title>CONTACT PAGE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -16,22 +16,52 @@
 </head>
 
 <body>
-    <section id="nevbar" class="small-nav">
-        <nav class="navbar navbar-expand-lg navbar-dark">
+    <!--mobile sidebar and responsive navbar-->
+    <div class="wrapper " id="sidebar-provider">
+        <nav id="sidebar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="homepage.html">
-                    <img src="images/logo-small.png" alt="Logo" class="small-logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mymenu"
-                    aria-controls="mymenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse ms-auto" id="mymenu">
+                <div class="row row1">
+                    <b> Welcome,Sandeep.</b>
+                </div>
+                <div class="row row2">
+                    <ul class="nav nav-tabs flex-column" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link " data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#newservicerequests">New Service Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#upcomingservices">Upcoming
+                                Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#serviceschedule">Service Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#servicehistory">Service History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#myratings">My Ratings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Block Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Invoices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">My Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row3">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
-                            <a class="nav-link btn btn-primary text-white"
-                                style="padding-left: 15px;padding-right: 15px;" href="#book-a-cleaner">Book a
-                                Cleaner</a>
+                            <a class="nav-link" href="#book-a-cleaner">Book a Cleaner</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#home">Prices</a>
@@ -55,9 +85,59 @@
                         </li>
                     </ul>
                 </div>
+                <div class="row4">
+                    <img class="socialmedia" src="images/facebook-mobile-menu.png" alt="">
+                    <img class="socialmedia" src="images/instagram-mobile-menu.png" alt="">
+                </div>
+            </div>
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
             </div>
         </nav>
-    </section>
+        <div id="nevbar">
+            <section class="header small-nav" id="">
+                <nav class="navbar navbar-expand-lg navbar-dark mynav">
+                    <a class="navbar-brand" href="#"><img src="images/logo-small.png" alt=""></a>
+
+                    <button class="navbar-toggler" id="sidebarCollapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white" href="#book-a-cleaner">Book a Cleaner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#home">Prices</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">Our Guarantee</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#service">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#portfolio">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white"
+                                    style="padding-left: 20px;padding-right: 20px; margin-bottom: 4px;"
+                                    href="#">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white"
+                                    style="padding-left: 15px;padding-right: 15px;" href="#">Become a Helper</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </section>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!--mobile sidebar and responsive navbar-->
+    <!--contact page first part-->
     <img src="images\group-16_2.png" alt="" class="main-img">
     <div class="container-fluid">
         <section class="line-star">
@@ -68,6 +148,7 @@
                 <div class="line"></div>
             </div>
         </section>
+        <!--contact page first part-->
         <!--3-symbols-->
         <section class="3-symbols">
             <div class="row justify-content-center symbols-3">
@@ -121,7 +202,7 @@
         <section id="get-in-touch-form" class="get-in-touch-form">
             <form class="row g-3 " style="width:50%; margin-left: 25%;">
                 <div class="col-md-6">
-                    <label for="inputfirstname" class="form-label ">first name</label>
+                    <label for="inputfirstname" class="form-label ">First name</label>
                     <input type="text" class="form-control" id="inputfirstname" placeholder="First Name">
                 </div>
                 <div class="col-md-6">
@@ -129,15 +210,15 @@
                     <input type="text" class="form-control" id="inputlastname" placeholder="Last Name">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputnumber" class="form-label">Phone number</label>
+                    <label for="inputnumber" class="form-label">Phone Number</label>
                     <input type="number" class="form-control" id="inputnumber" placeholder="Phone number">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputemail" class="form-label"> email</label>
+                    <label for="inputemail" class="form-label"> Email</label>
                     <input type="email" class="form-control" id="inputemail" placeholder="Email">
                 </div>
                 <div class="col-md-12">
-                    <label for="inputState" class="form-label">subject</label>
+                    <label for="inputState" class="form-label">ubject</label>
                     <select id="inputState" class="form-select" style="color: #a0a0a0;">
                         <option selected>Subject</option>
                         <option>...</option>
@@ -244,6 +325,37 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
+    <!--script for sidebar-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#dismiss, .overlay').on('click', function () {
+                // hide sidebar
+                $('#sidebar').removeClass('active');
+                // hide overlay
+                $('.overlay').removeClass('active');
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                // open sidebar
+                $('#sidebar').addClass('active');
+                // fade in the overlay
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
 </body>
 
 </html>
