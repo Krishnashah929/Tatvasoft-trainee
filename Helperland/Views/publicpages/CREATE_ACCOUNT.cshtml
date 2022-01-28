@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "_Layout";
+}
+<div class="container-fluid">
+    <div class="card card-create-account">
+        <section class="line-star">
+            <h5 class="main-heading contact-heading"> Create an account</h5>
+            <div class="row row2 justify-content-center contact-line m-1">
+                <div class="line"></div>
+                <img class="px-0" id="separator" src="../images/separator.png" alt="">
+                <div class="line"></div>
+            </div>
+        </section>
+        <section id="get-in-touch-form" class="get-in-touch-form">
+            <form class="row g-3 mt-3 " style="  margin:auto;">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputfirstname" placeholder="First Name">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputlastname" placeholder="Last Name">
+                </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" id="inputemail" placeholder="E-mail Address">
+                </div>
+                <div class="col-md-6">
+                    <input type="tel" class="form-control" id="inputnumber" placeholder="Phone number">
+                </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" id="inputpassword" placeholder="Password">
+                </div>
+                <div class="col-md-6">
+                    <input type="confirm-password" class="form-control" id="inputconfirm-password"
+                           placeholder="Confirm Password">
+                </div>
+                <div class="form-check" style="margin-left: 1%;">
+                    <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
+                    <label class="form-check-label" for="myCheck">
+                        Yes, I would like to subscribe to the Helperland
+                        GmbH newsletter with vouchers, trends, promotions and individualized offers. I can
+                        unsubscribe from the newsletter at any time
+                        in the newsletter and in my customer account.
+                    </label>
+                </div>
+                <div class="form-check" style="margin-left: 1%;">
+                    <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
+                    <label class="form-check-label" for="myCheck">
+                        I agree to the  <a href="#"
+                                           style="color: #2f8799;"> terms</a> and conditions of Helperland GmbH.
+
+                    </label>
+                </div>
+                <div class="form-check" style="margin-left: 1%;">
+                    <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
+                    <label class="form-check-label" for="myCheck">
+                        I have read the <a href="#"
+                                           style="color: #2f8799;"> Privacy Policy</a>
+                    </label>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn submit-button">Register</button>
+                </div>
+                <br><br>
+                <p class="logim-para">
+                    Already registered?
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="login-para-links"><b> Login Now</b></a>
+                </p>
+            </form>
+    </div>
+    </section>
+</div>
