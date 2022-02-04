@@ -613,7 +613,38 @@ a {
         color: rgb(255, 251, 251);
     }
 /*CSS for popup (LOGIN)*/
-
+/*CSS for popup (forgot password)*/
+.forgot-password-card {
+    margin: auto; 
+    width: 25%; 
+    margin-top: 15% !important; 
+    border: none; 
+    box-shadow: 5px 5px 15px 15px whitesmoke;
+}
+@media (max-width : 500px){
+    .forgot-password-card {
+        margin: auto;
+        width: 50%;
+        margin-top: 15% !important;
+        border: none;
+        box-shadow: 5px 5px 15px 15px whitesmoke;
+    }
+}
+.forgot-password-form {
+    margin: auto;
+    color: #646464;
+    font-size: 16px;
+    font-weight: bolder;
+}
+.submit-password-button {
+    color: white;
+    font-size: medium;
+    background-color: #1d7a8c;
+    margin: auto;
+    padding: 5px 15px 5px 15px;
+    border-radius: 23px;
+}
+/*CSS for popup (forgot password)*/
 /*CSS for creat account*/
 .card-create-account {
     margin: auto;
@@ -1287,9 +1318,12 @@ a {
 .newslatter-button {
     margin-top: 20px;
 }
-
+.contact-upload{
+    font-size:16px;
+    color:#646464;
+     
+}
 /**********************************************service provider*********************************************************************/
-
 .register-form-area-service-provider {
     background-color: white;
     border: 1px solid GREY;

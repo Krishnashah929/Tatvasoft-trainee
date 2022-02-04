@@ -1,10 +1,10 @@
-﻿@{
+﻿@using Helperland.Models
+@model User
+@{
     ViewData["Title"] = "Home Page";
 }
-
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,10 +17,8 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
     <link href="~/css/site.css" rel="stylesheet" />
-     
     <title>Helperland</title>
 </head>
-
 <body>
     <!-- main Section -->
     <section id="home_section" class="main">
@@ -70,7 +68,7 @@
                     <div class="row row3">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                             <li class="nav-item">
-                                <a class="nav-link"asp-area="" asp-controller="#" asp-action="#">Book Now</a>
+                                <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">Book Now</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="publicpages" asp-action="PRICES">Prices</a>
@@ -79,7 +77,7 @@
                                 <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">Our Guarantee</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link"  asp-area="" asp-controller="#" asp-action="#">Blog</a>
+                                <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">Blog</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="" asp-controller="publicpages" asp-action="CONTACT">Contact Us</a>
@@ -87,90 +85,10 @@
                             <!-- Modal popup for login -->
                             <li class="nav-item">
                                 <a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#myModal">Login </a>
-                                <!-- The Modal -->
-                                <div class="modal model-for-completion-order" id="myModal">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <!-- Modal Header -->
-                                            <div class="modal-header">
-                                                <h3 class="modal-title" id="popup-loginLabel">
-                                                    <b>Login to your account</b>
-                                                </h3>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <!-- Modal body -->
-                                            <div class="modal-body login-popup">
-                                                <div class="input-group mb-3">
-                                                    <input type="email" class="form-control" placeholder="Email" name="Email"
-                                                           style="border-right: none;">
-                                                    <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="password" class="form-control" placeholder="Password" name="Password"
-                                                           style="border-right: none;">
-                                                    <span class="input-group-text"> <i class="fas fa-lock"></i></span>
-                                                </div>
-                                                <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
-                                                <label class="form-check-label" for="myCheck">
-                                                    Remeber me
-                                                </label>
-                                                <br><br>
-                                                <button type="submit" class="btn  login-btn"> Login </button>
-                                                <br><br>
-                                                <p class="logim-para">
-                                                    <a href="#" class="login-para-links" data-bs-target="#exampleModalToggle2"
-                                                       data-bs-toggle="modal"><b>Forgoet Password ?</b></a>
-                                                    <br>
-                                                    Don't have an account?
-                                                    <br>
-                                                    <a asp-area="" asp-controller="publicpages" asp-action="CREATE_ACCOUNT" target="_blank" class="login-para-links">
-                                                        <b>
-                                                            Create an
-                                                            account
-                                                        </b>
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Second model for forget password-->
-                                <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
-                                     aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h3 class="modal-title" id="popup-loginLabel">
-                                                    <b> Forgot Password </b>
-                                                </h3>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="input-group mb-3">
-                                                    <input type="email" class="form-control" placeholder="Email" name="Email"
-                                                           style="border-right: none;">
-                                                    <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn  login-btn"> Send </button>
-                                                <br><br>
-                                                <p class="logim-para">
-                                                    <a href="#" class="login-para-links" data-bs-target="#myModal" data-bs-toggle="modal">
-                                                        <b>
-                                                            Log
-                                                            in
-                                                        </b>
-                                                    </a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--Second model for forget password-->
                             </li>
                             <!-- Modal popup for login -->
                             <li class="nav-item">
-                                <a class="nav-link"asp-area="" asp-controller="#" asp-action="#">Become a Helper</a>
+                                <a class="nav-link" asp-area="" asp-controller="provider" asp-action="service_provider">Become a Helper</a>
                             </li>
                         </ul>
                     </div>
@@ -183,18 +101,16 @@
                 <section class="header small-nav" id="">
                     <nav class="navbar navbar-expand-lg  navbar-dark mynav" id="header" style="background: transparent;">
                         <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="images/logo-large.png" alt=""></a>
-
                         <button class="navbar-toggler" id="sidebarCollapse" type="button">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                                 <li class="nav-item">
                                     <a class="nav-link btn btn-primary text-white" asp-area="" asp-controller="#" asp-action="#">Book Now</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white"asp-area="" asp-controller="publicpages" asp-action="PRICES">Prices</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="publicpages" asp-action="PRICES">Prices</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="#" asp-action="#">Our Guarantee</a>
@@ -203,7 +119,7 @@
                                     <a class="nav-link text-white" asp-area="" asp-controller="#" asp-action="#">Blog</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-white"asp-area="" asp-controller="publicpages" asp-action="CONTACT">Contact Us</a>
+                                    <a class="nav-link text-white" asp-area="" asp-controller="publicpages" asp-action="CONTACT">Contact Us</a>
                                 </li>
                                 <!-- Modal popup for login -->
                                 <li class="nav-item">
@@ -222,33 +138,39 @@
                                                 </div>
                                                 <!-- Modal body -->
                                                 <div class="modal-body login-popup">
-                                                    <div class="input-group mb-3">
-                                                        <input type="email" class="form-control" placeholder="Email" name="Email"
-                                                               style="border-right: none;">
-                                                        <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                                    <div class="text-center text-danger mb-3">
+                                                        <b>  @ViewBag.Message</b>
                                                     </div>
-                                                    <div class="input-group mb-3">
-                                                        <input type="password" class="form-control" placeholder="Password" name="Password"
-                                                               style="border-right: none;">
-                                                        <span class="input-group-text"> <i class="fas fa-lock"></i></span>
-                                                    </div>
-                                                    <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
-                                                    <label class="form-check-label" for="myCheck">
-                                                        Remeber me
-                                                    </label>
-                                                    <br><br>
-                                                    <button type="submit" class="btn  login-btn"> Login </button>
-                                                    <br><br>
+                                                    <form method="post" asp-controller="Home">
+                                                        <div class="input-group mb-3">
+                                                            <input type="email" class="form-control" placeholder="Email" name="Email"
+                                                                   style="border-right: none;" required>
+                                                            <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <input type="password" class="form-control" placeholder="Password" name="Password"
+                                                                   style="border-right: none;" required>
+                                                            <span class="input-group-text"> <i class="fas fa-lock"></i></span>
+
+                                                        </div>
+                                                        <input class="form-check-input" type="checkbox" id="myCheck" name="remember">
+                                                        <label class="form-check-label" for="myCheck">
+                                                            Remeber me
+                                                        </label>
+                                                        <br><br>
+                                                        <button type="submit" class="btn  login-btn"> Login </button>
+                                                        <br><br>
+                                                    </form>
                                                     <p class="logim-para">
                                                         <a href="#" class="login-para-links" data-bs-target="#exampleModalToggle2"
                                                            data-bs-toggle="modal"><b>Forgoet Password ?</b></a>
                                                         <br>
                                                         Don't have an account?
                                                         <br>
-                                                        <a  asp-area="" asp-controller="publicpages" asp-action="CREATE_ACCOUNT" target="_blank" class="login-para-links">
+                                                        <a asp-area="" asp-controller="Home" asp-action="CREATE_ACCOUNT" target="_blank" class="login-para-links">
                                                             <b>
-                                                                Create an
-                                                                account
+                                                                Create an account
                                                             </b>
                                                         </a>
                                                     </p>
@@ -268,20 +190,22 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="input-group mb-3">
-                                                        <input type="email" class="form-control" placeholder="Email" name="Email"
-                                                               style="border-right: none;">
-                                                        <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-                                                    </div>
-                                                    <br>
-                                                    <button type="submit" class="btn  login-btn"> Send </button>
-                                                    <br><br>
+                                                    <form method="post" asp-controller="Home" asp-action="Index">
+                                                        <div class="text-center text-success mb-3">
+                                                            <b>  @ViewBag.Message1</b>
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <input type="email" asp-for="Email" class="form-control" placeholder="Email"
+                                                                   style="border-right: none;">
+                                                            <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                                        </div>
+                                                        <br>
+                                                        <button type="submit" class="btn  login-btn"> Send </button>
+                                                        <br><br>
+                                                    </form>
                                                     <p class="logim-para">
                                                         <a href="#" class="login-para-links" data-bs-target="#myModal" data-bs-toggle="modal">
-                                                            <b>
-                                                                Log
-                                                                in
-                                                            </b>
+                                                            <b> Log in </b>
                                                         </a>
                                                     </p>
                                                 </div>
@@ -292,8 +216,8 @@
                                 </li>
                                 <!-- Modal popup for login -->
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary text-white become-helper-nav-btn "
-                                       href="service_provide.html">Become a Helper</a>
+                                    <a class="nav-link btn btn-primary text-white become-helper-nav-btn " asp-area=""
+                                       asp-controller="Home" asp-action="service_provider">Become a Helper</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -404,7 +328,6 @@
                                 </p>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-md-6 card text-center  mb-lg-0 Helperland-section-card ">
                             <img class="img-fluid card-img-top" src="Imgs/group-23.png" width="320" height="320" alt="image group 23">
                             <div class="card-body">
@@ -415,7 +338,6 @@
                                 </p>
                             </div>
                         </div>
-
                         <div class="col-lg-4 col-md-6  card text-center Helperland-section-card  mb-lg-0">
                             <img class="img-fluid card-img-top" src="Imgs/group-24.png" width="320" height="320" alt="image group 23">
                             <div class="card-body">
@@ -430,12 +352,10 @@
                 </div>
             </div>
         </div>
-
     </section>
     <!-- Helperland section -->
     <!-- blog-section> -->
     <section class="container-fluid" id="blog-section">
-
         <img id="blog-left" src="Imgs/blog-left-bg.png" alt="" srcset="">
         <img id="blog-right" src="Imgs/blog-right-bg.png" alt="" srcset="">
         <div class="row sub-row1 justify-content-center">
@@ -474,8 +394,7 @@
                                     pulvinar aliquet.
                                 </p>
                                 <a class="card-link" href="">
-                                    Read the post <img class="img-fluid" src="Imgs/shape-2.png" alt=""
-                                                       srcset="">
+                                    Read the post <img class="img-fluid" src="Imgs/shape-2.png" alt="" srcset="">
                                 </a>
                             </div>
                         </div>
@@ -491,8 +410,7 @@
                                     pulvinar aliquet.
                                 </p>
                                 <a class="card-link" href="">
-                                    Read the post <img class="img-fluid" src="Imgs/shape-2.png" alt=""
-                                                       srcset="">
+                                    Read the post <img class="img-fluid" src="Imgs/shape-2.png" alt="" srcset="">
                                 </a>
                             </div>
                         </div>
@@ -508,8 +426,7 @@
                                     pulvinar aliquet.
                                 </p>
                                 <a class="card-link" href="">
-                                    Read the post <img class="img-fluid" src="Imgs/shape-2.png" alt=""
-                                                       srcset="">
+                                    Read the post <img class="img-fluid" src="Imgs/shape-2.png" alt=""srcset="">
                                 </a>
                             </div>
                         </div>
@@ -520,7 +437,6 @@
     </section>
     <!--blog-section> -->
     <!-- customer say -->
-
     <section class="container-fluid" id="wht-customer-say">
         <div class="row row1 ">
             <div class="col text-center">
@@ -558,7 +474,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-sm-6 mb-2 mb-lg-0">
                         <div class="card row2-card">
                             <img class="img-fluid wht-customer-say-card-img" src="Imgs/message.png" height="35px" width="33px" alt="">
@@ -579,8 +494,7 @@
                                     sit amet, consectetur tortor.
                                 </p>
                                 <a class="card-link px-0 mx-3" href="">
-                                    Read More <img class="img-fluid" src="Imgs/shape-2.png" alt=""
-                                                   srcset="">
+                                    Read More <img class="img-fluid" src="Imgs/shape-2.png" alt="" srcset="">
                                 </a>
                             </div>
                         </div>
@@ -605,8 +519,7 @@
                                     sit amet, consectetur tortor.
                                 </p>
                                 <a class="card-link px-0 mx-3" href="">
-                                    Read More <img class="img-fluid" src="Imgs/shape-2.png" alt=""
-                                                   srcset="">
+                                    Read More <img class="img-fluid" src="Imgs/shape-2.png" alt=""srcset="">
                                 </a>
                             </div>
                         </div>
@@ -651,7 +564,6 @@
                     <img class="img-fluid my-3" src="./Imgs/white-logo-transparent-background.png" height="92" width=120 alt=""
                          srcset="">
                 </a>
-               
             </div>
             <div class="col-md-8 col-sm-4">
                 <div class="container my-1 my-md-5">
@@ -659,7 +571,7 @@
                         <div class="col-lg-1 foot-text"> <a asp-area="" asp-controller="Home" asp-action="Index">HOME</a></div>
                         <div class="col-lg-1 foot-text"><a asp-area="" asp-controller="publicpages" asp-action="ABOUT">ABOUT</a></div>
                         <div class="col-lg-2 foot-text">TESTIMONIALS</div>
-                        <div class="col-lg-1 foot-text"><a  asp-area="" asp-controller="publicpages" asp-action="FAQ">FAQS</a></div>
+                        <div class="col-lg-1 foot-text"><a asp-area="" asp-controller="publicpages" asp-action="FAQ">FAQS</a></div>
                         <div class="col-lg-2 foot-text">INSURANCE POLICY</div>
                         <div class="col-lg-1 foot-text">IMPRESSUM</div>
                     </div>
@@ -692,14 +604,10 @@
             </div>
             <div class="col-md-2 text-center">
                 <a href="#" class="yellow-btn ok-btn" onclick="myFunction()" style="color: black;">
-                    <button class="btn">
-                        OK!
-                    </button>
+                    <button class="btn"> OK!</button>
                 </a>
-
             </div>
         </div>
-
     </section>
     <!--privacy-policy-->
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -716,11 +624,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-
-
     <script src="~/js/site.js"></script>
-
-
 </body>
-
 </html>

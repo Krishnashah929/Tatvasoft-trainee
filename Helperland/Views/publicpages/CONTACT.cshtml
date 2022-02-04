@@ -1,6 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Helperland.Models
+@model ContactU
+ 
 @{
     Layout = "_Layout";
 }
@@ -66,28 +66,51 @@
     <!--line-star-->
     <!--Get in touch with us form-->
     <section id="get-in-touch-form" class="get-in-touch-form">
-        <form class="row g-3 " style="width:50%; margin-left: 25%;">
+        <form class="row g-3 " enctype="multipart/form-data" style="width:50%; margin-left: 25%;" method="post" asp-controller="publicpages" asp-action="CONTACT">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col-md-6">
-                <input type="text" class="form-control" id="inputfirstname" placeholder="First Name">
+                <input type="text" asp-for="Name" class="form-control" id="inputfirstname" placeholder="First Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control" id="inputlastname" placeholder="Last Name">
+                <input type="text" asp-for="Name" class="form-control" name="lastname" placeholder="Last Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <input type="number" class="form-control" id="inputnumber" placeholder="Phone number">
+                <input type="number" asp-for="PhoneNumber" class="form-control" id="inputnumber" placeholder="Phone number">
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
             <div class="col-md-6">
-                <input type="email" class="form-control" id="inputemail" placeholder="Email">
+                <input type="email" asp-for="Email" class="form-control" id="inputemail" placeholder="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="col-md-12">
-                <select id="inputState" class="form-select" style="color: #a0a0a0;">
+                <select id="inputState" class="form-select" style="color: #a0a0a0;" asp-for="Subject">
                     <option selected>Subject</option>
-                    <option>...</option>
+                    <option>General</option>
+                    <option>Inquiry</option>
+                    <option>Random</option>
+                    <option>Renewal</option>
                 </select>
+                <span asp-validation-for="Subject" class="text-danger"></span>
             </div>
             <div class="col-md-12">
-                <textarea class="form-control" id="inputmessage" rows="3" placeholder="Message"></textarea>
+                <textarea class="form-control" id="inputmessage" asp-for="Message" rows="3" placeholder="Message"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
             </div>
+            <div class="col-md-12">
+                <span class="contact-upload"> <b>Attachment</b></span>
+                <br />
+                <input type="file" id="myFile" name="filename" class="upload mt-3" asp-for="UploadFileName">
+            </div>
+            <div class="form-check ml-1" >
+                <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
+                <label class="form-check-label" for="myCheck">
+                    Our current <a href="#" style="color: #2f8799;"> data protection</a> data protection regulations apply . I hereby agree that my data entered in the contact form will be stored electronically and processed and used for the purpose of establishing contact. The consent can be revoked at any time in accordance with Art. 7 Para. 3 GDPR by informal notification (e.g. by e-mail).
+
+                </label>
+            </div>
+
             <div class="col-12">
                 <button type="submit" class="btn submit-button">Submit</button>
             </div>
@@ -132,3 +155,4 @@
     </section>
     <!--Newsletter-->
 </div>
+@*LAPTOP-LBJNP9N7*@

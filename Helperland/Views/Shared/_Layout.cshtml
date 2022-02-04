@@ -109,9 +109,9 @@
                                                            name="Password" style="border-right: none;">
                                                     <span class="input-group-text"> <i class="fas fa-lock"></i></span>
                                                 </div>
-                                                <input class="form-check-input" type="checkbox" id="myCheck" name="remember"
+                                                <input class="form-check-input ml-1" type="checkbox" id="myCheck" name="remember"
                                                        required>
-                                                <label class="form-check-label" for="myCheck">
+                                                <label class="form-check-label ml-4" for="myCheck">
                                                     Remeber me
                                                 </label>
                                                 <br><br>
@@ -124,7 +124,7 @@
                                                     <br>
                                                     Don't have an account?
                                                     <br>
-                                                    <a asp-area="" asp-controller="publicpages" asp-action="CREATE_ACCOUNT" target="_blank"
+                                                    <a asp-area="" asp-controller="Home" asp-action="CREATE_ACCOUNT" target="_blank"
                                                        class="login-para-links">
                                                         <b>
                                                             Create an
@@ -173,7 +173,7 @@
                             </li>
                             <!-- Modal popup for login -->
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">Become a Helper</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="service_provider">Become a Helper</a>
                             </li>
                         </ul>
                     </div>
@@ -190,7 +190,7 @@
                 <section class="header small-nav" id="">
                     <nav class="navbar navbar-expand-lg navbar-dark mynav" id="header"
                          style="position: fixed; width: 100%; z-index: 1;">
-                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="../images/logo-small.png" alt=""></a>
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> <img src="../images/logo-small.png" alt="" class="ml-1"></a>
 
                         <button class="navbar-toggler" id="sidebarCollapse" type="button">
                             <span class="navbar-toggler-icon"></span>
@@ -218,62 +218,13 @@
                                     <!-- Button trigger modal -->
                                     <a class="nav-link-login btn btn-primary text-white navbar-login-btn" href="#"
                                        data-bs-toggle="modal" data-bs-target="#myModal">Login</a>
-                                    <!-- The Modal -->
-                                    <div class="modal model-for-completion-order" id="myModal">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <!-- Modal Header -->
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title" id="popup-loginLabel">
-                                                        <b>
-                                                            Login to your
-                                                            account
-                                                        </b>
-                                                    </h3>
-                                                    <button type="button" class="btn-close"
-                                                            data-bs-dismiss="modal"></button>
-                                                </div>
-                                                <!-- Modal body -->
-                                                <div class="modal-body book-with-cost-popup">
-                                                    <div class="input-group mb-3">
-                                                        <input type="email" class="form-control" placeholder="Email"
-                                                               name="Email" style="border-right: none;">
-                                                        <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-                                                    </div>
-                                                    <div class="input-group mb-3">
-                                                        <input type="password" class="form-control" placeholder="Password"
-                                                               name="Password" style="border-right: none;">
-                                                        <span class="input-group-text"> <i class="fas fa-lock"></i></span>
-                                                    </div>
-                                                    <input type="checkbox" id="Remeber" name="Remeber" value="Remeber">
-                                                    <label for="Remeber"> Remeber me</label>
-                                                    <br><br>
-                                                    <button type="submit" class="btn  login-btn"> Login </button>
-                                                    <br><br>
-                                                    <p class="logim-para">
-                                                        <a href="#" class="login-para-links"><b>Forgoet Password ?</b></a>
-                                                        <br>
-                                                        Don't have an account?
-                                                        <br>
-                                                        <a asp-area="" asp-controller="publicpages" asp-action="CREATE_ACCOUNT"target="_blank"
-                                                           class="login-para-links">
-                                                            <b>
-                                                                Create an
-                                                                account
-                                                            </b>
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
                                 </li>
                                 <!-- Modal popup for login -->
                                 <li class="nav-item">
                                     <a class="nav-link btn btn-primary text-white"
-                                       style="padding-left: 15px;padding-right: 15px;" asp-area="" asp-controller="#" asp-action="#">
-                                        Become a
-                                        Helper
+                                       style="padding-left: 15px;padding-right: 15px;" asp-area="" asp-controller="Home" asp-action="service_provider">
+                                        Become a Helper
                                     </a>
                                 </li>
                             </ul>

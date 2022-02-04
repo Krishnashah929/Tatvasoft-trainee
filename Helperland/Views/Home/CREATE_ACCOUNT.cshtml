@@ -1,4 +1,6 @@
-﻿@*
+﻿@using Helperland.Models
+@model User
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -15,27 +17,40 @@
             </div>
         </section>
         <section id="get-in-touch-form" class="get-in-touch-form">
-            <form class="row g-3 mt-3 " style="  margin:auto;">
+            <div class="text-center"> 
+                <span class="text-danger"> <b>@ViewBag.Message</b> </span>
+            </div>
+            <form class="row g-3 mt-3 " style="  margin:auto;" method="post" asp-controller="Home" asp-action="CREATE_ACCOUNT">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="inputfirstname" placeholder="First Name">
+                    <input type="text" class="form-control" id="inputfirstname" asp-for="FirstName" placeholder="First Name">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="inputlastname" placeholder="Last Name">
+                    <input type="text" class="form-control" id="inputlastname" asp-for="LastName" placeholder="Last Name">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
-                    <input type="email" class="form-control" id="inputemail" placeholder="E-mail Address">
+                    <input type="email" class="form-control" id="inputemail" asp-for="Email" placeholder="E-mail Address">
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
-                    <input type="tel" class="form-control" id="inputnumber" placeholder="Phone number">
+                    <input type="tel" class="form-control" id="inputnumber" asp-for="Mobile" placeholder="Phone number">
+                    <span asp-validation-for="Mobile" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
-                    <input type="password" class="form-control" id="inputpassword" placeholder="Password">
+                    <input type="password" class="form-control" id="inputpassword" asp-for="Password" placeholder="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="col-md-6">
-                    <input type="confirm-password" class="form-control" id="inputconfirm-password"
+                    <input type="password" class="form-control" id="inputconfirm-password" asp-for="Password"
                            placeholder="Confirm Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
-                <div class="form-check" style="margin-left: 1%;">
+                <div class="col-md-6">
+                    <input type="hidden"  asp-for="UserTypeId" class="form-control" id="#" value="1">
+                </div>
+                <div class="form-check ml-1">
                     <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
                     <label class="form-check-label" for="myCheck">
                         Yes, I would like to subscribe to the Helperland
@@ -44,19 +59,16 @@
                         in the newsletter and in my customer account.
                     </label>
                 </div>
-                <div class="form-check" style="margin-left: 1%;">
+                <div class="form-check ml-1">
                     <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
                     <label class="form-check-label" for="myCheck">
-                        I agree to the  <a href="#"
-                                           style="color: #2f8799;"> terms</a> and conditions of Helperland GmbH.
-
+                        I agree to the  <a href="#" style="color: #2f8799;"> terms</a> and conditions of Helperland GmbH.
                     </label>
                 </div>
-                <div class="form-check" style="margin-left: 1%;">
+                <div class="form-check ml-1">
                     <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
                     <label class="form-check-label" for="myCheck">
-                        I have read the <a href="#"
-                                           style="color: #2f8799;"> Privacy Policy</a>
+                        I have read the <a href="#" style="color: #2f8799;"> Privacy Policy</a>
                     </label>
                 </div>
                 <div class="col-12">
@@ -65,9 +77,9 @@
                 <br><br>
                 <p class="logim-para">
                     Already registered?
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="login-para-links"><b> Login Now</b></a>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="login-para-links" data-bs-toggle="modal" data-bs-target="#myModal"><b> Login Now</b></a>
                 </p>
             </form>
-    </div>
-    </section>
+        </section>
+     </div>
 </div>
