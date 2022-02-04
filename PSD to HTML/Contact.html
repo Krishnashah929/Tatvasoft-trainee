@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT PAGE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <!--mobile sidebar and responsive navbar-->
+    <div class="wrapper " id="sidebar-provider">
+        <nav id="sidebar">
+            <div class="container-fluid">
+                <div class="row row1">
+                    <b> Welcome,Sandeep.</b>
+                </div>
+                <div class="row row2">
+                    <ul class="nav nav-tabs flex-column" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link " href="service_provide_upcoming_service.html">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customer_service_history.html">New Service Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="service_provide_upcoming_service.html">Upcoming
+                                Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#serviceschedule">Service Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customer_service_history.html">Service History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#myratings">My Ratings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Block Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Invoices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">My Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row3">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="booknow.html">Book a Cleaner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pricing.html">Prices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Our Guarantee</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact.html">Contact Us</a>
+                        </li>
+                        <!-- Modal popup for login -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Login </a>
+
+                            <!-- The Modal -->
+                            <div class="modal model-for-completion-order" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="popup-loginLabel"><b>Login to your account</b>
+                                            </h3>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body login-popup">
+                                            <div class="input-group mb-3">
+                                                <input type="email" class="form-control" placeholder="Email"
+                                                    name="Email" style="border-right: none;">
+                                                <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <input type="password" class="form-control" placeholder="Password"
+                                                    name="Password" style="border-right: none;">
+                                                <span class="input-group-text"> <i class="fas fa-lock"></i></span>
+                                            </div>
+                                            <input class="form-check-input" type="checkbox" id="myCheck" name="remember"
+                                                required>
+                                            <label class="form-check-label" for="myCheck">
+                                                Remeber me
+                                            </label>
+                                            <br><br>
+                                            <button type="submit" class="btn  login-btn"> Login </button>
+                                            <br><br>
+                                            <p class="logim-para">
+                                                <a href="#" class="login-para-links"
+                                                    data-bs-target="#exampleModalToggle2"
+                                                    data-bs-toggle="modal"><b>Forgoet Password ?</b></a>
+                                                <br>
+                                                Don't have an account?
+                                                <br>
+                                                <a href="createaccount.html" target="_blank"
+                                                    class="login-para-links"><b> Create an
+                                                        account</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Second model for forget password-->
+                            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="popup-loginLabel"><b> Forgot Password </b>
+                                            </h3>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-group mb-3">
+                                                <input type="email" class="form-control" placeholder="Email"
+                                                    name="Email" style="border-right: none;">
+                                                <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn  login-btn"> Send </button>
+                                            <br><br>
+                                            <p class="logim-para">
+                                                <a href="#" class="login-para-links" data-bs-target="#myModal"
+                                                    data-bs-toggle="modal"><b>Log
+                                                        in</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Second model for forget password-->
+                        </li>
+                        <!-- Modal popup for login -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="service_provide.html">Become a Helper</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        </nav>
+        <div id="nevbar">
+            <section class="header small-nav" id="">
+                <nav class="navbar navbar-expand-lg navbar-dark mynav" style="position: fixed; width: 100%; z-index: 1;">
+                    <a class="navbar-brand" href="homepage.html"><img src="images/logo-small.png" alt=""></a>
+
+                    <button class="navbar-toggler" id="sidebarCollapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white" href="booknow.htmlr">Book a Cleaner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">Prices</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">Our Guarantee</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#service">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact Us</a>
+                            </li>
+                            <!-- Modal popup for login -->
+
+                            <li class="nav-item">
+                                <a class="nav-link-login btn btn-primary text-white navbar-login-btn" href="#"
+                                    data-bs-toggle="modal" data-bs-target="#myModal">Login</a>
+
+                                <!-- Button trigger modal -->
+                                <!-- The Modal -->
+                                <div class="modal model-for-completion-order" id="myModal">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="popup-loginLabel"><b>Login to your
+                                                        account</b></h3>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="modal-body login-popup">
+                                                <div class="input-group mb-3">
+                                                    <input type="email" class="form-control" placeholder="Email"
+                                                        name="Email" style="border-right: none;">
+                                                    <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <input type="password" class="form-control" placeholder="Password"
+                                                        name="Password" style="border-right: none;">
+                                                    <span class="input-group-text"> <i class="fas fa-lock"></i></span>
+                                                </div>
+                                                <input class="form-check-input" type="checkbox" id="myCheck"
+                                                    name="remember" required>
+                                                <label class="form-check-label" for="myCheck">
+                                                    Remeber me
+                                                </label>
+                                                <br><br>
+                                                <button type="submit" class="btn  login-btn"> Login </button>
+                                                <br><br>
+                                                <p class="logim-para">
+                                                    <a href="#" class="login-para-links"><b>Forgoet Password ?</b></a>
+                                                    <br>
+                                                    Don't have an account?
+                                                    <br>
+                                                    <a href="createaccount.html" target="_blank"
+                                                        class="login-para-links"><b> Create an
+                                                            account</b></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Modal popup for login -->
+
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white become-helper-nav-btn"
+                                    style="padding-left: 15px;padding-right: 15px;" href="service_provide.html">Become a
+                                    Helper</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </section>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!--mobile sidebar and responsive navbar-->
+    <!--contact page first part-->
+    <img src="images\group-16_2.png" alt="" class="main-img">
+    <div class="container-fluid">
+        <section class="line-star">
+            <h5 class="main-heading contact-heading"> Contact us</h5>
+            <div class="row row2 justify-content-center contact-line m-1">
+                <div class="line"></div>
+                <img class="px-0" id="separator" src="images/separator.png" alt="">
+                <div class="line"></div>
+            </div>
+        </section>
+        <!--contact page first part-->
+        <!--3-symbols-->
+        <section class="3-symbols">
+            <div class="row justify-content-center symbols-3">
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="card about-card-1">
+                        <div class="card-header align-self-center">
+                            <img src="images\forma-1_2.png" alt="">
+                        </div>
+                        <div class="card-body align-self-center">
+                            <p>1111 Lorem ipsum text 100,<br> Lorem ipsum AB</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="card about-card-1">
+                        <div class="card-header align-self-center">
+                            <img src="images\phone-call.png" alt="">
+                        </div>
+                        <div class="card-body align-self-center">
+                            <p>
+                                +49 (40) 123 56 7890
+                                <br>
+                                +49 (40) 987 56 0000
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    <div class="card about-card-1">
+                        <div class="card-header align-self-center">
+                            <img src="images\vector-smart-object.png" alt="">
+                        </div>
+                        <div class="card-body align-self-center">
+                            <p>
+                                info@helperland.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--3-symbols-->
+        <br>
+        <hr class="hr-line">
+        <!--line-star-->
+        <section class="line-star">
+            <h5 class="main-heading" style="margin-top:80px;"> Get in touch with us</h5>
+        </section>
+        <!--line-star-->
+        <!--Get in touch with us form-->
+        <section id="get-in-touch-form" class="get-in-touch-form">
+            <form class="row g-3 " style="width:50%; margin-left: 25%;">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputfirstname" placeholder="First Name">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputlastname" placeholder="Last Name">
+                </div>
+                <div class="col-md-6">
+                    <input type="number" class="form-control" id="inputnumber" placeholder="Phone number">
+                </div>
+                <div class="col-md-6">
+                    <input type="email" class="form-control" id="inputemail" placeholder="Email">
+                </div>
+                <div class="col-md-12">
+                    <select id="inputState" class="form-select" style="color: #a0a0a0;">
+                        <option selected>Subject</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <textarea class="form-control" id="inputmessage" rows="3" placeholder="Message"></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn submit-button">Submit</button>
+                </div>
+            </form>
+        </section>
+        <!--Get in touch with us form-->
+        <!--Google map-->
+        <section id="google-map">
+            <div class="row google-map">
+                <div class="col-12">
+                    <div class="mapouter">
+                        <div class="gmap_canvas"><iframe width="100%" height="400" id="gmap_canvas"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235014.25792080228!2d72.43965601422856!3d23.020181763113136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sus!4v1643106448033!5m2!1sen!2sus"
+                                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a
+                                href="https://123movies-to.org"></a><br>
+                            <a href="https://www.embedgooglemap.net"> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Google map-->
+        <!--Newsletter-->
+        <section id="wht-customer-say" style="background-color: white;">
+            <div class="row justify-content-center" id="row3">
+                <div class="col-md-12 col-sm-8 order-1 order-sm-2">
+                    <div class="container-fluid mx-0 px-0">
+                        <div class="row mx-0 px-0 text-center ">
+                            <p class="title mb-1">GET OUR NEWSLETTER</p>
+                        </div>
+                        <div class="row justify-content-center newslatter-button">
+                            <div class="col-sm-auto p-0 newletter-input">
+                                <input class="form-control" type="email" name="" id="" placeholder="YOUR EMAIL">
+                            </div>
+                            <div class="col-sm-1 py-2 py-sm-0 newletter-input">
+                                <button class="btn" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Newsletter-->
+    </div>
+    <!-- footer section -->
+    <section class="container-fluid" id="footer">
+        <div class="row align-self-center">
+            <div class="col-md-2 col-sm-4 text-center text-sm-end ">
+                <img class="img-fluid my-3" src="./Imgs/white-logo-transparent-background.png" height="92" width=120
+                    alt="" srcset="">
+            </div>
+            <div class="col-md-8 col-sm-4">
+                <div class="container my-1 my-md-5">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-1 foot-text"> <a href="homepage.html">HOME</a></div>
+                        <div class="col-lg-1 foot-text"><a href="About.html">ABOUT</a></div>
+                        <div class="col-lg-2 foot-text">TESTIMONIALS</div>
+                        <div class="col-lg-1 foot-text"><a href="FAQ.html">FAQS</a></div>
+                        <div class="col-lg-2 foot-text">INSURANCE POLICY</div>
+                        <div class="col-lg-1 foot-text">IMPRESSUM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 text-center mb-2 mb-sm-0">
+                <img class="img-fluid my-1 my-sm-5" src="./Imgs/ic-facebook.png" height="20" width="10" alt=""
+                    srcset="">
+                <img class="img-fluid my-1 my-sm-5 mx-3" src="./Imgs/ic-instagram.png" height="20" width="20" alt=""
+                    srcset="">
+            </div>
+            <div class="row-bottom justify-content-lg-center text-center" style="font-size: 16px;">
+                <div>©2018 Helperland. All rights reserved. &nbsp;&nbsp;&nbsp;&nbsp; <a href="" class="row-bottom">Terms
+                        and Conditions</a> | <a href="" class="row-bottom">Privacy Policy</a></div>
+            </div>
+        </div>
+    </section>
+    <!-- footer section -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!--script for sidebar-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="javascript\helperlandJS.js"></script>
+ 
+</body>
+
+</html>

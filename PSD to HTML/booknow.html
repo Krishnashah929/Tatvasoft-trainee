@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK NOW</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <!--Mobile sidebar and responsive navbar-->
+    <div class="wrapper " id="sidebar-provider">
+        <nav id="sidebar">
+            <div class="container-fluid">
+                <div class="row row1">
+                    <b> Welcome,Sandeep.</b>
+                </div>
+                <div class="row row2">
+                    <ul class="nav nav-tabs flex-column" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link " data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#newservicerequests">New Service Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab"
+                                href="service_provide_upcoming_service.html">Upcoming
+                                Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#serviceschedule">Service Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="customer_service_history.html">Service
+                                History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#myratings">My Ratings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Block Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Invoices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">My Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row3">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="booknow.html">Book a Cleaner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pricing.html">Prices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Our Guarantee</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact.html">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="service_provide.html">Become a Helper</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row4">
+                    <img class="socialmedia" src="images/facebook-mobile-menu.png" alt="">
+                    <img class="socialmedia" src="images/instagram-mobile-menu.png" alt="">
+                </div>
+            </div>
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        </nav>
+        <div id="nevbar">
+            <section class="header small-nav" id="">
+                <nav class="navbar navbar-expand-lg navbar-dark mynav" id="header"
+                    style="position: fixed; width: 100%; z-index: 1;">
+                    <a class="navbar-brand" href="homepage.html"> &nbsp; <img src="images/logo-small.png" alt=""></a>
+
+                    <button class="navbar-toggler" id="sidebarCollapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white" href="booknow.html">Book a Cleaner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">Prices & Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">Warranty</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#service">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact</a>
+                            </li>
+                            <div class="vr" style="color: white;"></div>
+                            <li class="nav-item dropdown notification-icon">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images\icon-notification.png" alt="notification">
+                                    <span class="badge">10</span>
+                                </a>
+                            </li>
+                            <div class="vr" style="color: white;"></div>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="images\user.png" alt="Flag">
+                                    <i class="bi bi-chevron-down"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </section>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!--mobile sidebar and responsive navbar-->
+    <img src="images\book-service-banner.jpg" alt="" class="main-img">
+    <div class="container-fluid">
+        <section class="line-star">
+            <p class="main-heading justify-content-center">Set up your cleaning service</p>
+            <div class="row row2 justify-content-center">
+                <div class="line"></div>
+                <img class="px-0" id="separator" src="images/separator.png" alt="">
+                <div class="line"></div>
+            </div>
+        </section>
+        <div class="container">
+            <section class="book-now-main">
+                <div class="book-now-tabs">
+                    <div class="row book-now-row1">
+                        <!--progressive forms-->
+                        <div class="col-md-8">
+                            <form id="msform">
+                                <!-- progressbar -->
+                                <ul id="progressbar">
+                                    <li class="active  arrow" id="account"><img src="images/setup-service.png" alt=""
+                                            class="grey-img"> <img src="images/setup-service-white.png" alt=""
+                                            class="white-img"> Setup
+                                        Service</li>
+
+                                    <li id="personal"><img src="images/schedule.png" alt="" class="grey-img">
+                                        <img src="images/schedule-white.png" alt="" class="white-img">
+                                        Schedule & Plan
+                                    </li>
+                                    <li id="payment"><img src="images/details.png" alt="" class="grey-img">
+                                        <img src="images/details-white.png" alt="" class="white-img">
+                                        Your Details
+                                    </li>
+                                    <li id="confirm"><img src="images/payment.png" alt="" class="grey-img">
+                                        <img src="images/payment-white.png" alt="" class="white-img">
+                                        Make Payment
+                                    </li>
+                                </ul>
+                                <!-- fieldsets -->
+                                <!--for setup service-->
+                                <fieldset>
+                                    <div class="form-card">
+                                        <div class="row">
+                                            <p><b>Enter your postal code</b></p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <input type="number" id="inputnumber" class="form-control"
+                                                    placeholder="Postal code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <input type="button" name="next" class="next action-button  check-btn"
+                                        value="Check Availability" />
+                                </fieldset>
+                                <!--for setup service-->
+                                <!--for shedule & plan-->
+                                <fieldset>
+                                    <div class="form-card">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><b>When do you need the cleaner?</b></p>
+                                                <div class="row">
+                                                    <div class="  col-auto">
+                                                        <input type="Date" class="form-control" id="Date"
+                                                            placeholder="From Date">
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <select class="form-select" aria-label="Default select example">
+                                                            <option selected> 1 Bath</option>
+                                                            <option value="2">2 Bath</option>
+                                                            <option value="3">3 Bath</option>
+                                                            <option value="4">4 Bath</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p><b>How long do you need your cleaner to stay?</b></p>
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <input type="time" class="form-control " id="appt">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <p><b>Extra Services</b></p>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <div class="extra-services-card">
+                                                        <a href="">
+                                                            <div class="extra-services-card-img1 link-book-now-service">
+                                                            </div>
+                                                        </a>
+                                                        <h6 class="small-t h6-for-book-now-extra">Inside <br> cabinets
+                                                        </h6>
+                                                        <div class="minutes">30 minutes</div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="extra-services-card  ">
+                                                        <a href="" class="">
+                                                            <div class="extra-services-card-img2 link-book-now-service">
+                                                            </div>
+                                                        </a>
+                                                        <h6 class="small-t h6-for-book-now-extra">Inside <br> fridge
+                                                        </h6>
+                                                        <div class="minutes">30 minutes</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="extra-services-card">
+                                                        <a href="">
+                                                            <div class="extra-services-card-img3 link-book-now-service">
+                                                            </div>
+                                                        </a>
+                                                        <h6 class="small-t h6-for-book-now-extra">Inside <br> oven</h6>
+                                                        <div class="minutes">30 minutes</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="extra-services-card">
+                                                        <a href="">
+                                                            <div class="extra-services-card-img4 link-book-now-service">
+                                                            </div>
+                                                        </a>
+                                                        <h6 class="small-t h6-for-book-now-extra">Laundry <br>
+                                                            wash & dry </h6>
+                                                        <div class="minutes">30 minutes</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="extra-services-card">
+                                                        <a href="">
+                                                            <div class="extra-services-card-img5 link-book-now-service">
+                                                            </div>
+                                                        </a>
+                                                        <h6 class="small-t h6-for-book-now-extra">Interior windows
+                                                        </h6>
+                                                        <div class="minutes">30 minutes</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <hr>
+                                        <br>
+                                        <div class="row">
+                                            <p><b> Do you want to tell your helper something?</b></p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                    cols="100"></textarea>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="form-check" style="margin-left: 1%;">
+                                                <input class="form-check-input" type="checkbox" id="myCheck"
+                                                    name="remember" required>
+                                                <label class="form-check-label" for="myCheck">I have pets at home
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <input type="button" name="previous"
+                                        class="previous action-button-previous  schedule-btn-1" value="Previous" />
+                                    <input type="button" name="next" class="next action-button   schedule-btn-2 "
+                                        value="Continue" />
+
+                                </fieldset>
+                                <!--for shedule & plan-->
+                                <!-- IMPORTANT NOTE: br tag is not working after fieldset -->
+                                <!--for enter details-->
+                                <fieldset>
+                                    <div class="form-card">
+                                        <div class="row">
+                                            <p><b>Enter your contact details, so we can serve you in better way!</b></p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-10 address-booknow-radio-btn">
+                                                <input type="radio" id="address" name="address" value="address">
+                                                <label for="address" class="address-booknow-label">Address: Flat No: 13,
+                                                    iscon park - 365789</label>
+
+                                                <div class="row">
+                                                    <label for="address" class="address-booknow-label-1"> Phone
+                                                        Number:1234567890</label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-10 address-booknow-radio-btn">
+                                                <input type="radio" id="address" name="address" value="address">
+                                                <label for="address" class="address-booknow-label">Address: Flat No: 13,
+                                                    iscon park - 365789</label>
+
+                                                <div class="row">
+                                                    <label for="address" class="address-booknow-label-1"> Phone
+                                                        Number:1234567890</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-auto">
+                                                <button type="button" class="btn address-button"
+                                                    data-bs-toggle="collapse" data-bs-target="#demo">+ Add New
+                                                    Address</button>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="demo" class="collapse">
+                                                    <div class="card address-card-book-now">
+
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label class="label-address-book-now">
+                                                                    Street</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Street" name="Street">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label class="label-address-book-now">House
+                                                                    Number</label>
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="House Number" name="House Number">
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <label class="label-address-book-now">Postal
+                                                                    Code</label>
+                                                                <input type="number" class="form-control"
+                                                                    placeholder="Postal Code" name="Postal Code">
+                                                            </div>
+                                                            <div class="col">
+                                                                <label class="label-address-book-now">City</label>
+                                                                <input type="text" class="form-control"
+                                                                    placeholder="Location" name="City">
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label class="label-address-book-now">Phone
+                                                                    Number</label>
+                                                                <input type="tel" class="form-control"
+                                                                    placeholder="Phone Number" name="Phone Number">
+                                                            </div>
+                                                        </div>
+                                                        <br>
+                                                        <div class="row">
+                                                            <div class="col-auto">
+                                                                <button type="button"
+                                                                    class="btn save-address-book-now">Save</button>
+                                                                <button type="button"
+                                                                    class="btn discard-address-book-now">Discard</button>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="form-check" style="margin-left: 1%;">
+                                                        <input class="form-check-input" type="checkbox" id="myCheck"
+                                                            name="remember" required>
+                                                        <label class="form-check-label" for="myCheck"> My billing
+                                                            address differs from the given address.
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <input type="button" name="previous"
+                                        class="previous action-button-previous  schedule-btn-1" value="Previous" />
+                                    <input type="button" name="next" class="next action-button   schedule-btn-2 "
+                                        value="Continue" />
+                                </fieldset>
+                                <!--for enter details-->
+                                <!--for payments details-->
+                                <fieldset>
+                                    <div class="row">
+                                        <p><b> Choose one of the following payment methods.</b></p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="label-address-book-now">Discount
+                                                Code (optional)</label>
+                                            <input type="number" class="form-control"
+                                                placeholder="Discount Code (optional)" name="Discount
+                                                Code (optional)">
+                                        </div>
+                                        <div class="col-auto apply-address-book-now">
+                                            <button type="button" class="btn apply-address-book-now ">Apply</button>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <hr>
+                                    <div class="row input-payment-row">
+                                        <div class="col-md-6">
+                                            <input type="text" class="ccFormatMonitor payment-inputs-1"
+                                                placeholder="Card Number">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" id="inputExpDate" class="payment-inputs-2"
+                                                placeholder="MM / YY" maxlength='5'>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="password" class="cvv payment-inputs-3" placeholder="CVV"
+                                                maxlength='4'>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 images-credit-card">
+                                            <img src="images\visa.png" alt="">
+                                            <img src="images\maestro.png" alt="">
+                                            <img src="images/debit-card.png" alt="">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-check" style="margin-left: 1%;">
+                                                <input class="form-check-input" type="checkbox" id="myCheck"
+                                                    name="remember" required>
+                                                <label class="form-check-label" for="myCheck">
+                                                    I accept the <a href="#" class="payment-acceptance-link"> terms</a>
+                                                    and conditions, the <a href="#" class="payment-acceptance-link">
+                                                        cancellation</a> policy and the <a href="#"
+                                                        class="payment-acceptance-link"> data protection
+                                                        regulations</a> .
+                                                    I confirm that Helperland
+                                                    will start executing the contract before the end of the cancellation
+                                                    period and that I will lose my right of cancellation as a consumer
+                                                    once the contract has been fully performed.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <input type="button" name="previous"
+                                        class="previous action-button-previous  schedule-btn-1" value="Previous" />
+                                    <button type="button" class="btn book-with-cost-button" data-bs-toggle="modal"
+                                        data-bs-target="#myModal">
+                                        Book with costs
+                                    </button>
+                                    <!-- The Modal -->
+                                    <div class="modal model-for-completion-order" id="myModal">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close"
+                                                        data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="modal-body book-with-cost-popup">
+                                                    <img src="images\green-tick-icon-15.jpg" alt="">
+                                                    <p class="book-with-cost-p-popup">
+                                                        <b>Booking has been successfully submitted.</b>
+                                                    </p>
+                                                    <p class="book-with-cost-p1-popup">
+                                                        <b>Service id : 8448</b>
+                                                    </p>
+                                                    <button type="button" class="btn ok-address-book-now"
+                                                        data-bs-dismiss="modal">OK</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <!--for payments details-->
+                            </form>
+
+                        </div>
+                        <!--progressive forms-->
+                        <!--payment summary card-->
+                        <div class="col-md-4">
+                            <div class="card card-book-now">
+                                <h4 class="card-title card-title-book-now">Payment Summary</h4>
+                                <div class="card-body card-text-book-now">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <p> 01/01/2018 @ 4:00 pm <br>1 bed, 1 bath. </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <b>Duration</b>
+                                        </div>
+                                    </div>
+                                    <div class="row card-sub-text-book-now">
+                                        <div class="col-8">
+                                            Basic <br>Inside cabinets (extra)
+                                        </div>
+                                        <div class="col-4">
+                                            3 Hrs <br>30 Mins
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row card-sub-text-book-now">
+                                        <div class="col-8">
+                                            <b>Total Service Time</b>
+                                        </div>
+                                        <div class="col-4">
+                                            <b>3.5 Hrs</b>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row card-sub-text-book-now">
+                                        <div class="col-8">
+                                            Per cleaning
+                                            <br>Discount
+                                        </div>
+                                        <div class="col-4">
+                                            $87 <br> - $27
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row card-payment-text-book-now">
+                                        <div class="col-8 total-payment">
+                                            Total Payment
+                                        </div>
+                                        <div class="col-4">
+                                            <b>$63</b>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-8">
+                                            Effective Price
+                                        </div>
+                                        <div class="col-4 payment-number">
+                                            $50.4
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-auto condition-text">
+                                            *You will save 20% according to §35a EStG.
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row last-row-payment">
+                                        <div class="col-auto condition-text-2 ">
+                                            <img src="images\smiley.png" alt="">See what is always included
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row question-row">
+                                <b>Questions?</b>
+                            </div>
+                            <div class="row">
+                                <p class="accordion accordion-book-now"> <i class="fas fa-angle-right"></i> What's
+                                    include in cleaning?</p>
+                                <div class="panel">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                </div>
+                                <hr>
+                                <p class="accordion accordion-book-now"> <i class="fas fa-angle-right"></i> Which
+                                    Helperland professional will come to my place? </p>
+                                <div class="panel">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                </div>
+                                <hr>
+                                <p class="accordion accordion-book-now"> <i class="fas fa-angle-right"></i> Can i skip
+                                    or reschedule bookings? </p>
+                                <div class="panel">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                    </p>
+                                </div>
+                                <hr>
+                                <a hred="#" class="book-now-help">
+                                    <b> For more help</b>
+                                </a>
+                            </div>
+                        </div>
+                        <!--payment summary card-->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <!--Script for side bar-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dismiss, .overlay').on('click', function () {
+                // hide sidebar
+                $('#sidebar').removeClass('active');
+                // hide overlay
+                $('.overlay').removeClass('active');
+            });
+            $('#sidebarCollapse').on('click', function () {
+                // open sidebar
+                $('#sidebar').addClass('active');
+                // fade in the overlay
+                $('.overlay').addClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+    <!--Script for side bar-->
+    <!--script for sticky navbar-->
+    <script>
+        window.onscroll = function () { scrollFunction() };
+        function scrollFunction() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                document.getElementById("header").style.backgroundColor = "#525252";
+            }
+        }
+    </script>
+    <!--script for sticky navbar-->
+    <!--script for progrresive form-->
+    <script>
+        $(document).ready(function () {
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+            $(".next").click(function () {
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        next_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+            $(".previous").click(function () {
+
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+            $('.radio-group .radio').click(function () {
+                $(this).parent().find('.radio').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            $(".submit").click(function () {
+                return false;
+            })
+
+        });
+    </script>
+    <!--script for progrresive form-->
+    <!--script for accordion questions-->
+    <script>
+        var acc = document.getElementsByClassName("accordion-book-now");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+    </script>
+    <!--script for accordion questions-->
+
+
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

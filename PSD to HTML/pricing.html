@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prices Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+
+<body>
+    <!--Mobile sidebar and responsive navbar-->
+    <div class="wrapper " id="sidebar-provider">
+        <nav id="sidebar">
+            <div class="container-fluid">
+                <div class="row row1">
+                    <b> Welcome,Sandeep.</b>
+                </div>
+                <div class="row row2">
+                    <ul class="nav nav-tabs flex-column" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link " data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#newservicerequests">New Service Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#upcomingservices">Upcoming
+                                Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#serviceschedule">Service Schedule</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#servicehistory">Service History</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#myratings">My Ratings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Block Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Invoices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">My Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#blockcustomer">Log Out</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row row3">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link" href="booknow.html">Book a Cleaner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pricing.html">Prices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">Our Guarantee</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Contact.html">Contact Us</a>
+                        </li>
+                        <!-- Modal popup for login -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Login </a>
+
+                            <!-- The Modal -->
+                            <div class="modal model-for-completion-order" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="popup-loginLabel"><b>Login to your account</b>
+                                            </h3>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body login-popup">
+                                            <div class="input-group mb-3">
+                                                <input type="email" class="form-control" placeholder="Email"
+                                                    name="Email" style="border-right: none;">
+                                                <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <input type="password" class="form-control" placeholder="Password"
+                                                    name="Password" style="border-right: none;">
+                                                <span class="input-group-text"> <i class="fas fa-lock"></i></span>
+                                            </div>
+                                            <input class="form-check-input" type="checkbox" id="myCheck" name="remember"
+                                                required>
+                                            <label class="form-check-label" for="myCheck">
+                                                Remeber me
+                                            </label>
+                                            <br><br>
+                                            <button type="submit" class="btn  login-btn"> Login </button>
+                                            <br><br>
+                                            <p class="logim-para">
+                                                <a href="#" class="login-para-links"
+                                                    data-bs-target="#exampleModalToggle2"
+                                                    data-bs-toggle="modal"><b>Forgoet Password ?</b></a>
+                                                <br>
+                                                Don't have an account?
+                                                <br>
+                                                <a href="createaccount.html" target="_blank"
+                                                    class="login-para-links"><b> Create an
+                                                        account</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Second model for forget password-->
+                            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true"
+                                aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="popup-loginLabel"><b> Forgot Password </b>
+                                            </h3>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-group mb-3">
+                                                <input type="email" class="form-control" placeholder="Email"
+                                                    name="Email" style="border-right: none;">
+                                                <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                            </div>
+                                            <br>
+                                            <button type="submit" class="btn  login-btn"> Send </button>
+                                            <br><br>
+                                            <p class="logim-para">
+                                                <a href="#" class="login-para-links" data-bs-target="#myModal"
+                                                    data-bs-toggle="modal"><b>Log
+                                                        in</b></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Second model for forget password-->
+                        </li>
+                        <!-- Modal popup for login -->
+                        <li class="nav-item">
+                            <a class="nav-link  " href="service_provide.html">Become a Helper</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div id="dismiss">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        </nav>
+        <div id="nevbar">
+            <section class="header small-nav" id="">
+                <nav class="navbar navbar-expand-lg navbar-dark mynav" id="header"
+                    style="position: fixed; width: 100%; z-index: 1;">
+                    <a class="navbar-brand" href="homepage.html"><img src="images/logo-small.png" alt=""></a>
+
+                    <button class="navbar-toggler" id="sidebarCollapse" type="button">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white" href="booknow.html">Book a Cleaner</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="pricing.html">Prices</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">Our Guarantee</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#service">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Contact.html">Contact Us</a>
+                            </li>
+                            <!-- Modal popup for login -->
+                            <li class="nav-item">
+                                <!-- Button trigger modal -->
+                                <a class="nav-link btn btn-primary text-white " href="#" data-bs-toggle="modal"
+                                    data-bs-target="#myModal">Login</a>
+                                <!-- The Modal -->
+                                <div class="modal model-for-completion-order" id="myModal">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="popup-loginLabel"><b>Login to your
+                                                        account</b>
+                                                </h3>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="modal-body book-with-cost-popup">
+                                                <div class="input-group mb-3">
+                                                    <input type="email" class="form-control" placeholder="Email"
+                                                        name="Email" style="border-right: none;">
+                                                    <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <input type="password" class="form-control" placeholder="Password"
+                                                        name="Password" style="border-right: none;">
+                                                    <span class="input-group-text"> <i class="fas fa-lock"></i></span>
+                                                </div>
+                                                <input type="checkbox" id="Remeber" name="Remeber" value="Remeber">
+                                                <label for="Remeber"> Remeber me</label>
+                                                <br><br>
+                                                <button type="submit" class="btn  login-btn"> Login </button>
+                                                <br><br>
+                                                <p class="logim-para">
+                                                    <a href="#" class="login-para-links"><b>Forgoet Password ?</b></a>
+                                                    <br>
+                                                    Don't have an account?
+                                                    <br>
+                                                    <a href="createaccount.html" target="_blank"
+                                                        class="login-para-links"><b> Create an
+                                                            account</b></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- Modal popup for login -->
+                            <li class="nav-item">
+                                <a class="nav-link btn btn-primary text-white become-helper-nav-btn"
+                                    href="service_provide.html">Become a Helper</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </section>
+        </div>
+        <div class="overlay"></div>
+    </div>
+    <!--mobile sidebar and responsive navbar-->
+    <!--main pricing header-->
+    <img src="images/group-18.png" alt="" class="main-img">
+    <div class="container-fluid">
+        <section class="line-star">
+            <h5 class="main-heading"> Prices</h5>
+            <div class="row row2 justify-content-center">
+                <div class="line"></div>
+                <img class="px-0" id="separator" src="images/separator.png" alt="">
+                <div class="line"></div>
+            </div>
+        </section>
+        <!--main pricing header-->
+        <!--first pricing section-->
+        <section id="prices" class="prices">
+            <div class="card prices-card">
+                <div class="prices-card-header">
+                    <div class="prices-card-header-text">One Time</div>
+                </div>
+                <div class="prices-card-body" style="margin-top: 30px;">
+                    <div class="prices-card-body-up">
+                        <span class="prices-card-logo"></span>
+                        <span class="prices-text1">
+                            <span class="prices-text2">20</span>/hr
+                        </span>
+                    </div>
+                </div>
+                <div class="prices-card-body-down">
+                    <div class="prices-1">
+                        <img src="images/forma-1_5.png" alt="">
+                        <span class="Lower-prices">
+                            Lower prices
+                        </span>
+                    </div>
+                    <div class="prices-1">
+                        <img src="images/forma-1_5.png" alt="">
+                        <span class="Lower-prices">
+                            Easy online & secure payment
+                        </span>
+                    </div>
+                    <div class="prices-1">
+                        <img src="images/forma-1_5.png" alt="">
+                        <span class="Lower-prices">
+                            Easy amendment
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--first pricing section-->
+        <!--second pricing section-->
+        <section id="extra services" class="extra-services">
+            <section class="line-star">
+                <h5 class="main-heading"> Extra services</h5>
+                <div class="row row2 justify-content-center">
+                    <div class="line"></div>
+                    <img class="px-0" id="separator" src="images/separator.png" alt="">
+                    <div class="line"></div>
+                </div>
+            </section>
+            <div class="row justify-content-center text-center" style="margin: auto;">
+                <div class="col-sm-2">
+                    <div class="extra-services-card">
+                        <div class="extra-services-card-img1"></div>
+                        <h6 class="small-t">Inside cabinets</h6>
+                        <div class="minutes">30 minutes</div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="extra-services-card"=>
+                        <div class="extra-services-card-img2"></div>
+                        <h6 class="small-t">Inside fridge</h6>
+                        <div class="minutes">30 minutes</div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="extra-services-card">
+                        <div class="extra-services-card-img3"></div>
+                        <h6 class="small-t">Inside oven</h6>
+                        <div class="minutes">30 minutes</div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="extra-services-card" style="width: 139px;">
+                        <div class="extra-services-card-img4"></div>
+                        <h6 class="small-t">Laundry wash & dry </h6>
+                        <div class="minutes">30 minutes</div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="extra-services-card" style="width: 118px;">
+                        <div class="extra-services-card-img5"></div>
+                        <h6 class="small-t">Interior windows</h6>
+                        <div class="minutes">30 minutes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--second pricing section-->
+        <!--third-pricing section-->
+        <section class="cleaning justify-content-center" id="cleaning">
+            <section class="line-star">
+                <h5 class="main-heading"> What we include in cleaning</h5>
+                <div class="row row2 justify-content-center">
+                    <div class="line"></div>
+                    <img class="px-0" id="separator" src="images/separator.png" alt="">
+                    <div class="line"></div>
+                </div>
+            </section>
+            <section>
+                <div class="row cleaning justify-content-center">
+                    <div class="col-lg-3 col-sm-6 mb-1 mb-lg-0 ">
+                        <div class="cleaning-area">
+                            <img src="images/group-18_3.png" alt="" class="img2">
+                            <div class="Bedroom-and-Living-Room">
+                                Bedroom and Living Room
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Dust all accessible surfaces</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Wipe down all mirrors and glass fixtures </p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Clean all floor surfaces</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Take out garbage and
+                                    recycling</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 mb-1 mb-lg-0">
+                        <div class="cleaning-area">
+                            <img src="images/group-18_4.png" alt="" class="img2">
+                            <div class="Bedroom-and-Living-Room">
+                                Bathrooms
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Wash and sanitize the toilet, shower, tub, sink </p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Dust all accessible surfaces</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Wipe down all mirrors and glass fixtures</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Clean all floor surfaces</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Take out garbage and recycling</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 mb-1 mb-lg-0 ">
+                        <div class="cleaning-area">
+                            <img src="images/group-18_2.png" alt="" class="img2">
+                            <div class="Bedroom-and-Living-Room">
+                                Kitchen
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Dust all accessible surfaces</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Empty sink and load up dishwasher</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Wipe down exterior of stove, oven and fridge</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Clean all floor surfaces</p>
+                            </div>
+                            <div>
+                                <img src="images/right-arrow-grey.png" alt="">
+                                <p class="cleaning-p">Take out garbage and recycling</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <!--third-pricing section-->
+        <!--fourth pricing section-->
+        <section id="Why-Helperland" class="">
+            <section class="line-star">
+                <h5 class="main-heading"> Why Helperland</h5>
+                <div class="row row2 justify-content-center">
+                    <div class="line"></div>
+                    <img class="px-0" id="separator" src="images/separator.png" alt="">
+                    <div class="line"></div>
+                </div>
+            </section>
+            <div class="container" style="margin-top: 33px;">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-lg-4 content-left">
+                        <div class="heading">Every cleaning is insured</div>
+                        <p class="p">dominate the industry in scale and scope with an adaptable, extensive network that
+                            consistently delivers exceptional
+                            results.</p>
+                        <div class="heading">Dedicated customer service</div>
+                        <p class="p">to our customers and are guided in all we do by their needs. The team is always
+                            happy
+                            to support you and offer all the
+                            information. you need.</p>
+                    </div>
+                    <div class="col-12 col-lg-4 the-best">
+                        <img src="images/the-best-img-1.png" alt="the-best" style="width: 100%;">
+                    </div>
+                    <div class="col-12 col-lg-4 content-right">
+                        <div class="heading">Every cleaning is insured</div>
+                        <p class="p">and seek to provide exceptional service and engage in proactive behavior. We‘d be
+                            happy
+                            to clean your homes.</p>
+                        <div class="heading">Secure online payment</div>
+                        <p class="p">Payment is processed securely online. Customers pay safely online and manage the
+                            booking.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--fourth pricing section-->
+        <!-- customer section -->
+        <!--Newsletter-->
+        <section id="wht-customer-say" style="background-color: white;">
+            <div class="row justify-content-center" id="row3">
+                <div class="col-md-12 col-sm-8 order-1 order-sm-2">
+                    <div class="container-fluid mx-0 px-0">
+                        <div class="row mx-0 px-0 text-center ">
+                            <p class="title mb-1">GET OUR NEWSLETTER</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-auto p-0 newletter-input">
+                                <input class="form-control" type="email" name="" id="" placeholder="YOUR EMAIL">
+                            </div>
+                            <div class="col-sm-1 py-2 py-sm-0 newletter-input">
+                                <button class="btn" type="submit">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Newsletter-->
+    </div>
+    <!-- footer section -->
+    <section class="container-fluid" id="footer">
+        <div class="row align-self-center">
+            <div class="col-md-2 col-sm-4 text-center text-sm-end ">
+                <img class="img-fluid my-3" src="./Imgs/white-logo-transparent-background.png" height="92" width=120
+                    alt="" srcset="">
+            </div>
+            <div class="col-md-8 col-sm-4">
+                <div class="container my-1 my-md-5">
+                    <div class="row justify-content-center text-center">
+                        <div class="col-lg-1 foot-text"> <a href="homepage.html">HOME</a></div>
+                        <div class="col-lg-1 foot-text"><a href="About.html">ABOUT</a></div>
+                        <div class="col-lg-2 foot-text">TESTIMONIALS</div>
+                        <div class="col-lg-1 foot-text"><a href="FAQ.html">FAQS</a></div>
+                        <div class="col-lg-2 foot-text">INSURANCE POLICY</div>
+                        <div class="col-lg-1 foot-text">IMPRESSUM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 text-center mb-2 mb-sm-0">
+                <img class="img-fluid my-1 my-sm-5" src="./Imgs/ic-facebook.png" height="20" width="10" alt=""
+                    srcset="">
+                <img class="img-fluid my-1 my-sm-5 mx-3" src="./Imgs/ic-instagram.png" height="20" width="20" alt=""
+                    srcset="">
+            </div>
+            <div class="row-bottom justify-content-lg-center text-center" style="font-size: 16px;">
+                <div>©2018 Helperland. All rights reserved. &nbsp;&nbsp;&nbsp;&nbsp; <a href="" class="row-bottom">Terms
+                    and Conditions</a> | <a href="" class="row-bottom">Privacy Policy</a></div>
+              </div>
+        </div>
+    </section>
+    <!-- footer section -->
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+        
+        <script src="javascript\helperlandJS.js"></script>
+
+       
+</body>
+
+</html>
