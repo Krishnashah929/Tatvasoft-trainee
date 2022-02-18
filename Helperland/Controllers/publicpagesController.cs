@@ -49,7 +49,7 @@ namespace Helperland.Controllers
                     smtp.Credentials = NetworkCred;
                     smtp.Port = 587;
                     smtp.Send(mm);
-                    ViewBag.Message = "Email is succcessfully sent.";
+                    ViewBag.Message = "Email is succcessfully sent to Admin .";
                 }
             }
         }
@@ -63,7 +63,7 @@ namespace Helperland.Controllers
                 {
                     string lastname = Convert.ToString(Lastname);
                     contactU.Name = (contactU.Name + " " + lastname);
-                    contactU.Message = ("the mail is sent by " + contactU.Name + "<br/> Email:  " + contactU.Email + "<br/> Phone number:  " + contactU.PhoneNumber + contactU.Message);
+                    contactU.Message = ("This mail is sent by " + contactU.Name  + " . <br/> Email:  " + contactU.Email + "<br/> Phone number:  " + contactU.PhoneNumber + "<br/> The main message of the mail is : " + contactU.Message);
                     contactU.CreatedOn = DateTime.Now;
                     objHelperlandContext.ContactUs.Add(contactU);
                     objHelperlandContext.SaveChanges();
@@ -73,7 +73,7 @@ namespace Helperland.Controllers
                 }
                 // return View(objEmployee);
             }
-            return View();
+            return View("CONTACT");
         }
         public IActionResult ABOUT()
         {

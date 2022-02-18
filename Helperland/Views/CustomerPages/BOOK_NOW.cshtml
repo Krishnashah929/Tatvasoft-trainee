@@ -1,0 +1,566 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Helperland.Models
+@model Completebooking
+@using Microsoft.AspNetCore.Http;
+@{
+   Layout = "_Layout";
+}
+
+<img src="../images/book-service-banner.jpg" alt="" class="main-img">
+<div class="container-fluid">
+   <section class="line-star">
+      <p class="main-heading justify-content-center">Book your cleaning service</p>
+      <div class="row row2 justify-content-center">
+         <div class="line"></div>
+         <img class="px-0" id="separator" src="../images/separator.png" alt="">
+         <div class="line"></div>
+      </div>
+   </section>
+   <div class="container">
+      <div class="row book-now-row1">
+         <!--progressive forms-->
+         <div class="col-md-8">
+            <form id="Form" method="post">
+               <ul id="progressbar">
+                  <li class="active" id="account">
+                     <img src="../images/setup-service.png" class="grey-img" alt="">
+                     <img src="../images/setup-service-white.png" class="white-img" alt=""> Setup Service
+                  </li>
+                  <li id="personal">
+                     <img src="../images/schedule.png" class="grey-img" alt="">
+                     <img src="../images/schedule-white.png" class="white-img" alt="">Schedule & Plan
+                  </li>
+                  <li id="payment">
+                     <img src="../images/details.png" class="grey-img" alt="">
+                     <img src="../images/details-white.png" class="white-img" alt="">Your Details
+                  </li>
+                  <li id="confirm">
+                     <img src="../images/payment.png" class="grey-img" alt="">
+                     <img src="../images/payment-white.png" class="white-img" alt="">Make Payment
+                  </li>
+               </ul>
+
+               @*Fieldset for checking availability*@
+               <fieldset id="setupform">
+                  <div class="form-card" id="zipform">
+                     <div class="row">
+                        <p><b>Enter your postal code</b></p>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-4">
+                           <input type="text" id="inputnumber" asp-for="ZipcodeValue" class="form-control" placeholder="Postal code" required>
+                           <span asp-validation-for="ZipcodeValue" class="text-danger"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <button id="nextORsubmit" class="check-btn" onclick="zipsubmit()" type="button"> Check Availability</button>
+               </fieldset>
+
+               @*Fieldset for scheduling time*@
+               <fieldset>
+                  <div class="form-card" id="scheduleform">
+                     <div class="tabcontent">
+                        <div class="row">
+                           <div class="col-md-6">
+                              <p><b>When do you need the cleaner?</b></p>
+                              <div class="row">
+                                 <div class="col-auto">
+                                    <input asp-for="ServiceDate" type="Date" class="form-control" id="servicestartdate" onchange="datechange()" placeholder="From Date" required>
+                                    <span asp-validation-for="ServiceDate" class="text-danger"></span>
+                                 </div>
+                                 <div class="col-auto">
+                                    <select asp-for="ServiceTime" id="serviceTime" name="appt-time" class="form-select" onchange="timechange()">
+                                       <option value="08:00">08:00</option>
+                                       <option value="09:00">09:00</option>
+                                       <option value="10:00">10:00</option>
+                                       <option value="11:00">11:00</option>
+                                       <option value="12:00">12:00</option>
+                                       <option value="13:00">13:00</option>
+                                    </select>
+                                    <span asp-validation-for="ServiceTime" class="text-danger"></span>
+
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-6">
+                              <p><b>How long do you need your cleaner to stay?</b></p>
+                              <div class="row">
+                                 <div class="col-auto">
+                                    <select asp-for="ServiceHours" id="serviceHours" name="Hours" class="form-select" onchange="hourschange()">
+                                       <option value="3">3 Hrs</option>
+                                       <option value="3.5">3.5 Hrs</option>
+                                       <option value="4">4 Hrs</option>
+                                       <option value="4.5">4.5 Hrs</option>
+                                       <option value="5">5 Hrs</option>
+                                       <option value="5.5">5.5 Hrs</option>
+                                       <option value="6">6 Hrs</option>
+                                       <option value="6.5">6.5 Hrs</option>
+                                    </select>
+                                    <span asp-validation-for="ServiceHours" class="text-danger"></span>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="row extra-service-row">
+                           <div class="col-md-6">
+                              <p><b>Extra Services</b></p>
+                           </div>
+                           <div class="row">
+                              <div class="col-sm-2">
+                                 <div class="extra-services-card">
+                                    <label for="Insidecabinets">
+
+                                       <input type="checkbox" asp-for="Cabinet" id="Insidecabinets" class="input-for-extra-services"
+                                              onchange="etc1change()" />
+                                       <div class="extra-services-card-img1 extra-services-card-button-img1 " id="Inside-cabinets">
+                                       </div>
+                                    </label>
+                                    <h6 class="small-t h6-for-book-now-extra">Inside <br> cabinets</h6>
+                                    <div class="minutes">30 minutes</div>
+                                 </div>
+                              </div>
+                              <div class="col-sm-2">
+                                 <div class="extra-services-card ">
+                                    <label for="Insidefridge">
+                                       <input type="checkbox" asp-for="Fridge" id="Insidefridge" class="input-for-extra-services"
+                                              onchange="etc2change()" />
+                                       <div class="extra-services-card-img2 extra-services-card-button-img2" id="Inside-fridge">
+                                       </div>
+                                    </label>
+                                    <h6 class="small-t h6-for-book-now-extra">Inside <br> fridge </h6>
+                                    <div class="minutes">30 minutes</div>
+                                 </div>
+                              </div>
+                              <div class="col-sm-2">
+                                 <div class="extra-services-card">
+                                    <label for="Insideoven">
+                                       <input type="checkbox" asp-for="Oven" id="Insideoven" class="input-for-extra-services"
+                                              onchange="etc3change()" />
+                                       <div class="extra-services-card-img3 extra-services-card-button-img3" id="Inside-oven">
+                                       </div>
+                                    </label>
+                                    <h6 class="small-t h6-for-book-now-extra">Inside <br> oven</h6>
+                                    <div class="minutes">30 minutes</div>
+                                 </div>
+                              </div>
+                              <div class="col-sm-2">
+                                 <div class="extra-services-card">
+                                    <label for="Insidelaundry">
+                                       <input type="checkbox" asp-for="Laundry" id="Insidelaundry" class="input-for-extra-services"
+                                              onchange="etc4change()" />
+                                       <div class="extra-services-card-img4 extra-services-card-button-img4" id="Inside-laundry">
+                                       </div>
+                                    </label>
+                                    <h6 class="small-t h6-for-book-now-extra">
+                                       Laundry <br> wash & dry
+                                    </h6>
+                                    <div class="minutes">30 minutes</div>
+                                 </div>
+                              </div>
+                              <div class="col-sm-2">
+                                 <div class="extra-services-card">
+                                    <label for="Insidewindows">
+                                       <input type="checkbox" asp-for="Window" id="Insidewindows" class="input-for-extra-services"
+                                              onchange="etc5change()" />
+                                       <div class="extra-services-card-img5 extra-services-card-button-img5" id="Inside-windows">
+                                       </div>
+                                    </label>
+                                    <h6 class="small-t h6-for-book-now-extra">Interior windows</h6>
+                                    <div class="minutes">30 minutes</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="row">
+                           <p><b> Do you want to tell your helper something?</b></p>
+                        </div>
+                        <div class="row">
+                           <div class="col-auto">
+                              <textarea asp-for="Comments" class="form-control" id="comments" cols="100"></textarea>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                           <div class="form-check">
+                              <input asp-for="HasPets" type="checkbox" id="checkhaspet" name="" required>
+                              <label asp-for="HasPets" class="form-check-label" for="myCheck">
+                                 I have pets at home
+                              </label>
+                           </div>
+                        </div>
+                        <hr>
+                     </div>
+                  </div>
+                  <button id="back" class="schedule-btn-1 mb-2" type="button">Previous</button>
+                  <button id="nextORsubmit" class="schedule-btn-2 mb-2" onclick="schedulesubmit()" type="button">Continue</button>
+               </fieldset>
+
+               @*Fieldset for address*@
+               <fieldset>
+                  <div class="form-card" id="addressdetail">
+                     <div class="row">
+                        <p><b>Enter your contact details, so we can serve you in better way!</b></p>
+                     </div>
+
+                     <div id="gettingalladdress">
+                        <div class="row">
+                           <input type="radio" id="address" name="address" value="address" class="address-booknow-radio-btn">
+                           <label for="address" class="address-booknow-label">
+                              Address: Flat No: 13,
+                              iscon park - 365789
+                           </label>
+                           <div class="row">
+                              <label for="address" class="address-booknow-label-1 ml-2">
+                                 Phone
+                                 Number:1234567890
+                              </label>
+                           </div>
+                        </div>
+                        <br>
+                     </div>
+                     <div class="row">
+                        <div class="col-auto">
+                           <button type="button" class="btn address-button" data-bs-toggle="collapse" data-bs-target="#demo">
+                              + Add New Address
+                           </button>
+                        </div>
+                     </div>
+                     <br>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div id="demo" class="collapse">
+                              <div class="card address-card-book-now">
+                                 <div class="row">
+                                    <div class="col">
+                                       <label class="label-address-book-now">
+                                          Street
+                                       </label>
+                                       <input type="text" class="form-control" placeholder="Street" name="Street" id="addStreet">
+                                    </div>
+                                    <div class="col">
+                                       <label class="label-address-book-now">
+                                          House Number
+                                       </label>
+                                       <input type="number" class="form-control" placeholder="House Number" name="HouseNumber" id="addHouseNumber">
+                                    </div>
+                                 </div>
+                                 <br>
+                                 <div class="row">
+                                    <div class="col">
+                                       <label class="label-address-book-now">
+                                          Postal Code
+                                       </label>
+                                       <input type="number" class="form-control" placeholder="Postal Code" name="PostalCode" id="addPostalCode">
+                                    </div>
+                                    <div class="col">
+                                       <label class="label-address-book-now">City</label>
+                                       <input type="text" class="form-control" placeholder="Location" name="City" id="addCity">
+                                    </div>
+                                 </div>
+                                 <br>
+                                 <div class="row">
+                                    <div class="col-md-6">
+                                       <label class="label-address-book-now">
+                                          Phone Number
+                                       </label>
+                                       <input type="tel" class="form-control" placeholder="Phone Number" name="PhoneNumber" id="addPhoneNumber">
+                                    </div>
+                                 </div>
+                                 <br>
+                                 <div class="row">
+                                    <div class="col-auto">
+                                       <button type="button" class="btn save-address-book-now" onclick="addresssubmit()">
+                                          Save
+                                       </button>
+                                       <button type="button" class="btn discard-address-book-now" data-bs-toggle="collapse" data-bs-target="#demo">
+                                          Discard
+                                       </button>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <br>
+                           @*<div class="row">
+                                  <div class="form-check" style="margin-left: 1%;">
+                                      <input type="checkbox" id="" name="" value="">
+                                      <label class="form-check-label" for="myCheck">
+                                          My billing address differs from the given address.
+                                      </label>
+                                  </div>
+                              </div>*@
+                           <hr>
+                        </div>
+                     </div>
+                  </div>
+                  <br>
+                  <button id="back1" class="schedule-btn-1" type="button">Previous</button>
+                  <button id="nextORsubmit" class="schedule-btn-2" type="button" onclick="afteraddress()">Continue</button>
+               </fieldset>
+
+               @*Fieldset for payment*@
+               <fieldset>
+                  <div class="form-card" id="paymentdetails">
+                     <div class="row">
+                        <p><b> Choose one of the following payment methods.</b></p>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <label class="label-address-book-now">
+                              Discount Code (optional)
+                           </label>
+                           <input type="number" class="form-control" placeholder="Discount Code (optional)"
+                                  name="Discount Code (optional)">
+                        </div>
+                        <div class="col-auto mt-4">
+                           <button type="button" class="btn apply-address-book-now ">Apply</button>
+                        </div>
+                     </div>
+                     <br>
+                     <hr>
+                     <div class="row">
+                        <div class="col-md-12">
+                           <div class="form-check">
+                             
+                              <label class="form-check-label-payment" for="myCheck" asp-for="Terms">
+                                 <input type="checkbox" id="costcheck" name="" value="">
+                                 I accept the <a href="#" class="payment-acceptance-link"> terms</a> and conditions, the
+                                 <a href="#" class="payment-acceptance-link"> cancellation </a> policy and the
+                                 <a href="#" class="payment-acceptance-link"> data protection regulations </a> .
+                                 I confirm that Helperland  will start executing the contract before the end of the cancellation
+                                 period and that I will lose my right of cancellation as a consumer
+                                 once the contract has been fully performed.
+                              </label>
+                           </div>
+                        </div>
+                     </div>
+                     <hr>
+                     <button id="back2" class="schedule-btn-1 " type="button">Previous</button>
+                     <button type="button" class="btn book-with-cost-button" onclick="completebooking()" data-bs-toggle="modal" data-bs-target="#myModalBooking">
+                        Book with costs
+                     </button>
+                     <!-- The Modal -->
+                     <div class="modal model-for-completion-order" id="myModalBooking">
+                        <div class="modal-dialog modal-dialog-centered">
+                           <div class="modal-content">
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                 <button type="button" class="btn-close"
+                                         data-bs-dismiss="modal"></button>
+                              </div>
+                              <!-- Modal body -->
+                              <div class="modal-body book-with-cost-popup">
+                                 <img src="../images/green-tick-icon-15.jpg" alt="">
+                                 <p class="book-with-cost-p-popup">
+                                    <b>Booking has been successfully submitted.</b>
+                                 </p>
+                                 <p class="book-with-cost-p1-popup">
+                                    <b>@Context.Session.GetString("id")</b>
+                                 </p>
+                                 <button type="button" class="btn ok-address-book-now"
+                                         data-bs-dismiss="modal">
+                                    OK
+                                 </button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </fieldset>
+            </form>
+
+         </div>
+         <!--progressive forms-->
+         <!--payment summary card-->
+         <div class="col-md-4">
+            <div class="card card-book-now">
+               <h4 class="card-title card-title-book-now">Payment Summary</h4>
+               <div class="card-body card-text-book-now">
+                  <div class="row">
+                     <div class="col-auto">
+                        <p>
+                           <span id="servicecarddate">
+                              @{
+                                 String date = DateTime.Now.AddDays(1).ToString("dd/MM/yyyy");
+                                 date = date.Replace('-', '/');
+                              }
+                              @date
+                           </span>
+                           <span id="servicecardtime">
+                              08:00
+                           </span>
+                        </p>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-auto">
+                        <b>Duration</b>
+                        <br />
+                        <span id="servicecardhour"> </span>
+                     </div>
+                  </div>
+                  <div class="row card-sub-text-book-now">
+                     <div class="col-8 d-none" id="etc-1">
+                        Basic <br>Inside cabinets (extra)
+                     </div>
+                     <div class="col-4 d-none" id="etc1">
+                        3 Hrs <br>30 Mins
+                     </div>
+                  </div>
+                  <div class="row card-sub-text-book-now">
+                     <div class="col-8 d-none" id="etc-2">
+                        Inside fridge (extra)
+                     </div>
+                     <div class="col-4 d-none" id="etc2">
+                        30 Mins
+                     </div>
+                  </div>
+                  <div class="row card-sub-text-book-now">
+                     <div class="col-8 d-none" id="etc-3">
+                        Inside oven (extra)
+                     </div>
+                     <div class="col-4 d-none" id="etc3">
+                        30 Mins
+                     </div>
+                  </div>
+                  <div class="row card-sub-text-book-now">
+                     <div class="col-8 d-none" id="etc-4">
+                        Inside laundry (extra)
+                     </div>
+                     <div class="col-4 d-none" id="etc4">
+                        30 Mins
+                     </div>
+                  </div>
+                  <div class="row card-sub-text-book-now">
+                     <div class="col-8 d-none" id="etc-5">
+                        Inside Windows (extra)
+                     </div>
+                     <div class="col-4 d-none" id="etc5">
+                        30 Mins
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="row card-sub-text-book-now">
+                     <div class="col-8">
+                        <b>Total Service Time</b>
+                     </div>
+                     <div class="col-4">
+                        <b>3.5 Hrs</b>
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="row card-sub-text-book-now">
+                     <div class="col-8">
+                        Per cleaning
+                        <br>Discount
+                     </div>
+                     <div class="col-4">
+                        $87 <br> - $27
+                     </div>
+                  </div>
+                  <hr>
+                  <div class="row card-payment-text-book-now">
+                     <div class="col-8 total-payment">
+                        Total Payment
+                     </div>
+                     <div class="col-4">
+                        <b>$63</b>
+                     </div>
+                  </div>
+                  <div class="row ">
+                     <div class="col-8">
+                        Effective Price
+                     </div>
+                     <div class="col-4 payment-number">
+                        $50.4
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-auto condition-text">
+                        *You will save 20% according to §35a EStG.
+                     </div>
+                  </div>
+                  <br>
+                  <div class="row last-row-payment">
+                     <div class="col-auto condition-text-2 ">
+                        <img src="images\smiley.png" alt="">See what is always included
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <br>
+            <div class="row question-row mb-2">
+               <b>Questions?</b>
+            </div>
+            <div class="accordion" id="accordionExample">
+
+               <div class="accordion-header" id="headingOne">
+                  <p class="accordion-book-now" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                     <i class="fas fa-angle-right"></i>
+                     What's include in cleaning?
+                  </p>
+               </div>
+               <div id="collapseOne" class="accordion-collapse collapse  " aria-labelledby="headingOne"
+                    data-bs-parent="#accordionExample">
+                  <div class="accordion-body  ">
+                     Living room, bedroom and bathroom, kitchen and common areas
+                  </div>
+               </div>
+               <hr>
+               <div class="accordion-header" id="headingtwo">
+                  <p class="accordion-book-now" data-bs-toggle="collapse" data-bs-target="#collapsetwo">
+                     <i class="fas fa-angle-right"></i>
+                     Which Helperland professional will come to my place?
+                  </p>
+               </div>
+               <div id="collapsetwo" class="accordion-collapse collapse  " aria-labelledby="headingtwo"
+                    data-bs-parent="#accordionExample">
+                  <div class="accordion-body  ">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                     tempor
+                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                     quis
+                     nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                     consequat.
+                  </div>
+               </div>
+               <hr>
+               <div class="accordion-header" id="headingthree">
+                  <p class="accordion-book-now" data-bs-toggle="collapse" data-bs-target="#collapsethree">
+                     <i class="fas fa-angle-right"></i>
+                     Can i skip or reschedule bookings?
+                  </p>
+               </div>
+               <div id="collapsethree" class="accordion-collapse collapse  " aria-labelledby="headingthree"
+                    data-bs-parent="#accordionExample">
+                  <div class="accordion-body  ">
+                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                     tempor
+                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                     quis
+                     nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                     consequat.
+                  </div>
+               </div>
+               <hr>
+            </div>
+            <div class="help-link mb-5">
+               <a href="FAQ.html" class="book-now-help ">
+                  <b> For more help</b>
+               </a>
+            </div>
+
+         </div>
+         <!--payment summary card-->
+      </div>
+   </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+

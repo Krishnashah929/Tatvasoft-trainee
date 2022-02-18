@@ -9,16 +9,13 @@ using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Net.Mail;
 using System.Net;
+using Microsoft.AspNetCore.Http;
 
 namespace Helperland.Controllers
 {
     public class HomeController : Controller
     {
- 
         private readonly HelperlandContext _helperlandContext;
-
-        
-
         public HomeController(HelperlandContext helperlandContext)
         {
             _helperlandContext = helperlandContext;
@@ -34,23 +31,33 @@ namespace Helperland.Controllers
         {
             using (HelperlandContext ObjHelperlandContext = new HelperlandContext())
             {
-                string email = user.Email;
-                var p = ObjHelperlandContext.Users.Where(c => c.Email == email && c.Password == user.Password).ToList();
+                 
+                var p = ObjHelperlandContext.Users.Where(c => c.Email == user.Email && c.Password == user.Password).ToList();
                 ModelState.Clear();
                 if (p.Count == 1)
                 {
+                    User userdetails = ObjHelperlandContext.Users.Where(c => c.Email == user.Email && c.Password == user.Password).FirstOrDefault();
+                    var Name = userdetails.FirstName + " " + userdetails.LastName;
+                    ViewBag.userType = user.UserTypeId;
+                    HttpContext.Session.SetString("Userlogeddin", "true");
+                    HttpContext.Session.SetString("Name", Name);
+                    HttpContext.Session.SetInt32("userID", userdetails.UserId);
                     if (p.FirstOrDefault().UserTypeId == 1)
                     {
+                        HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("CREATE_ACCOUNT", "Home");
                     }
-                    if (p.FirstOrDefault().UserTypeId == 2)
+                     else if (p.FirstOrDefault().UserTypeId == 2)
                     {
+                        HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("service_provider", "Home");
                     }
                 }
                 else 
                 {
-                    ViewBag.Message = "Your previous details are Invalid. <br/> Please enter valid details.";
+                    ViewBag.Message = "Your previous details are Invalid. " + "<br/>" + "Please enter valid details.";
+                    //TempData["LoginMSg"] = "Your Failer Message for login";
+                    //return View("Index", user);
                 }
                 //forgot password code
                 String ResetCode = Guid.NewGuid().ToString();
@@ -77,14 +84,17 @@ namespace Helperland.Controllers
 
                     SendEmail(getUser.Email, body, subject);
 
-                    ViewBag.Message1 = "Reset password link has been sent to your email id";
+                    TempData["SuccessMsg"] = "Your Success Message";
+                    return RedirectToAction("Index", "Home");
+                    //ViewBag.Message1 = "Reset password link has been sent to your email id";
                 }
-                else
-                {
-                    ViewBag.Message = "user does not exists.";
-                    return View();
-                }
+                //else
+                //{
+                //    TempData["SuccessMsg"] = "Your Success Message";
+                //    return RedirectToAction("Index", "Home");
+                //}
             }
+            TempData["FailMsg"] = "Your Success Message";
             return View();
         }
 
@@ -223,8 +233,14 @@ namespace Helperland.Controllers
             }
             return View("service_provider");
         }
-
-
+       
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            TempData["LogOutMsg"] = "Logged out";
+            return RedirectToAction("Index", "Home");
+             
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -40,21 +41,28 @@ namespace Helperland.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please Enter Password")]
+        [Compare("ConfirmPassword", ErrorMessage = "Password does not match")]
+        [RegularExpression("([a-z]|[A-Z]|[0-9]|[\\W]){4}[a-zA-Z0-9\\W]{8,16}", ErrorMessage = "The password must be at least 8 characters long, contain one uppercase letter, one lowercase letter and one number.")]
         [DataType(DataType.Password)]
         [MaxLength(50)]
         public string Password { get; set; }
 
+        [NotMapped]
+        [Required(ErrorMessage = "Please repeat your password!")]
+        [DataType(DataType.Password)]
+        [MaxLength(50)]
+        public string ConfirmPassword { get; set; }
+
         [Required(ErrorMessage = "Please Enter Mobile Number")]
         [MaxLength(50)]
         public string Mobile { get; set; }
-
         public int UserTypeId { get; set; }
-
         public int? Gender { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string UserProfilePicture { get; set; }
         public bool IsRegisteredUser { get; set; }
         public string PaymentGatewayUserRef { get; set; }
+
         public string ZipCode { get; set; }
         public bool WorksWithPets { get; set; }
         public int? LanguageId { get; set; }
@@ -69,7 +77,7 @@ namespace Helperland.Models
         public string BankTokenId { get; set; }
         public string TaxNo { get; set; }
 
-        //i addedd this line from my end for the mailing services//
+        //this line for the mailing services//
         public string ResetPasswordCode { get; set; }
 
         public virtual ICollection<FavoriteAndBlocked> FavoriteAndBlockedTargetUsers { get; set; }

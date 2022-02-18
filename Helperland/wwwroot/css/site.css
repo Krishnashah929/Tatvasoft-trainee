@@ -1,6 +1,4 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-* {
+﻿* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -175,6 +173,15 @@ a {
     background-color: rgba(29, 122, 140, 0.5);
     /* font-size: 1px; */
 }
+
+    .main-btn-center .btn-center:hover {
+        border-radius: 27px;
+        color: #1d7a8c !important;
+        border: 1px solid #29626d;
+        background-color: white;
+        /* font-size: 1px; */
+    }
+
 
 #main-btn-down {
     height: 40px;
@@ -390,6 +397,17 @@ a {
     margin-left: -2px;
 }
 
+    #wht-customer-say .btn:hover {
+        font-size: 14px;
+        font-weight: 400;
+        background: #1d7a8c;
+        border-radius: 20px;
+        height: 40px;
+        width: 88px;
+        color: white;
+        margin-left: -2px;
+    }
+
 #wht-customer-say .form-control {
     border: 1px solid #565656;
     border-radius: 20px;
@@ -547,8 +565,7 @@ a {
     }
 
 .become-helper-nav-btn {
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-left: 15px;
 }
 /*CSS for popup (LOGIN)*/
 .nav-link-login {
@@ -613,38 +630,7 @@ a {
         color: rgb(255, 251, 251);
     }
 /*CSS for popup (LOGIN)*/
-/*CSS for popup (forgot password)*/
-.forgot-password-card {
-    margin: auto; 
-    width: 25%; 
-    margin-top: 15% !important; 
-    border: none; 
-    box-shadow: 5px 5px 15px 15px whitesmoke;
-}
-@media (max-width : 500px){
-    .forgot-password-card {
-        margin: auto;
-        width: 50%;
-        margin-top: 15% !important;
-        border: none;
-        box-shadow: 5px 5px 15px 15px whitesmoke;
-    }
-}
-.forgot-password-form {
-    margin: auto;
-    color: #646464;
-    font-size: 16px;
-    font-weight: bolder;
-}
-.submit-password-button {
-    color: white;
-    font-size: medium;
-    background-color: #1d7a8c;
-    margin: auto;
-    padding: 5px 15px 5px 15px;
-    border-radius: 23px;
-}
-/*CSS for popup (forgot password)*/
+
 /*CSS for creat account*/
 .card-create-account {
     margin: auto;
@@ -657,12 +643,8 @@ a {
         width: 50%;
     }
 }
-
 /*CSS for creat account*/
-
-
 /********************************************************************************************************/
-
 /*FAQ PAGE*/
 /*---------- small navbar ------------*/
 .small-nav {
@@ -674,7 +656,7 @@ a {
 
 .navbar {
     padding: 6px 0px !important;
-    background-color: #525252;
+    background-color: rgba(39,39,39,.7);
 }
 
 .small-nav .navbar .container-fluid {
@@ -710,10 +692,21 @@ a {
     width: 100px;
 }
 
+.small-nav .btn-active {
+    border: 1px solid #ffffff80;
+    width: 100%;
+}
+
+    .small-nav .btn-active:hover {
+        color: #1d7a8c !important;
+        border: 1px solid #29626d;
+        background-color: white;
+    }
+
 .small-nav .btn-primary {
     border: 1px solid #ffffff80;
     background-color: #29626d;
-    ;
+    width: 100%;
 }
 
 .small-nav .btn a {
@@ -722,7 +715,13 @@ a {
 }
 
 .small-nav .nav-item a {
-    margin-left: 10px;
+    margin-right: 15px;
+}
+
+.small-nav .nav-link:hover {
+    border: 1px solid #ffffff80;
+    color: white;
+    border-radius: 33px;
 }
 
 @media (max-width: 1140px) {
@@ -737,7 +736,16 @@ a {
         font-size: 15px;
     }
 }
+
+.nav-notification {
+    margin: auto;
+}
 /*---------- small navbar ------------*/
+.mynav {
+    width: 100%;
+    z-index: 1;
+    position: fixed;
+}
 
 .main-img {
     width: 100%;
@@ -1033,19 +1041,6 @@ a {
     margin-top: 39px;
 }
 
-
-.extra-services-card-img1 {
-    width: 108px;
-    height: 108px;
-    border: 1px solid #b0c9ce;
-    border-radius: 108%;
-    background-image: url("../images/3.png");
-    background-repeat: no-repeat;
-    background-position-x: 36px;
-    background-position-y: 30px;
-    margin-bottom: 14px;
-}
-
 .small-t {
     color: #646464;
     font-size: 16px;
@@ -1060,53 +1055,7 @@ a {
     margin-top: -5px;
 }
 
-.extra-services-card-img2 {
-    width: 108px;
-    height: 108px;
-    border: 1px solid #b0c9ce;
-    border-radius: 108%;
-    background-image: url("../images/5.png");
-    background-repeat: no-repeat;
-    background-position-x: 40px;
-    background-position-y: 24px;
-    margin-bottom: 14px;
-}
 
-.extra-services-card-img3 {
-    width: 108px;
-    height: 108px;
-    border: 1px solid #b0c9ce;
-    border-radius: 108%;
-    background-image: url("../images/4.png");
-    background-repeat: no-repeat;
-    background-position-x: 28px;
-    background-position-y: 38px;
-    margin-bottom: 14px;
-}
-
-.extra-services-card-img4 {
-    width: 108px;
-    height: 108px;
-    border: 1px solid #b0c9ce;
-    border-radius: 108%;
-    background-image: url("../images/2.png");
-    background-repeat: no-repeat;
-    background-position-x: 35px;
-    background-position-y: 31px;
-    margin-bottom: 14px;
-}
-
-.extra-services-card-img5 {
-    width: 108px;
-    height: 108px;
-    border: 1px solid #b0c9ce;
-    border-radius: 108%;
-    background-image: url("../images/1.png");
-    background-repeat: no-repeat;
-    background-position-x: 31px;
-    background-position-y: 30px;
-    margin-bottom: 14px;
-}
 
 @media (max-width:952px) {
     .extra-services-card {
@@ -1318,12 +1267,9 @@ a {
 .newslatter-button {
     margin-top: 20px;
 }
-.contact-upload{
-    font-size:16px;
-    color:#646464;
-     
-}
+
 /**********************************************service provider*********************************************************************/
+
 .register-form-area-service-provider {
     background-color: white;
     border: 1px solid GREY;
@@ -1698,11 +1644,14 @@ table {
 .dropdown-service-history {
     background-color: white;
     color: #4f4f4f;
+    margin-top: 1%;
+    width: 100%;
 }
 
     .dropdown-service-history a {
         background-color: white;
         color: #4f4f4f;
+        padding-left: 10px;
     }
 
 .dropdown-service-history-header {
@@ -2240,6 +2189,16 @@ table {
     color: #a0a0a0;
 }
 /********************************************************BOOK NOW***************************************************/
+.extra-services-card-button {
+    background-color: transparent;
+    border: 1px solid #bbbbbb;
+    border-radius: 108%;
+}
+
+.btn-service .active {
+    background-color: #146371;
+}
+
 .badge {
     position: absolute;
     top: -5px;
@@ -2370,34 +2329,42 @@ table {
     transition: 0.4s;
 }
 
-.panel {
-    display: none;
-    background-color: white;
-    overflow: hidden;
-}
-
 .book-now-help {
-    color: #1D7A8C;
+    color: #339aaf;
     font-size: 16px;
 }
 
+    .book-now-help:hover {
+        color: #1D7A8C;
+        font-size: 16px;
+    }
+
 .check-btn {
     border-radius: 30px;
-    background-color: #1D7A8C;
+    background-color: #339aaf;
     color: white;
     padding: 7px;
     display: inline-block;
     cursor: pointer;
 }
+
+.check-btn:hover {
+    border-radius: 30px;
+    background-color: #1D7A8C;
+    color: white;
+    padding: 7px;   
+    display: inline-block;
+    cursor: pointer;
+}
 /* CSS for Progressive form */
-#msform fieldset:not(:first-of-type) {
+#Form fieldset:not(:first-of-type) {
     display: none
 }
 
 #progressbar {
     margin-bottom: 30px;
     overflow: hidden;
-    color: lightgrey;
+    color: #646464;
 }
 
     #progressbar .active {
@@ -2415,7 +2382,7 @@ table {
         padding: 10px;
     }
 
-#msform ul {
+#Form ul {
     margin-left: -40px;
 }
 
@@ -2455,14 +2422,6 @@ table {
     display: inline;
 }
 
-#progressbar .active .arrow {
-    width: 0;
-    height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #f00;
-}
-
 .radio-group {
     position: relative;
     margin-bottom: 25px
@@ -2471,6 +2430,72 @@ table {
 /* Extra service book now*/
 .h6-for-book-now-extra {
     text-align: center;
+}
+
+.input-for-extra-services {
+    width: 0px;
+    height: 0px;
+}
+
+.extra-services-card-img1 {
+    width: 108px;
+    height: 108px;
+    border: 1px solid #b0c9ce;
+    border-radius: 108%;
+    background-image: url("../images/3.png");
+    display: block;
+    background-repeat: no-repeat;
+    background-position-x: 36px;
+    background-position-y: 30px;
+    margin-bottom: 14px;
+}
+
+.extra-services-card-img2 {
+    width: 108px;
+    height: 108px;
+    border: 1px solid #b0c9ce;
+    border-radius: 108%;
+    background-image: url("../images/5.png");
+    background-repeat: no-repeat;
+    background-position-x: 40px;
+    background-position-y: 24px;
+    margin-bottom: 14px;
+}
+
+.extra-services-card-img3 {
+    width: 108px;
+    height: 108px;
+    border: 1px solid #b0c9ce;
+    border-radius: 108%;
+    background-image: url("../images/4.png");
+    background-repeat: no-repeat;
+    background-position-x: 28px;
+    background-position-y: 38px;
+    margin-bottom: 14px;
+}
+
+.extra-services-card-img4 {
+    width: 108px;
+    height: 108px;
+    border: 1px solid #b0c9ce;
+    border-radius: 108%;
+    background-image: url("../images/2.png");
+    background-repeat: no-repeat;
+    background-position-x: 35px;
+    background-position-y: 31px;
+    margin-bottom: 14px;
+}
+
+.extra-services-card-img5 {
+    width: 108px;
+    height: 108px;
+    border: 1px solid #b0c9ce;
+    border-radius: 108%;
+    background-image: url("../images/1.png");
+    background-repeat: no-repeat;
+    background-position-x: 31px;
+    background-position-y: 30px;
+    margin-bottom: 14px;
 }
 
 .extra-services-card-img1:hover {
@@ -2533,7 +2558,75 @@ table {
     margin-bottom: 14px;
 }
 
+.extra-service-row input:checked ~ .extra-services-card-button-img1 {
+    width: 108px;
+    height: 108px;
+    border: 2px solid #1d7a8c;
+    border-radius: 108%;
+    background-image: url("../images/3-green.png");
+    background-repeat: no-repeat;
+    background-position-x: 36px;
+    background-position-y: 30px;
+    margin-bottom: 14px;
+}
+
+.extra-service-row input:checked ~ .extra-services-card-button-img2 {
+    width: 108px;
+    height: 108px;
+    border: 3px solid #1D7A8C;
+    border-radius: 108%;
+    background-image: url("../images/5-green.png");
+    background-repeat: no-repeat;
+    background-position-x: 40px;
+    background-position-y: 24px;
+    margin-bottom: 14px;
+}
+
+.extra-service-row input:checked ~ .extra-services-card-button-img3 {
+    width: 108px;
+    height: 108px;
+    border: 3px solid #1D7A8C;
+    border-radius: 108%;
+    background-image: url("../images/4-green.png");
+    background-repeat: no-repeat;
+    background-position-x: 28px;
+    background-position-y: 38px;
+    margin-bottom: 14px;
+}
+
+.extra-service-row input:checked ~ .extra-services-card-button-img4 {
+    width: 108px;
+    height: 108px;
+    border: 3px solid #1D7A8C;
+    border-radius: 108%;
+    background-image: url("../images/2-green.png");
+    background-repeat: no-repeat;
+    background-position-x: 35px;
+    background-position-y: 31px;
+    margin-bottom: 14px;
+}
+
+.extra-service-row input:checked ~ .extra-services-card-button-img5 {
+    width: 108px;
+    height: 108px;
+    border: 3px solid #1D7A8C;
+    border-radius: 108%;
+    background-image: url("../images/1-green.png");
+    background-repeat: no-repeat;
+    background-position-x: 31px;
+    background-position-y: 30px;
+    margin-bottom: 14px;
+}
+
 .schedule-btn-2 {
+    font-size: 18px;
+    border-radius: 100px;
+    padding: 10px;
+    background-color: #339aaf;
+    color: white;
+    float: right;
+}
+.schedule-btn-2:hover {
     font-size: 18px;
     border-radius: 100px;
     padding: 10px;
@@ -2546,21 +2639,30 @@ table {
     font-size: 18px;
     border-radius: 100px;
     padding: 10px;
-    background-color: #1D7A8C;
+    background-color: #339aaf;
     color: white;
     float: left;
 }
 
+.schedule-btn-1:hover {
+    font-size: 18px;
+    border-radius: 100px;
+    padding: 10px;
+    background-color: #1D7A8C;
+    color: white;
+    float: left;
+}
 .address-booknow-radio-btn {
     border: 1px solid #cac9c9;
 }
 
 .address-booknow-label {
+    border: 1px solid #cac9c9;
     padding: -1%;
 }
 
 .address-booknow-label-1 {
-    padding-left: 3%;
+    padding-left: 5%;
 }
 
 .address-button {
@@ -2571,7 +2673,8 @@ table {
 }
 
     .address-button:hover {
-        color: #1D7A8C;
+        color: #f3f3f3;
+        background-color: #1d7a8c;
     }
 
 .address-card-book-now {
@@ -2607,40 +2710,27 @@ table {
 .apply-address-book-now {
     border: 1px solid #339aaf;
     border-radius: 38px;
-    background-color: #339aaf;
-    color: white;
-    margin-top: 2%;
+    color: #339aaf;
+    margin-top: 3%;
 }
-
-    .apply-address-book-now:hover {
-        color: white;
-    }
-
-.input-payment-row {
-    border-bottom: 1px solid #c2c0c0;
-    padding-bottom: 1%;
+.apply-address-book-now:hover {
+  color: white;
+  background-color: #1d7a8c;
 }
-
-.payment-inputs-1 {
-    border: none;
-    display: inline;
+.form-check-label {
+    margin-top: -3%;
+    margin-left: 1%;
 }
-
-.payment-inputs-2 {
-    border: none;
-    display: inline;
-}
-
-.payment-inputs-3 {
-    border: none;
-    display: inline;
-}
-
-.images-credit-card {
-    text-align: right;
+.form-check-label-payment {
+    margin-top: -1%;
+     
 }
 
 .payment-acceptance-link {
+    color: #339aaf;
+}
+
+.payment-acceptance-link:hover {
     color: #1D7A8C;
 }
 
@@ -2649,13 +2739,14 @@ table {
     border-radius: 38px;
     font-size: 18px;
     color: white;
-    background-color: #1D7A8C;
+    background-color: #339aaf;
     float: right;
 }
-
-    .book-with-cost-button:hover {
-        color: white;
-    }
+.book-with-cost-button:hover 
+{
+    background-color: #1D7A8C;
+    color: white;
+}
 
 .model-for-completion-order {
     box-shadow: 5px 5px 5px 5px;

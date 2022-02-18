@@ -1,7 +1,7 @@
 using Helperland.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,8 +25,10 @@ namespace Helperland
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
-            services.AddDbContext<HelperlandContext>();
+            services.AddDbContext<HelperlandContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HelperlandContext")));
  
         }
 
@@ -43,7 +45,7 @@ namespace Helperland
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthorization();
 

@@ -1,6 +1,7 @@
 ﻿@using Helperland.Models
-@model ContactU
+@model ContactU  
  
+
 @{
     Layout = "_Layout";
 }
@@ -66,6 +67,9 @@
     <!--line-star-->
     <!--Get in touch with us form-->
     <section id="get-in-touch-form" class="get-in-touch-form">
+        <div class="text-success text-center">
+            @ViewBag.Message
+        </div>
         <form class="row g-3 " enctype="multipart/form-data" style="width:50%; margin-left: 25%;" method="post" asp-controller="publicpages" asp-action="CONTACT">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="col-md-6">
@@ -103,9 +107,9 @@
                 <br />
                 <input type="file" id="myFile" name="filename" class="upload mt-3" asp-for="UploadFileName">
             </div>
-            <div class="form-check ml-1" >
+            <div class="form-check ml-1">
                 <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
-                <label class="form-check-label" for="myCheck">
+                <label class="form-check-label mt-1" for="myCheck" >
                     Our current <a href="#" style="color: #2f8799;"> data protection</a> data protection regulations apply . I hereby agree that my data entered in the contact form will be stored electronically and processed and used for the purpose of establishing contact. The consent can be revoked at any time in accordance with Art. 7 Para. 3 GDPR by informal notification (e.g. by e-mail).
 
                 </label>
@@ -123,7 +127,7 @@
             <div class="col-12">
                 <div class="mapouter">
                     <div class="gmap_canvas">
-                        <iframe width="100%" height="400" id="gmap_canvas"
+                        <iframe width="1500" height="400" id="gmap_canvas"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235014.25792080228!2d72.43965601422856!3d23.020181763113136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sus!4v1643106448033!5m2!1sen!2sus"
                                 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org"></a><br>
                         <a href="https://www.embedgooglemap.net"> </a>
@@ -155,4 +159,4 @@
     </section>
     <!--Newsletter-->
 </div>
-@*LAPTOP-LBJNP9N7*@
+ 

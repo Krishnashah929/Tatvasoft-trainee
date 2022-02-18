@@ -10,9 +10,7 @@ namespace Helperland.Models
 {
     public partial class ContactU
     {
-        internal string subject;
-        internal object body;
-
+       
         public int ContactUsId { get; set; }
 
         [Required(ErrorMessage = "Please Enter Name")]
