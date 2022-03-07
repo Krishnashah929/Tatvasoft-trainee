@@ -1,9 +1,30 @@
-﻿* {
+﻿@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
+.submit-password-button{
+    background-color: #1d7a8c;
+    color: white;
+    font-size:16px;
+    border-radius: 33px;
+    padding: 5px;
+    margin-left:5px;
+    margin-right:5px;
 
+}
+.forgot-password-card {
+    border: none;
+    width: 30%;
+    margin:auto;
+    margin-top:10%;
+    box-shadow: 2px 2px 2px 2px;
+}
+.forgot-password-form{
+    width:50%;
+    margin-left: 3%;
+}
 body {
     font-family: "Roboto", sans-serif;
     color: #4f4f4f;
@@ -594,7 +615,6 @@ a {
 
 .login-btn {
     background-color: #339aaf;
-    ;
     width: 100%;
     color: rgb(255, 251, 251);
     font-size: 20px;
@@ -603,6 +623,7 @@ a {
 
     .login-btn:hover {
         color: rgb(255, 251, 251);
+        background-color: #1d7a8c;
     }
 
 .login-para-links {
@@ -1288,6 +1309,14 @@ a {
 }
 
 .btn-blue-service-provider {
+    background-color: #339aaf;
+    color: white;
+    margin-left: 38%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+.btn-blue-service-provider:hover {
     background-color: #1D7A8C;
     color: white;
     margin-left: 38%;
@@ -1370,7 +1399,7 @@ a {
 
 .Welcome {
     color: #4f4f4f;
-    width: 237px;
+    width: 350px;
     height: 29px;
     margin: auto;
     padding-top: 44px;
@@ -1396,26 +1425,33 @@ a {
 
 .nav-services-btn {
     color: white;
+    width:106%;
 }
 
-    .nav-services-btn:hover {
-        color: white;
-        background-color: #146371;
-    }
+.nav-services-btn:hover {
+    color: white;
+    background-color: #146371;
+    width: 106%;
+}
 
 #v-pills-home-tab.active {
     background: #146371;
+   
 }
 
 #v-pills-profile-tab.active {
     background: #146371;
 }
 
-#v-pills-messages-tab.active {
+#v-pills-upcoming-tab.active {
     background: #146371;
 }
 
-#v-pills-settings-tab.active {
+#v-pills-setting-tab.active {
+    background: #146371;
+}
+
+#v-pills-schedule-tab.active {
     background: #146371;
 }
 
@@ -1423,11 +1459,11 @@ a {
     background: #146371;
 }
 
-#v-pills-Ratings-tab.active {
+#v-pills-fav-tab.active {
     background: #146371;
 }
 
-#v-pills-Block-tab.active {
+#v-pills-Notifications-tab.active {
     background: #146371;
 }
 
@@ -1439,7 +1475,40 @@ table {
     border: 1px solid black;
     border-collapse: collapse;
     border-spacing: 0;
+    border-bottom: none !important;
+ 
 }
+.table.dataTable thead .sorting_desc {
+    background-image: none !important;
+}
+
+.table.dataTable thead .sorting_asc {
+    background-image: none !important;
+}
+
+label {
+    
+    display: inline-block;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #1D7A8C !important;
+    color: white !important;
+    border: 1px solid #979797;
+    border-radius: 33px;
+    background: -webkit-linear-gradient(top, #1D7A8C 0%, #1D7A8C 100%);
+    background: -o-linear-gradient(top, #1D7A8C 0%, #1D7A8C 100%);
+    background: linear-gradient(to #1D7A8C 0%, #1D7A8C 100%);
+}
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+        background-color: #1D7A8C !important;
+        color: white !important;
+        border: 1px solid #979797;
+        background: -webkit-linear-gradient(top, #1D7A8C 0%, #1D7A8C 100%);
+        background: -o-linear-gradient(top, #1D7A8C 0%, #1D7A8C 100%);
+        background: linear-gradient(to #1D7A8C 0%, #1D7A8C 100%);
+    }
 
 .tbody-upcoming-services {
     color: #646464;
@@ -1470,23 +1539,25 @@ table {
 }
 
 .btn-upcoming-service {
-    background-color: #ff6b6b;
+    background-color:  #ff7b6d;
     color: white;
     border-radius: 20px;
 }
 
     .btn-upcoming-service:hover {
         color: white;
+        background-color: #ff6b6b;
     }
 
 .btn-upcoming-service-reschedule {
-    background-color: #1D7A8C;
+    background-color: #339aaf;
     color: white;
     border-radius: 20px;
 }
 
     .btn-upcoming-service-reschedule:hover {
         color: white;
+        background-color: #1d7a8c;
     }
 
 .payment-dashboard {
@@ -1507,10 +1578,14 @@ table {
     font-size: 18px;
 }
 
-    .Cancle-now-btn:hover {
-        color: white;
-    }
-
+.Cancle-now-btn:hover {
+  color: white;
+  background-color:#1d7a8c;
+}
+.service-label {
+    color: #646464;
+    font-size: 24px;
+}
 .cancle-booking-title {
     color: #646464;
     font-size: 24px;
@@ -1529,15 +1604,15 @@ table {
 .update-btn {
     border: 1px solid #1D7A8C;
     border-radius: 38px;
-    background-color: #1D7A8C;
+    background-color: #339aaf;
     color: white;
     width: 100%;
     font-size: 20px;
 }
-
-    .update-btn:hover {
-        color: white;
-    }
+.update-btn:hover {
+   color: white;
+   background-color:#1d7a8c;
+}
 /* mobile side bar */
 #sidebar .row1 {
     padding: 4px;
@@ -1667,6 +1742,10 @@ table {
     display: inline;
 }
 
+.id-button{
+    background-color: white;
+    border:none;
+}
 .btn-export-service-history {
     background-color: #146371;
     color: white;
@@ -1702,10 +1781,20 @@ table {
     color: white;
     font-size: 13px;
 }
-
-    .btn-status-service-history:hover {
+.btn-status-service-history:hover {
         color: white;
-    }
+}
+
+.btn-status-cancel-service-history {
+    background-color: #ff7b6d;
+    color: white;
+    font-size: 13px;
+
+}
+
+.btn-status-cancel-service-history:hover {
+        color: white;
+}
 
 .btn-rate-service-history {
     background-color: #6da9b5;
@@ -1830,24 +1919,24 @@ table {
     }
 /**************************************************My setiing css****************************************************************/
 
-#mysetting-main .row-btn .nav-link {
+#v-pills-setting .row-btn .nav-link {
     border: none;
     color: #646464;
     font-size: 16px;
 }
 
-    #mysetting-main .row-btn .nav-link:hover {
+    #v-pills-setting .row-btn .nav-link:hover {
         color: #1D7A8C;
         border-bottom: 4px solid #1d7a8c !important;
     }
 
-    #mysetting-main .row-btn .nav-link.active {
+    #v-pills-setting .row-btn .nav-link.active {
         color: #1D7A8C;
         border-bottom: 4px solid #1d7a8c !important;
     }
 
 @media (max-width: 615px) {
-    #mysetting-main .row-btn .nav-link {
+    #v-pills-setting .row-btn .nav-link {
         font-size: 16px;
     }
 }
@@ -1862,9 +1951,10 @@ table {
 }
 
 .newsletter-setting-p {
-    font-size: 14px;
+    font-size: 16px;
     color: #4f4f4f;
     font-weight: lighter;
+    margin-top: 3%;
 }
 
 .save-detail-button {
@@ -2341,18 +2431,9 @@ table {
 
 .check-btn {
     border-radius: 30px;
-    background-color: #339aaf;
-    color: white;
-    padding: 7px;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.check-btn:hover {
-    border-radius: 30px;
     background-color: #1D7A8C;
     color: white;
-    padding: 7px;   
+    padding: 7px;
     display: inline-block;
     cursor: pointer;
 }
@@ -2622,14 +2703,6 @@ table {
     font-size: 18px;
     border-radius: 100px;
     padding: 10px;
-    background-color: #339aaf;
-    color: white;
-    float: right;
-}
-.schedule-btn-2:hover {
-    font-size: 18px;
-    border-radius: 100px;
-    padding: 10px;
     background-color: #1D7A8C;
     color: white;
     float: right;
@@ -2639,30 +2712,21 @@ table {
     font-size: 18px;
     border-radius: 100px;
     padding: 10px;
-    background-color: #339aaf;
-    color: white;
-    float: left;
-}
-
-.schedule-btn-1:hover {
-    font-size: 18px;
-    border-radius: 100px;
-    padding: 10px;
     background-color: #1D7A8C;
     color: white;
     float: left;
 }
+
 .address-booknow-radio-btn {
     border: 1px solid #cac9c9;
 }
 
 .address-booknow-label {
-    border: 1px solid #cac9c9;
     padding: -1%;
 }
 
 .address-booknow-label-1 {
-    padding-left: 5%;
+    padding-left: 3%;
 }
 
 .address-button {
@@ -2711,45 +2775,74 @@ table {
     border: 1px solid #339aaf;
     border-radius: 38px;
     color: #339aaf;
-    margin-top: 3%;
-}
-.apply-address-book-now:hover {
-  color: white;
-  background-color: #1d7a8c;
-}
-.form-check-label {
-    margin-top: -3%;
-    margin-left: 1%;
-}
-.form-check-label-payment {
-    margin-top: -1%;
-     
+    margin-top: 2%;
 }
 
+    .apply-address-book-now:hover {
+        color: white;
+        background-color: #1d7a8c;
+    }
+
+.input-payment-row {
+    border-bottom: 1px solid #c2c0c0;
+    padding-bottom: 1%;
+}
+
+.payment-inputs-1 {
+    border: none;
+    display: inline;
+}
+
+.payment-inputs-2 {
+    border: none;
+    display: inline;
+}
+
+.payment-inputs-3 {
+    border: none;
+    display: inline;
+}
+
+.images-credit-card {
+    text-align: right;
+}
+
+.form-check-label {
+    margin-top: -3%;
+    margin-left: 3%;
+}
+.form-check-label-contact {
+    margin-top: -3%;
+     
+}
+.form-check-label-create-account {
+    margin-top: -3%;
+}
+.form-check-label-pets {
+    margin-top: -3%;
+}
 .payment-acceptance-link {
     color: #339aaf;
 }
-
-.payment-acceptance-link:hover {
-    color: #1D7A8C;
-}
+    .payment-acceptance-link:hover {
+        color: #1D7A8C;
+    }
 
 .book-with-cost-button {
     border: 2px solid #1D7A8C;
     border-radius: 38px;
     font-size: 18px;
     color: white;
-    background-color: #339aaf;
+    background-color: #1D7A8C;
     float: right;
 }
-.book-with-cost-button:hover 
-{
-    background-color: #1D7A8C;
-    color: white;
-}
+
+    .book-with-cost-button:hover {
+        color: white;
+    }
 
 .model-for-completion-order {
-    box-shadow: 5px 5px 5px 5px;
+    box-shadow: 3px 3px 3px 3px;
 }
 
 .book-with-cost-popup {
@@ -2771,3 +2864,147 @@ table {
     .ok-address-book-now:hover {
         color: white;
     }
+ 
+
+#RatingModel table {
+    margin-bottom: 15px;
+    border:none !important;
+}
+
+#RatingModel .control-label {
+    font-size: 16px;
+    font-weight: 400;
+}
+ 
+#RatingModel .rate .rating1 {
+    border: none;
+    margin-right: 49px
+}
+
+#RatingModel .rate .rating2 {
+    border: none;
+    margin-right: 49px
+}
+
+#RatingModel .rate .rating3 {
+    border: none;
+    margin-right: 49px
+}
+
+#RatingModel .rate .myratings {
+    font-size: 85px;
+    color: green
+}
+
+#RatingModel .rate .rating1 > [id^="star"] {
+    display: none
+}
+
+#RatingModel .rate .rating2 > [id^="star"] {
+    display: none
+}
+
+#RatingModel .rate .rating3 > [id^="star"] {
+    display: none
+}
+
+#RatingModel .rate .rating1 > label:before {
+    margin: 5px;
+    font-size: 1em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005"
+}
+
+#RatingModel .rate .rating3 > label:before {
+    margin: 5px;
+    font-size: 1em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005"
+}
+
+#RatingModel .rate .rating2 > label:before {
+    margin: 5px;
+    font-size: 1em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005"
+}
+
+#RatingModel .rate .rating1 > .half:before {
+    content: "\f089";
+    position: absolute
+}
+
+#RatingModel .rate .rating2 > .half:before {
+    content: "\f089";
+    position: absolute
+}
+
+#RatingModel .rate .rating3 > .half:before {
+    content: "\f089";
+    position: absolute
+}
+
+#RatingModel .rate .rating1 > label {
+    color: #ddd;
+    float: right
+}
+
+#RatingModel .rate .rating3 > label {
+    color: #ddd;
+    float: right
+}
+
+#RatingModel .rate .rating2 > label {
+    color: #ddd;
+    float: right
+}
+
+#RatingModel .rate .rating1 > [id^="star"]:checked ~ label,
+.rating1:not(:checked) > label:hover,
+.rating1:not(:checked) > label:hover ~ label {
+    color: #FFD700
+}
+
+#RatingModel .rate .rating2 > [id^="star"]:checked ~ label,
+.rating2:not(:checked) > label:hover,
+.rating2:not(:checked) > label:hover ~ label {
+    color: #FFD700
+}
+
+#RatingModel .rate .rating3 > [id^="star"]:checked ~ label,
+.rating3:not(:checked) > label:hover,
+.rating3:not(:checked) > label:hover ~ label {
+    color: #FFD700
+}
+
+#RatingModel .rate .rating1 > [id^="star"]:checked + label:hover,
+.rating1 > [id^="star"]:checked ~ label:hover,
+.rating1 > label:hover ~ [id^="star"]:checked ~ label,
+.rating1 > [id^="star"]:checked ~ label:hover ~ label {
+    color: #FFED85
+}
+
+#RatingModel .rate .rating2 > [id^="star"]:checked + label:hover,
+.rating2 > [id^="star"]:checked ~ label:hover,
+.rating2 > label:hover ~ [id^="star"]:checked ~ label,
+.rating2 > [id^="star"]:checked ~ label:hover ~ label {
+    color: #FFED85
+}
+
+#RatingModel.rate .rating3 > [id^="star"]:checked + label:hover,
+.rating3 > [id^="star"]:checked ~ label:hover,
+.rating3 > label:hover ~ [id^="star"]:checked ~ label,
+.rating3 > [id^="star"]:checked ~ label:hover ~ label {
+    color: #FFED85
+}
+ 
+#RatingModel .rate .mt-100 {
+    margin-top: 100px
+}
+ 
+#RatingModel .sp .star img {
+    position: relative;
+}

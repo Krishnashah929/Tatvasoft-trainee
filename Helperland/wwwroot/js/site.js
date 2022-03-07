@@ -17,15 +17,83 @@ $(document).ready(function () {
         $('a[aria-expanded=true]').attr('aria-expanded', 'false');
     });
 });
-/* <!--Script for side bar-->*/
+ 
 /*<!--cookie 's js'--> */
 function myFunction() {
     var x = document.getElementById("privacy-policy-home");
     x.style.display = "none";
 }
-/*<!--cookie 's js'--> */
-
  
+//progressive form js//
+form = document.getElementById('Form');
+fieldsets = document.querySelectorAll('fieldset');
+back = document.getElementById('back');
+back1 = document.getElementById('back1');
+back2 = document.getElementById('back2');
+nextORsubmit = document.getElementById('nextORsubmit');
+
+let i = 0;
+function next() {
+    if (i < fieldsets.length - 1) {
+        fieldsets[i].style.display = 'none';
+        fieldsets[i + 1].style.display = 'block';
+        back.style.display = 'inline';
+        $("#progressbar li").eq($("fieldset").index(fieldsets[i + 1])).addClass("active");
+        i++;
+        // set required on current fieldset inputs, except if they're checkboxes
+        fieldsets[i].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
+            el.required = true;
+        })
+    }
+}
+
+back.addEventListener('click', () => {
+    console.log('going back a step');
+    fieldsets[i].style.display = 'none';
+    fieldsets[i - 1].style.display = 'block';
+    $("#progressbar li").eq($("fieldset").index(fieldsets[i])).removeClass("active");
+    i--;
+    // remove required on inputs from the next fieldset that we've just hide
+    fieldsets[i + 1].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
+        el.required = false;
+    })
+    // remove back button when you go back to the first step
+    if (i == 0) {
+        back.style.display = 'none';
+    }
+})
+back1.addEventListener('click', () => {
+    console.log('going back a step');
+    fieldsets[i].style.display = 'none';
+    fieldsets[i - 1].style.display = 'block';
+    $("#progressbar li").eq($("fieldset").index(fieldsets[i])).removeClass("active");
+    i--;
+
+    fieldsets[i + 1].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
+        el.required = false;
+    })
+
+    if (i == 0) {
+        back1.style.display = 'none';
+    }
+})
+back2.addEventListener('click', () => {
+    console.log('going back a step');
+    fieldsets[i].style.display = 'none';
+    fieldsets[i - 1].style.display = 'block';
+    $("#progressbar li").eq($("fieldset").index(fieldsets[i])).removeClass("active");
+    i--;
+
+    fieldsets[i + 1].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
+        el.required = false;
+    })
+
+    if (i == 0) {
+        back2.style.display = 'none';
+    }
+})
+
+// schedulesubmit js
 function zipsubmit() {
     var data = {};
     data.ZipcodeValue = $("#inputnumber").val();
@@ -38,7 +106,9 @@ function zipsubmit() {
         success: function (result) {
             if (result.value == "true") {
                 next();
-                
+            }
+            else {
+                alert("Zipcode  does not exsit !!!");
             }
         },
         error: function () {
@@ -51,7 +121,6 @@ function zipsubmit() {
    function schedulesubmit() {
    var data = $("#scheduleform").serialize();
     console.log(data);
-
    $.ajax({
         type: 'POST',
         url: '/CustomerPages/Scheduledetails',
@@ -63,9 +132,6 @@ function zipsubmit() {
                 next();
                 /*alert("valid schedule details");*/
             }
-            //else {
-            //    alert("schedule details is invalid");
-            //}
         },
         error: function () {
             alert('Failed to receive the Data');
@@ -80,7 +146,6 @@ function getaddress() {
         type: 'GET',
         url: '/CustomerPages/LoadAddress',
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-        
         success: function (result) {
             console.log(result[0].AddressId);
             var address = $("#gettingalladdress");
@@ -89,11 +154,10 @@ function getaddress() {
             for (let j = 0; j < result.length; j++)
             {
                 if (result[j].isDefault) {
-                    address.append(' <div class="row">   <label for="address' + j + '" class="address - booknow - label"> <input type="radio" class="address-booknow-radio-btn " asp-for="AddressId" checked id="address' + j + '" name="address" value="' + result[j].addressId + '"> Address: ' + result[j].addressLine1 + " " + result[j].addressLine2 + ", " + result[j].city + " " + result[j].postalCode + ' </label > <div class="row">  <label for="address' + j + '" class="address - booknow - label - 1 ml-3"> Phone Number: ' + result[j].mobile + '  </label> </div> </div > ');
+                    address.append(' <div class="row"> <label for="address' + j + '" class="address - booknow - label"> <input type="radio" class="address-booknow-radio-btn " asp-for="AddressId" checked id="address' + j + '" name="address" value="' + result[j].addressId + '"> Address: ' + result[j].addressLine1 + " " + result[j].addressLine2 + ", " + result[j].city + " " + result[j].postalCode + ' </label > <div class="row">  <label for="address' + j + '" class="address - booknow - label - 1 ml-3"> Phone Number: ' + result[j].mobile + '  </label> </div> </div > ');
                 }
                 else {
-                    address.append(' <div class="row">   <label for="address' + j + '" class="address - booknow - label"> <input type="radio" class="address-booknow-radio-btn " asp-for="AddressId" checked id="address' + j + '" name="address" value="' + result[j].addressId + '"> Address: ' + result[j].addressLine1 + " " + result[j].addressLine2 + ", " + result[j].city + " " + result[j].postalCode + ' </label > <div class="row">  <label for="address' + j + '" class="address - booknow - label - 1 ml-3"> Phone Number: ' + result[j].mobile + '  </label> </div> </div > ');
-
+                    address.append(' <div class="row"> <label for="address' + j + '" class="address - booknow - label"> <input type="radio" class="address-booknow-radio-btn " asp-for="AddressId" checked id="address' + j + '" name="address" value="' + result[j].addressId + '"> Address: ' + result[j].addressLine1 + " " + result[j].addressLine2 + ", " + result[j].city + " " + result[j].postalCode + ' </label > <div class="row">  <label for="address' + j + '" class="address - booknow - label - 1 ml-3"> Phone Number: ' + result[j].mobile + '  </label> </div> </div > ');
                 }
              }
         },
@@ -103,7 +167,6 @@ function getaddress() {
         }
     })
 }
-
 
 function addresssubmit() {
     var data = {};
@@ -134,9 +197,6 @@ function addresssubmit() {
         }
     })
 }
-
-
-
 
 function afteraddress() {
     next();
@@ -216,95 +276,10 @@ function completebooking() {
     })
 }
 
-
- 
- //progressive form js//
-    form = document.getElementById('Form');
-    fieldsets = document.querySelectorAll('fieldset');
-    back = document.getElementById('back');
-    back1 = document.getElementById('back1');
-    back2 = document.getElementById('back2');
-    nextORsubmit = document.getElementById('nextORsubmit');
-
-    let i = 0;
-    function next() {
-    if (i < fieldsets.length - 1) {
-       /* e.preventDefault();*/
-       /* console.log('Validate, but don\'t send form');*/
-        fieldsets[i].style.display = 'none';
-        fieldsets[i + 1].style.display = 'block';
-        back.style.display = 'inline';
-        $("#progressbar li").eq($("fieldset").index(fieldsets[i + 1])).addClass("active");
-        i++;
-        // set required on current fieldset inputs, except if they're checkboxes
-        fieldsets[i].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
-            el.required = true;
-        })
-    }}
-
-        //form.addEventListener('submit', (e) => {
-        //});
-
-        back.addEventListener('click', () => {
-        console.log('going back a step');
-        fieldsets[i].style.display = 'none';
-        fieldsets[i - 1].style.display = 'block';
-        $("#progressbar li").eq($("fieldset").index(fieldsets[i])).removeClass("active");
-        i--;
-
-        // remove required on inputs from the next fieldset that we've just hide
-        fieldsets[i + 1].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
-        el.required = false;
-        })
-
-        // remove back button when you go back to the first step
-        if (i == 0) {
-        back.style.display = 'none';
-            }
-        })
-        back1.addEventListener('click', () => {
-        console.log('going back a step');
-        fieldsets[i].style.display = 'none';
-        fieldsets[i - 1].style.display = 'block';
-        $("#progressbar li").eq($("fieldset").index(fieldsets[i])).removeClass("active");
-        i--;
-
-        // remove required on inputs from the next fieldset that we've just hid
-        fieldsets[i + 1].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
-        el.required = false;
-            })
-
-        // remove back button when you go back to the first step
-        if (i == 0) {
-        back1.style.display = 'none';
-            }
-        })
-        back2.addEventListener('click', () => {
-        console.log('going back a step');
-        fieldsets[i].style.display = 'none';
-        fieldsets[i - 1].style.display = 'block';
-        $("#progressbar li").eq($("fieldset").index(fieldsets[i])).removeClass("active");
-        i--;
-
-        // remove required on inputs from the next fieldset that we've just hid
-        fieldsets[i + 1].querySelectorAll('input:not([type="checkbox"])').forEach(el => {
-        el.required = false;
-            })
-
-        // remove back button when you go back to the first step
-        if (i == 0) {
-        back2.style.display = 'none';
-            }
-        })
-
-//script for progressive form in book now//
-
-
 function etc1change() {
     $("#Insidecabinets").checked
     var cb = document.getElementById("Insidecabinets");
-    if (cb.checked)
-    {
+    if (cb.checked) {
         $("#etc-1").removeClass("d-none");
         $("#etc1").removeClass("d-none");
     }
@@ -362,7 +337,6 @@ function etc5change() {
     }
 }
 function datechange() {
-
     var date = document.getElementById("servicestartdate").value;
     document.getElementById("servicecarddate").innerHTML = date;
 }
@@ -376,3 +350,5 @@ function hourschange() {
     var hour = document.getElementById("serviceHours").value;
     document.getElementById("servicecardhour").innerHTML = hour;
 }
+
+//Customer Dashboard js

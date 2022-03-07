@@ -1,0 +1,78 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Helperland.Models
+@model Helperland.Models.ServiceRequest
+@{ 
+    double time = Convert.ToDouble(Model.ServiceHours + Model.ExtraHours);
+}
+<div class="modal model-for-completion-order" id="ServiceDetailes">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h6 class="modal-title service-label">Service Detailes</h6>
+            <button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+         </div>
+         <div class="modal-body" style="font-size: 15px;">
+            <div class="row">
+               <div class="col-12">
+                  <h6>@Model.ServiceStartDate.ToString("dd/MM/yyyy") &nbsp; @Model.ServiceStartDate.ToString("hh:mm")  - @Model.ServiceStartDate.AddHours(time).ToString("hh:mm") </h6>
+                  <div><strong>Duration : </strong> @Model.SubTotal</div>
+               </div>
+            </div>
+            <hr />
+            <div class="row">
+               <div class="col-12">
+                  <div><strong>Service Id : </strong> @Model.ServiceRequestId</div>
+                  <div>
+                     <strong>Extras : </strong>Cleaning the fridge,
+                     cleaning the oven, washing and drying
+
+                  </div>
+                  <div>
+                     <strong>Net Amount : </strong>
+                     <p class="text-center payment-service-history">
+                        € @Model.TotalCost
+                     </p>
+                  </div>
+               </div>
+            </div>
+            <hr />
+            <div class="row">
+               <div class="col-12">
+                  <div><strong>Service Address : </strong> @Model.AddressLine2 ,  @Model.AddressLine1 </div>
+                  <div><strong>Phone : </strong> @Model.Mobile </div>
+                  <div><strong>Email : </strong> @Model.Email </div>
+                  <div>
+                     <strong>Billing Address : </strong>Same as Service Address
+                  </div>
+               </div>
+            </div>
+            <hr />
+            <div class="row">
+               <div class="col-12">
+                  <strong>
+                     Do you want to tell your helper somthing?
+                  </strong><br>
+                  @if (@Model.HasPets == true)
+                  {
+                     <p> <img src="~/images/sign2.jpg" /> I have pets at my home.</p>
+                  }
+                  else
+                  {
+                     <p> <img src="~/images/sign3.jpg" /> I don't have pets at my home.</p>
+                  }
+               </div>
+            </div>
+            <hr />
+            <button type="button" class="btn btn-upcoming-service-reschedule" onclick="reschedule(this)" data-bs-toggle="modal" data-bs-target="#RescheduleModal" data-bs-dismiss="modal" data-id="@Model.ServiceRequestId">
+               Reschedule
+            </button>
+            <button type="button" class="btn btn-upcoming-service" onclick="cancel(this)" data-bs-toggle="modal" data-bs-target="#CancelModal" data-bs-dismiss="modal" data-id="@Model.ServiceRequestId">
+               Cancle
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

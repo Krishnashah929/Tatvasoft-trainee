@@ -42,7 +42,6 @@ namespace Helperland.Models
 
         [Required(ErrorMessage = "Please Enter Password")]
         [Compare("ConfirmPassword", ErrorMessage = "Password does not match")]
-        [RegularExpression("([a-z]|[A-Z]|[0-9]|[\\W]){4}[a-zA-Z0-9\\W]{8,16}", ErrorMessage = "The password must be at least 8 characters long, contain one uppercase letter, one lowercase letter and one number.")]
         [DataType(DataType.Password)]
         [MaxLength(50)]
         public string Password { get; set; }

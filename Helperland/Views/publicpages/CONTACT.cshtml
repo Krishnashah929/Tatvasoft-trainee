@@ -102,17 +102,12 @@
                 <textarea class="form-control" id="inputmessage" asp-for="Message" rows="3" placeholder="Message"></textarea>
                 <span asp-validation-for="Message" class="text-danger"></span>
             </div>
-            <div class="col-md-12">
-                <span class="contact-upload"> <b>Attachment</b></span>
-                <br />
-                <input type="file" id="myFile" name="filename" class="upload mt-3" asp-for="UploadFileName">
-            </div>
             <div class="form-check ml-1">
-                <input class="form-check-input" type="checkbox" id="myCheck" name="remember" required>
-                <label class="form-check-label mt-1" for="myCheck" >
-                    Our current <a href="#" style="color: #2f8799;"> data protection</a> data protection regulations apply . I hereby agree that my data entered in the contact form will be stored electronically and processed and used for the purpose of establishing contact. The consent can be revoked at any time in accordance with Art. 7 Para. 3 GDPR by informal notification (e.g. by e-mail).
-
-                </label>
+                
+               <label class="form-check-label-contact mt-1" for="myCheck5">
+                  <input class="form-check-input" type="checkbox" id="myCheck5" name="remember" required>
+                  Our current <a href="#" style="color: #2f8799;"> data protection</a> data protection regulations apply . I hereby agree that my data entered in the contact form will be stored electronically and processed and used for the purpose of establishing contact. The consent can be revoked at any time in accordance with Art. 7 Para. 3 GDPR by informal notification (e.g. by e-mail).
+               </label>
             </div>
 
             <div class="col-12">

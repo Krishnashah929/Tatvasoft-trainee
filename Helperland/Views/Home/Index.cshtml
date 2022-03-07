@@ -32,7 +32,7 @@
                     <div class="row row2">
                         <ul class="nav nav-tabs flex-column" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link " data-bs-toggle="tab" href="#dashboard">Dashboard</a>
+                                <a class="nav-link " data-bs-toggle="tab" asp-controller="CustomerPages" asp-action="Customer_Dashboard">Dashboard</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-bs-toggle="tab" href="customer_service_history.html">
@@ -74,104 +74,111 @@
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">Notifications</a>
                                 </li> 
-                            }
+                             }
                             else
                             {
                         <li class="nav-item">
-                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#myModal" id="dismiss">Login </a>
-                            <!-- The Modal -->
+                           <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#myModal" id="dismiss">Login </a>
+                           <!-- The Modal -->
                             <div class="modal model-for-completion-order" id="myModal">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <!-- Modal Header -->
-                                        <div class="modal-header">
-                                            <h3 class="modal-title" id="popup-loginLabel">
-                                                <b>Login to your account</b>
-                                            </h3>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <!-- Modal body -->
-                                        <div class="modal-body login-popup">
-                                            <div class="text-center text-danger mb-3">
-                                                <b>  @ViewBag.Message</b>
-                                            </div>
-                                            <form method="post" asp-controller="Home">
-                                                <div class="input-group mb-3">
-                                                    <input type="email" class="form-control" placeholder="Email" name="Email" style="border-right: none;" required>
-                                                    <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="password" class="form-control" placeholder="Password" name="Password" style="border-right: none;" required>
-                                                    <span class="input-group-text"> <i class="fas fa-lock"></i></span>
-                                                </div>
-                                                <input class="form-check-input" type="checkbox" id="myCheck" name="remember">
-                                                <label class="form-check-label" for="myCheck">  Remeber me </label>
-                                                <br><br>
-                                                <button type="submit" class="btn  login-btn"> Login </button>
-                                                <br><br>
-                                            </form>
-                                            <p class="logim-para">
-                                                <a href="#" class="login-para-links" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><b>Forgoet Password ?</b></a>
-                                                <br>
-                                                Don't have an account?
-                                                <br>
-                                                <a asp-area="" asp-controller="Home" asp-action="CREATE_ACCOUNT" target="_blank" class="login-para-links">
-                                                    <b> Create an account </b>
-                                                </a>
-                                            </p>
-                                        </div>
+                              <div class="modal-dialog modal-dialog-centered">
+                                 <div class="modal-content">
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                       <h3 class="modal-title" id="popup-loginLabel">
+                                          <b>Login to your account</b>
+                                       </h3>
+                                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
-                                </div>
-                            </div>
-                           @if (TempData["FailMsg"] != null)
-                            {
-                            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-                                 <script type="text/javascript">
-                                         $(document).ready(function () {
-                                         alert(" Email not found!");
-                                         });
-                                 </script>
-                            }
-                           @if (TempData["SuccessMsg"] != null)
-                            {
-                            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-                                <script type="text/javascript">
-                                        $(document).ready(function () {
-                                        alert("Reset password link has been sent to your email id");
-                                        });
-                                </script>
-                             }
-                            <!--Second model for forget password-->
-                            <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h3 class="modal-title" id="popup-loginLabel"><b> Forgot Password </b> </h3>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form method="post" asp-controller="Home" asp-action="Index">
-                                                <div class="text-center text-success mb-3">
-                                                    <b>  @ViewBag.Message1 </b>
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <input type="email" asp-for="Email" class="form-control" placeholder="Email" style="border-right: none;">
-                                                    <span class="input-group-text"> <i class="fas fa-user"></i> </span>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn  login-btn" asp-action="Index" asp-controller="Home"> Send </button>
-                                                <br><br>
-                                            </form>
-                                            <p class="logim-para">
-                                                <a href="#" class="login-para-links" data-bs-target="#myModal" data-bs-toggle="modal">
-                                                    <b> Log in </b>
-                                                </a>
-                                            </p>
-                                        </div>
+                                    <!-- Modal body -->
+                                    <div class="modal-body login-popup">
+                                       <div class="text-center text-danger mb-3">
+                                          <b>  @ViewBag.Message</b>
+                                       </div>
+                                       <form method="post" asp-controller="Home">
+                                          <div class="input-group mb-3">
+                                             <input type="email" class="form-control" placeholder="Email" name="Email" style="border-right: none;" required>
+                                             <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                          </div>
+                                          <div class="input-group mb-3">
+                                             <input type="password" class="form-control" placeholder="Password" name="Password" style="border-right: none;" required>
+                                             <span class="input-group-text"> <i class="fas fa-lock"></i></span>
+                                          </div>
+                                          <input class="form-check-input" type="checkbox" id="myCheck" name="remember">
+                                          <label class="form-check-label" for="myCheck">  Remeber me </label>
+                                          <br><br>
+                                          <button type="submit" class="btn  login-btn"> Login </button>
+                                          <br><br>
+                                       </form>
+                                       <p class="logim-para">
+                                          <a href="#" class="login-para-links" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"><b>Forgoet Password ?</b></a>
+                                          <br>
+                                          Don't have an account?
+                                          <br>
+                                          <a asp-area="" asp-controller="Home" asp-action="CREATE_ACCOUNT" target="_blank" class="login-para-links">
+                                             <b> Create an account </b>
+                                          </a>
+                                       </p>
                                     </div>
-                                </div>
-                            </div>
-                            <!--Second model for forget password-->
+                                 </div>
+                              </div>
+                           </div>
+                              @if (TempData["FailMsg"] != null)
+                               {
+                                       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                       <script type="text/javascript">
+                                          $(document).ready(function () {
+                                             alert(" Email not found!");
+                                          });
+                                       </script>}
+                              @if (TempData["SuccessMsg"] != null)
+                               {
+                                       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                       <script type="text/javascript">
+                                          $(document).ready(function () {
+                                             alert("Reset password link has been sent to your email id");
+                                          });
+                                       </script>}
+                              @if (TempData["Booknowfail"] != null)
+                               {
+                                       <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                       <script type="text/javascript">
+                                          $(document).ready(function () {
+                                             alert("Please Login to your account .");
+                                          });
+                                       </script>
+}
+                           <!--Second model for forget password-->
+                              <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                              <div class="modal-dialog modal-dialog-centered">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <h3 class="modal-title" id="popup-loginLabel"><b> Forgot Password </b> </h3>
+                                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <form method="post" asp-controller="Home" asp-action="Index">
+                                          <div class="text-center text-success mb-3">
+                                             <b>  @ViewBag.Message1 </b>
+                                          </div>
+                                          <div class="input-group mb-3">
+                                             <input type="email" asp-for="Email" class="form-control" placeholder="Email" style="border-right: none;">
+                                             <span class="input-group-text"> <i class="fas fa-user"></i> </span>
+                                          </div>
+                                          <br>
+                                          <button type="submit" class="btn  login-btn" asp-action="Index" asp-controller="Home"> Send </button>
+                                          <br><br>
+                                       </form>
+                                       <p class="logim-para">
+                                          <a href="#" class="login-para-links" data-bs-target="#myModal" data-bs-toggle="modal">
+                                             <b> Log in </b>
+                                          </a>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!--Second model for forget password-->
                         </li> 
                     <!-- Modal popup for login -->
                     <li class="nav-item">
@@ -239,7 +246,7 @@
                                             <li class="dropdown-service-history-header"> Welcome, ,<br/> <b>@Context.Session.GetString("Name")</b> </li>
                                             <hr />
                                             <li>
-                                                <a href="customer_service_history.html" style="color: #4f4f4f;">My Dashboard</a>
+                                                <a asp-controller="CustomerPages" asp-action="Customer_Dashboard" style="color: #4f4f4f;">My Dashboard</a>
                                             </li>
                                             <li>
                                                 <a href="mysetting.html" style="color: #4f4f4f;"> My settings</a>
@@ -293,7 +300,7 @@
         <!--main_section_center_button-->
         <div id="main-btn-center">
             <div class="main-btn-center ">
-                <a class="btn btn-center" href="booknow.html">Let's Book a Cleaner</a>
+                <a class="btn btn-center" asp-area="" asp-controller="CustomerPages" asp-action="BOOK_NOW">Let's Book a Cleaner</a>
             </div>
         </div>
         <!--main_section_process-->

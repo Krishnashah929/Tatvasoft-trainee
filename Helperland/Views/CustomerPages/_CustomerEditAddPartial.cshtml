@@ -1,0 +1,61 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Helperland.Models
+@model Helperland.Models.UserAddress
+
+<div class="modal model-for-completion-order" id="myModalforaddress">
+   <div class="modal-dialog modal-dialog-centered address-setting-model">
+      <div class="modal-content reschedule-model">
+         <!-- Modal Header -->
+         <div class="modal-header">
+            <p class="modal-title change-booking-title"
+               id="popup-loginLabel">
+               <b> Add new address </b>
+            </p>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+         </div>
+         <!-- Modal body -->
+         <div class="modal-body  ">
+            <form class="row  address-setting-form" method="post">
+               <input type="hidden"  class="form-control" id="id" value="@Model.AddressId"/>
+               <div class="col-md-6">
+                  <label for="Street" class="form-label">
+                     Street
+                  </label>
+                  <input type="name" class="form-control" id="Street"  value="@Model.AddressLine1">
+               </div>
+               <div class="col-md-6">
+                  <label for="number" class="form-label">
+                     House number
+                  </label>
+                  <input type="number" class="form-control"  id="number" value="@Model.AddressLine2">
+               </div>
+               <div class="col-md-6 mt-3">
+                  <label for="number" class="form-label">
+                     Postal
+                     code
+                  </label>
+                  <input type="number" class="form-control"  id="PostalCode" value="@Model.PostalCode">
+               </div>
+               <div class="col-md-6 mt-3">
+                  <label for="inputState" class="form-label">
+                     Location
+                  </label>
+                  <input type="text" class="form-control" id="state" value="@Model.State">
+               </div>
+               <div class="col-md-6 mt-3">
+                  <label for="number" class="form-label">
+                     Phone number
+                  </label>
+                  <input type="number" class="form-control" id="Mobile" value="@Model.Mobile">
+               </div>
+            </form>
+            <br>
+            <button type="button" class="btn  update-btn" onclick="newadd()" data-bs-dismiss="modal">
+               Add to
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

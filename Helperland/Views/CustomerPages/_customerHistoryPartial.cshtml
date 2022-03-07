@@ -1,0 +1,102 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+   List<ServiceRequest> service = null;
+   if (ViewBag.history != null)
+   {
+      service = ViewBag.history;
+   }
+
+}
+@using Helperland.Models;
+<!--service history tabs-->
+<section id="dashboard1" style="padding-bottom:300px !important;">
+   <div class="tab-pane active mt-3" id="v-pills-history" role="tabpanel"
+        aria-labelledby="v-pills-history-tab">
+      <table class="table mt-5" id="example2">
+         <thead class="table-header-upcoming-services">
+            <tr>
+               <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
+               <th scope="col"> Service Details <img src="../images/sort.png" alt=""></th>
+               <th scope="col"> Service Provider <img src="../images/sort.png" alt=""> </th>
+               <th scope="col">Payment <img src="../images/sort.png" alt=""></th>
+               <th scope="col">Status <img src="../images/sort.png" alt=""></th>
+               <th scope="col"> Rate SP <img src="../images/sort.png" alt=""></th>
+            </tr>
+         </thead>
+         <tbody class="tbody-upcoming-services">
+            @foreach (ServiceRequest dbs in service)
+             {
+               double time = Convert.ToDouble(dbs.ServiceHours + dbs.ExtraHours);
+               <tr>
+                  <th scope="row" class="th-upcoming-service">
+                     <button type="button" class="id-button" onclick="ServiceDetails(this)" data-bs-toggle="modal" data-bs-target="#ServiceDetailes" data-id="@dbs.ServiceRequestId">
+                        @*323436*@
+                        @dbs.ServiceRequestId
+                     </button>
+                  </th>
+                  <td>
+                     <button type="button" class="id-button" onclick="ServiceDetails(this)" data-bs-toggle="modal" data-bs-target="#ServiceDetailes" data-id="@dbs.ServiceRequestId">
+                        <img src="../images/calendar2.png" alt="">
+                        @dbs.ServiceStartDate.ToString("dd/MM/yyyy")<br>
+                        <img src="../images/layer-712.png" alt="">
+                        @dbs.ServiceStartDate.ToString("hh:mm") - @dbs.ServiceStartDate.AddHours(time).ToString("hh:mm")
+                     </button>
+                  </td>
+                  <td>
+                     @if (dbs.Name != null)
+                     {
+                        <div class="row cap-1">
+                           <div class="col-md-4 cap-1-image">
+                              <img src="../images/cap.png" alt="" class="cap-customer-history">
+                           </div>
+                           <div class="col-md-8 cap-1-name" style="text-align: left;">
+                              @dbs.Name
+                              <br />
+                              @{
+                                 int totalstars = Convert.ToInt32(@dbs.ratings);
+                                 int stars = 5 - totalstars;
+                                 for (int i = 1; i <= totalstars; i++)
+                                 {
+                                    <img src="../images/yellow-small-star.png" alt="">
+                                 }
+                                 for (int j = 1; j <= stars; j++)
+                                 {
+                                    <img src="../images/star2.png" alt="">
+                                 }
+                                 @totalstars
+                              }
+
+                           </div>
+                        </div>
+                     }
+                  </td>
+                  <td class="payment-dashboard"> <b> € @dbs.TotalCost </b></td>
+                  <td>
+                     @if (dbs.Status == 1)
+                     {
+                        <button type="button"
+                                class="btn btn-status-service-history">
+                           Completed
+                        </button>
+                     }
+                     else
+                     {
+                        <button type="button"
+                                class="btn btn-status-cancel-service-history">
+                           Canceled
+                        </button>
+                     }
+                  </td>
+                  <td>
+                     <button type="button" class="btn btn-rate-service-history" onclick="rating(this)" data-bs-toggle="modal" data-bs-target="#RatingModel " data-id="@dbs.ServiceRequestId">
+                        Rate SP
+                     </button>
+                  </td>
+               </tr>
+            }
+         </tbody>
+      </table>
+   </div>
+</section>

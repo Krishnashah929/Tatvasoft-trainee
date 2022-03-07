@@ -1,0 +1,75 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http;
+@{
+   Layout = "_Layout";
+}
+
+<!--Welcome heading-->
+<section class="first-heading">
+   <div class="welcome-heading">
+      <p class="Welcome ">Welcome, <b>@Context.Session.GetString("Name")</b></p>
+   </div>
+</section>
+<!--Main-section-->
+<section class="main-section-upcoming-services">
+   <div class="container-fluid pb-5">
+      <div class="row">
+         <div class="d-flex align-items-start">
+            <div class=" col-md-2 nav flex-column nav-pills me-3 side-nav nav-item-upcoming-service"
+                 id="v-pills-tab" role="tablist" aria-orientation="vertical" style="height:500px !important;">
+               <button class="nav-link nav-services-btn active" id="v-pills-home-tab" onclick="loaddb()" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                       aria-selected="true">
+                  Dashboard
+               </button>
+               <button class="nav-link  nav-services-btn " id="v-pills-history-tab" onclick="loadhistory()" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history"
+                       aria-selected="false">
+                  Service History
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-schedule-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-schedule" type="button" role="tab" aria-controls="v-pills-schedule"
+                       aria-selected="false">
+                  Service Schedule
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-fav-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-fav" type="button" role="tab" aria-controls="v-pills-fav"
+                       aria-selected="false">
+                  Favourite Pros
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-setting-tab" onclick="loadsetting()" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-setting" type="button" role="tab" aria-controls="v-pills-setting"
+                       aria-selected="false">
+                  My Settings
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-Notifications-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-Notifications" type="button" role="tab"
+                       aria-controls="v-pills-Notifications" aria-selected="false">
+                  Notifications
+               </button>
+            </div>
+
+            <div class="tab-content col-md-9" id="v-pills-tabContent">
+               @*<partial name="_dashboardPartial" />
+                  <partial name="_customerHistoryPartial" />
+                  <partial name="_customerSettingPartial" />*@
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+<section id="Model1"></section>
+<section id="Model2"></section>
+<section id="Model3"></section>
+<section id="Model4"></section>
+<section id="Model5"></section>
+<section id="Model6"></section>
+
+@section Scripts {
+   <script src="~/js/CustomerPages.js"></script>
+   <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+}
+

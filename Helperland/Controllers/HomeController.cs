@@ -39,13 +39,15 @@ namespace Helperland.Controllers
                     User userdetails = ObjHelperlandContext.Users.Where(c => c.Email == user.Email && c.Password == user.Password).FirstOrDefault();
                     var Name = userdetails.FirstName + " " + userdetails.LastName;
                     ViewBag.userType = user.UserTypeId;
+
                     HttpContext.Session.SetString("Userlogeddin", "true");
                     HttpContext.Session.SetString("Name", Name);
                     HttpContext.Session.SetInt32("userID", userdetails.UserId);
+
                     if (p.FirstOrDefault().UserTypeId == 1)
                     {
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
-                        return RedirectToAction("CREATE_ACCOUNT", "Home");
+                        return RedirectToAction("Customer_Dashboard", "CustomerPages");
                     }
                      else if (p.FirstOrDefault().UserTypeId == 2)
                     {
@@ -55,9 +57,7 @@ namespace Helperland.Controllers
                 }
                 else 
                 {
-                    ViewBag.Message = "Your previous details are Invalid. " + "<br/>" + "Please enter valid details.";
-                    //TempData["LoginMSg"] = "Your Failer Message for login";
-                    //return View("Index", user);
+                    ViewBag.Message = "Your previous details are Invalid. " +  "Please enter valid details.";
                 }
                 //forgot password code
                 String ResetCode = Guid.NewGuid().ToString();
@@ -168,7 +168,7 @@ namespace Helperland.Controllers
             {
                 message = "Something invalid";
             }
-            ViewBag.Message = message;
+            ViewBag.Message1 = message;
             return View(model);
         }
     

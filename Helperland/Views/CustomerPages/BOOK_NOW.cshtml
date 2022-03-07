@@ -72,7 +72,7 @@
                                     <span asp-validation-for="ServiceDate" class="text-danger"></span>
                                  </div>
                                  <div class="col-auto">
-                                    <select asp-for="ServiceTime" id="serviceTime" name="appt-time" class="form-select" onchange="timechange()">
+                                    <select asp-for="ServiceTime" id="serviceTime" name="appt-time" class="form-select" onchange="timechange()" required>
                                        <option value="08:00">08:00</option>
                                        <option value="09:00">09:00</option>
                                        <option value="10:00">10:00</option>
@@ -89,7 +89,7 @@
                               <p><b>How long do you need your cleaner to stay?</b></p>
                               <div class="row">
                                  <div class="col-auto">
-                                    <select asp-for="ServiceHours" id="serviceHours" name="Hours" class="form-select" onchange="hourschange()">
+                                    <select asp-for="ServiceHours" id="serviceHours" name="Hours" class="form-select" onchange="hourschange()" required> 
                                        <option value="3">3 Hrs</option>
                                        <option value="3.5">3.5 Hrs</option>
                                        <option value="4">4 Hrs</option>
@@ -190,8 +190,9 @@
                         <br>
                         <div class="row">
                            <div class="form-check">
-                              <input asp-for="HasPets" type="checkbox" id="checkhaspet" name="" required>
-                              <label asp-for="HasPets" class="form-check-label" for="myCheck">
+                             
+                              <label asp-for="HasPets" class="form-check-label-pets" for="checkhaspet">
+                                 <input asp-for="HasPets" type="checkbox" id="checkhaspet" name=""  >
                                  I have pets at home
                               </label>
                            </div>
@@ -258,11 +259,11 @@
                                        <label class="label-address-book-now">
                                           Postal Code
                                        </label>
-                                       <input type="number" class="form-control" placeholder="Postal Code" name="PostalCode" id="addPostalCode">
+                                       <input type="number" class="form-control" placeholder=" 364002" value="364002"  id="addPostalCode"  readonly >
                                     </div>
                                     <div class="col">
                                        <label class="label-address-book-now">City</label>
-                                       <input type="text" class="form-control" placeholder="Location" name="City" id="addCity">
+                                       <input type="text" class="form-control" id="addCity" placeholder=" Bhavnagar" value="Bhavnagar" readonly>
                                     </div>
                                  </div>
                                  <br>
@@ -275,7 +276,7 @@
                                     </div>
                                  </div>
                                  <br>
-                                 <div class="row">
+                                 <div class="row ">
                                     <div class="col-auto">
                                        <button type="button" class="btn save-address-book-now" onclick="addresssubmit()">
                                           Save
@@ -301,7 +302,7 @@
                      </div>
                   </div>
                   <br>
-                  <button id="back1" class="schedule-btn-1" type="button">Previous</button>
+                  <button id="back1" class="schedule-btn-1 mb-3" type="button">Previous</button>
                   <button id="nextORsubmit" class="schedule-btn-2" type="button" onclick="afteraddress()">Continue</button>
                </fieldset>
 
@@ -377,7 +378,7 @@
             </form>
 
          </div>
-         <!--progressive forms-->
+         
          <!--payment summary card-->
          <div class="col-md-4">
             <div class="card card-book-now">
@@ -558,7 +559,7 @@
             </div>
 
          </div>
-         <!--payment summary card-->
+         
       </div>
    </div>
 </div>

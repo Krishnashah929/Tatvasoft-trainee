@@ -22,7 +22,7 @@ namespace Helperland.Models
         public string ZipCode { get; set; }
         public decimal? ServiceHourlyRate { get; set; }
         public double ServiceHours { get; set; }
-        public double? ExtraHours { get; set; }
+        public double ExtraHours { get; set; }
         public decimal SubTotal { get; set; }
         public decimal? Discount { get; set; }
         public decimal TotalCost { get; set; }
@@ -51,7 +51,22 @@ namespace Helperland.Models
         public bool Extra4 { get; set; }
         [NotMapped]
         public bool Extra5 { get; set; }
-        
+        [NotMapped]
+        public DateTime ServiceDate { get; set; }
+        [NotMapped]
+        public DateTime ServiceTime { get; set; }
+        [NotMapped]
+        public string AddressLine1 { get; set; }
+        [NotMapped]
+        public string AddressLine2 { get; set; }
+        [NotMapped]
+        public string Mobile { get; set; }
+        [NotMapped]
+        public string Email { get; set; }
+        [NotMapped]
+        public string Name { get; set; }
+        [NotMapped]
+        public decimal? ratings { get; set; }
 
         public virtual User ServiceProvider { get; set; }
         public virtual User User { get; set; }

@@ -207,7 +207,7 @@
             </nav>
             <div id="nevbar">
                 <section class="header small-nav" id="">
-                    <nav class="navbar navbar-expand-lg navbar-dark  mynav" style=" background-color: transparent !important">
+                    <nav class="navbar navbar-expand-lg navbar-dark  mynav" style=" background-color: transparent !important ; position: absolute !important">
                         <a class="navbar-brand " asp-area="" asp-controller="Home" asp-action="Index">&nbsp; <img src="../images/logo-large.png" alt=""></a>
                         <button class="navbar-toggler" id="sidebarCollapse" type="button">
                             <span class="navbar-toggler-icon"></span>
@@ -279,12 +279,18 @@
                         <input type="hidden" asp-for="UserTypeId" class="form-control" id="#" value="2">
                     </div>
                     <div class="form-group-service-provider">
-                        <input type="checkbox" name="send_me" id="send_me" value="1" style="margin-right: 7px;"
-                               tabindex="3" required />Yes, I would like to subscribe to the Helperland GmbH newsletter with vouchers, trends, information, promotions and individualized offers. I can unsubscribe from the newsletter at any time in the newsletter and in my customer account.
+                       <label for="myCheck4">
+                          <input type="checkbox" name="send_me" id="myCheck4" value="1"  
+                                  required />
+                          Yes, I would like to subscribe to the Helperland GmbH newsletter with vouchers, trends, information, promotions and individualized offers. I can unsubscribe from the newsletter at any time in the newsletter and in my customer account.
+                       </label>
                     </div>
                     <div class="form-group-service-provider">
-                        <input type="checkbox" name="Conditions" id="condition" value="1" style="margin-right: 7px;"
-                               tabindex="3" required />I agree to the <a href="" style="color: #1FB6FF;">terms and condition</a> of Helperland GmbH and have read the  <a href="" style="color: #1FB6FF;">privacy policy</a>
+                       <label for="condition">
+                          <input type="checkbox" name="Conditions" id="condition" value="1" 
+                                required />
+                          I agree to the <a href="" style="color: #1FB6FF;">terms and condition</a> of Helperland GmbH and have read the  <a href="" style="color: #1FB6FF;">privacy policy</a>
+                       </label>
                     </div>
                     <!--i am not robot button-->
                     <!-- <div class="form-group-service-provider">

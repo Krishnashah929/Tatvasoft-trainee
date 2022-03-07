@@ -28,6 +28,8 @@ namespace Helperland
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+
             services.AddDbContext<HelperlandContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HelperlandContext")));
  
         }

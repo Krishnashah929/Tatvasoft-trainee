@@ -1,0 +1,50 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Helperland.Models
+@model Helperland.Models.ServiceRequest
+
+<div class="modal model-for-completion-order" id="RescheduleModal">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content reschedule-model">
+         <div class="modal-header">
+            <p class="modal-title change-booking-title"
+               id="popup-loginLabel">
+               <b> Change Booking </b>
+            </p>
+            <button type="button" class="btn-close"
+                    data-bs-dismiss="modal"></button>
+         </div>
+         <div class="modal-body book-with-cost-popup">
+            <div class="row">
+               <div class="col-auto">
+                  <p class="book-with-cost-p1-popup">
+                     Choose a new date and time :
+                  </p>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-auto">
+                  <input type="Date" class="form-control" id="Date"
+                         placeholder="From Date">
+               </div>
+               <div class="col-auto">
+                  <select  id="Time"  class="form-select"  >
+                     <option value="08:00">08:00</option>
+                     <option value="09:00">09:00</option>
+                     <option value="10:00">10:00</option>
+                     <option value="11:00">11:00</option>
+                     <option value="12:00">12:00</option>
+                     <option value="13:00">13:00</option>
+                  </select>
+               </div>
+               <input type="hidden" id="id" class="form-control" value="@Model.ServiceRequestId" />
+            </div>
+            <br>
+            <button type="button" class="btn  update-btn" onclick="changeschedule()" data-bs-dismiss="modal">
+               To update
+            </button>
+         </div>
+      </div>
+   </div>
+</div>
