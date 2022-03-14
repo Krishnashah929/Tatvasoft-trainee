@@ -1,0 +1,87 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http;
+@{
+   Layout = "_Layout";
+}
+<!--Welcome heading-->
+<section class="first-heading">
+   <div class="welcome-heading">
+      <p class="Welcome">Welcome, <b>@Context.Session.GetString("Name")</b></p>
+   </div>
+</section>
+
+<!--Main-section-->
+<section class="main-section-upcoming-services">
+   <div class="container-fluid pb-5">
+      <div class="row">
+         <div class="d-flex align-items-start">
+            <div class=" col-md-2 nav flex-column nav-pills me-3 side-nav nav-item-upcoming-service"
+                 id="v-pills-tab" role="tablist" aria-orientation="vertical">
+               <button class="nav-link nav-services-btn" id="v-pills-home-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home"
+                       aria-selected="true">
+                  Dashboard
+               </button>
+               <button class="nav-link nav-services-btn active" id="v-pills-profile-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
+                       aria-selected="false"  onclick="loadSPdb()">
+                  New Service Requests
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-upcoming-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-upcoming" type="button" role="tab" aria-controls="v-pills-upcoming"
+                       aria-selected="false" onclick="loadSPupcomingsrvice()">
+                  Upcoming Services
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-schedule-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-schedule" type="button" role="tab" aria-controls="v-pills-schedule"
+                       aria-selected="false" >
+                  Service Schedule
+               </button>
+               <button class="nav-link  nav-services-btn" id="v-pills-history-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history"
+                       aria-selected="false"  onclick="loadSPhistory()">
+                  Service History
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-rating-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-rating" type="button" role="tab" aria-controls="v-pills-rating"
+                       aria-selected="false" onclick="loadSPrating()">
+                  My rating
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-Block-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-Block" type="button" role="tab" aria-controls="v-pills-Block"
+                       aria-selected="false" onclick="loadSPblock()">
+                  Block Customer
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-setting-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-setting" type="button" role="tab" aria-controls="v-pills-setting"
+                       aria-selected="false" onclick="loadSPsetting()">
+                  My Settings
+               </button>
+               <button class="nav-link nav-services-btn" id="v-pills-Notifications-tab" data-bs-toggle="pill"
+                       data-bs-target="#v-pills-Notifications" type="button" role="tab"
+                       aria-controls="v-pills-Notifications" aria-selected="false">
+                  Notifications
+               </button>
+            </div>
+            <div class="tab-content col-md-9" id="v-pills-tabContent">
+                
+            </div>
+
+         </div>
+      </div>
+</section>
+
+<section id="1Model"> </section>
+<section id="2Model"> </section>
+<section id="3Model"> </section>
+<!--Main-section-->
+
+@section Scripts {
+
+   <script src="~/js/Service_Provider.js"></script>
+   <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+   <!--for download excel sheet -->
+   <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+}

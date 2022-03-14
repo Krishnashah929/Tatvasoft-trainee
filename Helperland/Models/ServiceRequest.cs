@@ -41,8 +41,13 @@ namespace Helperland.Models
         public bool? HasIssue { get; set; }
         public bool? PaymentDone { get; set; }
         public Guid? RecordVersion { get; set; }
+
+        [NotMapped]
+        public int Extra { get; set; }
+
         [NotMapped]
         public bool Extra1 { get; set; }
+      
         [NotMapped]
         public bool Extra2 { get; set; }
         [NotMapped]
@@ -66,7 +71,13 @@ namespace Helperland.Models
         [NotMapped]
         public string Name { get; set; }
         [NotMapped]
+        public string City { get; set; }
+        [NotMapped]
+        public string PostalCode { get; set; }
+        [NotMapped]
         public decimal? ratings { get; set; }
+      
+
 
         public virtual User ServiceProvider { get; set; }
         public virtual User User { get; set; }

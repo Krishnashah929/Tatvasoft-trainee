@@ -25,7 +25,6 @@ $(document).ready(function () {
             }
         });
       });
-
 function loadhistory() {
         $.ajax({
             url: '/CustomerPages/history',
@@ -49,7 +48,6 @@ function loadhistory() {
             }
         });
       }
-
 function loaddb() {
         
         $.ajax({
@@ -74,7 +72,6 @@ function loaddb() {
             }
         });
       }
-
 function loadsetting() {
         $.ajax({
             url: '/CustomerPages/setting',
@@ -85,7 +82,6 @@ function loadsetting() {
             }
         });
       }
-
 function ServiceDetails(sd) {
     var id = sd.getAttribute("data-id");
     $.ajax({
@@ -144,6 +140,7 @@ function cancel(cm) {
 function CancelRequest() {
     var data = {};
     data.serviceRequestId = document.getElementById("id").value;
+    data.comments = document.getElementById("cancelrequest").value;
     $.ajax({
         url: '/CustomerPages/CancelRequestModel',
         type: 'POST',
@@ -158,7 +155,6 @@ function CancelRequest() {
         }
     });
 }
- 
 function rating(cm) {
     debugger;
     var id = cm.getAttribute("data-id");
@@ -172,7 +168,6 @@ function rating(cm) {
         }
     });
 }
-
 function saverating() {
     debugger;
     var data = {};
@@ -196,7 +191,9 @@ function updatedetails() {
     var data = {};
     data.firstName = document.getElementById("firstname").value;
     data.lastName = document.getElementById("lastname").value;
-    data.dateOfBirth = document.getElementById("date1").value;
+    data.day = document.getElementById("birthdate").value;
+    data.month = document.getElementById("birthmonth").value;
+    data.year = document.getElementById("birthyear").value;
     data.mobile = document.getElementById("mobile").value;
     data.languageId = document.getElementById("Language").value;
     console.log("get detailes new");
@@ -282,20 +279,44 @@ function delexistadd() {
     });
 }
 function updatepw() {
-    var data = {};
-    data.password = document.getElementById("newpassword").value;
-    $.ajax({
-        url: '/CustomerPages/ChangePassword',
-        type: 'POST',
-        data: data,
-        success: function (result) {
-            if (result.value == "true") {
-                loadsetting();
+    debugger;
+    var storepassword = $("#storepassword").val();
+    var oldpass = $("#oldpassword").val();
+    var newpass = $("#newpassword").val();
+    var confirmpass = $("#repeatpassword").val();
+    if (storepassword != oldpass) {
+        alert("You have entered wrong current password !");
+    }
+    if (oldpass != "" && newpass != "" && confirmpass != "") {
+        if (newpass == confirmpass) {
+            var model = {
+                Password: oldpass,
+                NewPassword: newpass,
             }
-            else {
-                alert("Invalid");
-            }
+            $.ajax({
+                type: 'POST',
+                url: '/ProviderPages/ChangePassword',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: model,
+                success: function (response) {
+                    alert("valid password");
+                },
+            });
         }
-    });
+        else {
+            alert("Password does not match .");
+        }
+    }
+    else {
+        alert("Null values are not accepted ! ");
+    }
 }
- 
+
+//for downloading the excel file
+function ExportToExcelCust(type, fn, dl) {
+    var elt = document.getElementById('example2');
+    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+    return dl ?
+        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+        XLSX.writeFile(wb, fn || ('Servicehistorycustomer.' + (type || 'xlsx')));
+}

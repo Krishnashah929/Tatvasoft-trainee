@@ -11,6 +11,14 @@
 }
 @using Helperland.Models;
 <!--service history tabs-->
+<div class="row mt-3">
+   <div class="col-md-6">
+      <span class="export-btn-heading"> <strong> Service History </strong> </span>
+   </div>
+   <div class="col-md-6">
+      <button type="button" class="btn btn-export-sp float-right" onclick=" ExportToExcelCust('xlsx')">Export</button>
+   </div>
+</div>
 <section id="dashboard1" style="padding-bottom:300px !important;">
    <div class="tab-pane active mt-3" id="v-pills-history" role="tabpanel"
         aria-labelledby="v-pills-history-tab">
@@ -27,7 +35,7 @@
          </thead>
          <tbody class="tbody-upcoming-services">
             @foreach (ServiceRequest dbs in service)
-             {
+            {
                double time = Convert.ToDouble(dbs.ServiceHours + dbs.ExtraHours);
                <tr>
                   <th scope="row" class="th-upcoming-service">
@@ -55,7 +63,7 @@
                               @dbs.Name
                               <br />
                               @{
-                                 int totalstars = Convert.ToInt32(@dbs.ratings);
+                                 int totalstars = Convert.ToInt32(dbs.ratings);
                                  int stars = 5 - totalstars;
                                  for (int i = 1; i <= totalstars; i++)
                                  {
@@ -65,7 +73,7 @@
                                  {
                                     <img src="../images/star2.png" alt="">
                                  }
-                                 @totalstars
+                                 @dbs.ratings
                               }
 
                            </div>

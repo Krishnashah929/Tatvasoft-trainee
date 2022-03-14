@@ -7,7 +7,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-
+using Helperland.Models.ViewModel;
+//status 1 is when provider complete that request
+//status 2 is when provider/customer cancel that request
+//status 3 is when  pending that request
+//status 4 is when provider accept that request
+//status 5 is when service date time is gone ane provider doesn't complete the service 
 namespace Helperland.Controllers
 {
     public class CustomerPagesController : Controller
@@ -43,6 +48,16 @@ namespace Helperland.Controllers
             }
             return Ok(Json("false"));
         }
+        //        int? Id = HttpContext.Session.GetInt32("userID");
+        //            if (Id != null)
+        //            {
+        //                var Zipcode = _helperlandContext.Zipcodes.Where(x => x.ZipcodeValue == user.PostalCode);
+        //                //HttpContext.Session.SetString("ForZip.ZipcodeValue", user.PostalCode);
+        //                if (Zipcode.Count() > 0)
+        //                {
+        //                    return Ok(Json("true"));
+        //                }
+        //}
         [HttpPost]
         public ActionResult Scheduledetails(Scheduledetails scheduledetails)
         {
@@ -180,13 +195,18 @@ namespace Helperland.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult Customer_Setting()
+        {
+            return PartialView("_customerSettingPartial");
+        }
+        [HttpGet]
         public IActionResult Loaddashboard()
         {
             using (HelperlandContext ObjHelperlandContext = new HelperlandContext())
             {
-               
+
                 int id = (int)HttpContext.Session.GetInt32("userID");
-                List<ServiceRequest> serviceRequest = ObjHelperlandContext.ServiceRequests.Where(x => x.UserId == id && x.Status == 3)  .ToList();
+                List<ServiceRequest> serviceRequest = ObjHelperlandContext.ServiceRequests.Where(x => x.UserId == id && (x.Status == 3 || x.Status == 4)).ToList();
                 List<User> user = new List<User>();
                 foreach (ServiceRequest users in serviceRequest)
                 {
@@ -194,7 +214,7 @@ namespace Helperland.Controllers
                     {
                         var providername = _helperlandContext.Users.Where(x => x.UserId == users.ServiceProviderId).FirstOrDefault();
                         users.Name = providername.FirstName + " " + providername.LastName;
-                        var rate = _helperlandContext.Ratings.Where(c => c.RatingTo == users.ServiceProviderId).ToList();
+                        var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
                         decimal temp = 0;
                         foreach (Rating rating in rate)
                         {
@@ -230,7 +250,8 @@ namespace Helperland.Controllers
                 details.AddressLine2 = address.AddressLine2;
                 details.Mobile = address.Mobile;
                 details.Email = address.Email;
-
+                var extraservice = _helperlandContext.ServiceRequestExtras.Where(c => c.ServiceRequestId == id).FirstOrDefault();
+                details.Extra = extraservice.ServiceExtraId;
                 return PartialView("_CustomerServiceModelPartial", details);
             }
         }
@@ -259,7 +280,7 @@ namespace Helperland.Controllers
         public IActionResult UpdateRescheduleeModel(ServiceRequest updatedate)
         {
             int? id = HttpContext.Session.GetInt32("userID");
-            if(id != null)
+            if (id != null)
             {
                 ServiceRequest update = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == updatedate.ServiceRequestId);
                 string date = updatedate.ServiceDate.ToString("yyyy-MM-dd");
@@ -269,7 +290,7 @@ namespace Helperland.Controllers
                 update.ModifiedDate = DateTime.Now;
                 var result = _helperlandContext.ServiceRequests.Update(update);
                 _helperlandContext.SaveChanges();
-                if(result != null)
+                if (result != null)
                 {
                     return Ok(Json("true"));
                 }
@@ -279,13 +300,14 @@ namespace Helperland.Controllers
         }
         //for canceling request
         [HttpPost]
-        public IActionResult CancelRequestModel (ServiceRequest cancelreq)
+        public IActionResult CancelRequestModel(ServiceRequest cancelreq)
         {
             int? id = HttpContext.Session.GetInt32("userID");
             if (id != null)
             {
                 ServiceRequest cancel = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == cancelreq.ServiceRequestId);
                 cancel.Status = 2;
+                cancel.Comments = cancelreq.Comments;
                 var result = _helperlandContext.ServiceRequests.Update(cancel);
                 _helperlandContext.SaveChanges();
                 if (result != null)
@@ -311,7 +333,7 @@ namespace Helperland.Controllers
                     {
                         var Name = _helperlandContext.Users.Where(x => x.UserId == users.ServiceProviderId).FirstOrDefault();
                         users.Name = Name.FirstName + " " + Name.LastName;
-                        var rate = _helperlandContext.Ratings.Where(c => c.RatingTo == users.ServiceProviderId).ToList();
+                        var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
                         decimal temp = 0;
                         foreach (Rating rating in rate)
                         {
@@ -340,7 +362,7 @@ namespace Helperland.Controllers
         public IActionResult RatingProviderModel(int id)
         {
             var p = _helperlandContext.ServiceRequests.Where(c => c.ServiceRequestId == id).FirstOrDefault();
-            var q =  _helperlandContext.Users.Where(x => x.UserId == p.ServiceProviderId).FirstOrDefault();
+            var q = _helperlandContext.Users.Where(x => x.UserId == p.ServiceProviderId).FirstOrDefault();
 
             var rate = _helperlandContext.Ratings.Where(c => c.RatingTo == p.ServiceProviderId).ToList();
             var currentrate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == id).FirstOrDefault();
@@ -384,6 +406,7 @@ namespace Helperland.Controllers
                 p.RatingDate = rating.RatingDate;
                 p.RatingFrom = rating.RatingFrom;
                 p.RatingTo = rating.RatingTo;
+                p.Comments = rating.Comments;
                 _helperlandContext.SaveChanges();
 
             }
@@ -402,12 +425,11 @@ namespace Helperland.Controllers
             {
                 int id = (int)HttpContext.Session.GetInt32("userID");
                 User ud = ObjHelperlandContext.Users.FirstOrDefault(x => x.UserId == id);
-                List<UserAddress> address = ObjHelperlandContext.UserAddresses.Where(x => x.UserId == id &&  x.IsDeleted == false).ToList();
+                List<UserAddress> address = ObjHelperlandContext.UserAddresses.Where(x => x.UserId == id && x.IsDeleted == false).ToList();
                 ViewBag.details = ud;
                 ViewBag.add = address;
                 return PartialView("_customerSettingPartial");
             }
-           
         }
         [HttpPost]
         public IActionResult Updateuserdetails(User user)
@@ -419,7 +441,10 @@ namespace Helperland.Controllers
                 updated.FirstName = user.FirstName;
                 updated.LastName = user.LastName;
                 updated.Mobile = user.Mobile;
-                updated.DateOfBirth = user.DateOfBirth;
+                updated.Email = user.Email;
+                updated.ZipCode = user.PostalCode;
+                var dob = user.Day + "-" + user.Month + "-" + user.Year;
+                user.DateOfBirth = Convert.ToDateTime(dob);
                 updated.LanguageId = user.LanguageId;
                 updated.ModifiedDate = DateTime.Now;
                 var result = _helperlandContext.Users.Update(updated);
@@ -461,11 +486,11 @@ namespace Helperland.Controllers
             updatedadd.Mobile = newadd.Mobile;
             var result = _helperlandContext.UserAddresses.Update(updatedadd);
             _helperlandContext.SaveChanges();
-                if (result != null)
-                {
-                    return Ok(Json("true"));
-                }
-                return Ok(Json("False"));
+            if (result != null)
+            {
+                return Ok(Json("true"));
+            }
+            return Ok(Json("False"));
         }
         [HttpPost]
         public IActionResult DeleteAddress(UserAddress deladd)
@@ -486,24 +511,21 @@ namespace Helperland.Controllers
             return PartialView("_customerSettingPartial");
         }
         [HttpPost]
-        public IActionResult ChangePassword(User user)
+        public IActionResult ChangePassword(password pass)
         {
-            int? Id = HttpContext.Session.GetInt32("userID");
-            if (Id != null)
+            var userid = (int)HttpContext.Session.GetInt32("userID");
+            if (userid != null)
             {
-                User updated = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Id);
-                updated.Password = user.Password;
-                var result = _helperlandContext.Users.Update(updated);
-                _helperlandContext.SaveChanges();
-                if (result != null)
+                User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userid);
+                if (user.Password == pass.Password)
                 {
-                    return Ok(Json("true"));
+                    user.Password = pass.NewPassword;
+                    _helperlandContext.Users.Update(user);
+                    _helperlandContext.SaveChanges();
                 }
-                return Ok(Json("False"));
             }
-            return PartialView("_customerSettingPartial");
+            return PartialView("_SPsettingPartial");
         }
     }
 }
 
- 

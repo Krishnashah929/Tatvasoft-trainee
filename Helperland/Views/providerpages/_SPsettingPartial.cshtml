@@ -4,35 +4,22 @@
 @using Helperland.Models
 @model Helperland.Models.User
 @{
-    List<UserAddress> Address = null;
-    if (ViewBag.add != null)
-    {
-       Address = ViewBag.add;
-    }
-    var userdetails = ViewBag.details;
-
+   var Address = ViewBag.add;
+   var userdetails = ViewBag.details;
 }
 
+
 <!--Setting panel tabs-->
-<section class="container-fluid mt-3 tab-pane  active" id="v-pills-setting" role="tabpanel"
-         aria-labelledby="v-pills-setting-tab">
+<section class="container-fluid mt-3 tab-pane active" id="v-pills-setting">
    <div class="row row-btn">
       <!-- Nav tabs -->
+
       <ul class="nav nav-tabs nav-justified px-0" id="myTab" role="tablist">
          <li class="nav-item" role="presentation">
             <button class="nav-link active" id="for-details-tab" data-bs-toggle="tab"
                     data-bs-target="#for-details" type="button" role="tab"
                     aria-controls="for-details" aria-selected="true">
                <b> My details</b>
-            </button>
-         </li>
-         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="for-service-tab" data-bs-toggle="tab"
-                    data-bs-target="#for-service" type="button" role="tab"
-                    aria-controls="for-service" aria-selected="false">
-               <b>
-                  My address
-               </b>
             </button>
          </li>
          <li class="nav-item" role="presentation">
@@ -45,47 +32,72 @@
                </b>
             </button>
          </li>
-         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="for-newsletter-tab" data-bs-toggle="tab"
-                    data-bs-target="#for-newsletter" type="button" role="tab"
-                    aria-controls="for-newsletter" aria-selected="false">
-               <b>
-                  Manage
-                  newsletter
-               </b>
-            </button>
-         </li>
       </ul>
       <!-- Tab panes -->
       <div class="tab-content px-0 mt-3">
+
          <!--details tab-->
          <div class="tab-pane active text" id="for-details" role="tabpanel"
               aria-labelledby="for-details-tab">
-            <form class="row g-4 details-form-setting">
+            <div class="row-heading1 row">
+               <span style="font-size: 20px; ">
+                  <strong>Account Status :</strong> <span class="text-success"> Active </span>
+               </span>
+            </div>
+            <div class="row-heading2 row mt-4">
+               <span style="font-size: 18px; "> <strong>Basic details </strong> </span>
+               <hr class="mt-2 provider-setting-hr">
+            </div>
+            <div class="row">
+
+               @if (userdetails.UserProfilePicture == "1")
+               {
+                  <img class="active provider-main-img-avtar" src="../images/avatar-car.png">
+               }
+               @if (userdetails.UserProfilePicture == "2")
+               {
+                  <img class="provider-main-img-avtar" src="../images/avatar-female.png">
+               }
+               @if (userdetails.UserProfilePicture == "3")
+               {
+                  <img class="provider-main-img-avtar" src="../images/avatar-hat.png">
+               }
+               @if (userdetails.UserProfilePicture == "4")
+               {
+                  <img class="provider-main-img-avtar" src="../images/avatar-iron.png">
+               }
+               @if (userdetails.UserProfilePicture == "5")
+               {
+                  <img class="provider-main-img-avtar" src="../images/avatar-male.png">
+               }
+               @if (userdetails.UserProfilePicture == "6")
+               {
+                  <img class="provider-main-img-avtar" src="../images/avatar-ship.png">
+               }
+            </div>
+            <form class="row g-4 details-form-setting" asp-action="Updateproviderdetails" asp-controller="ProviderPages">
                <div class="col-md-4">
                   <label for="firstname" class="form-label">First name</label>
-                  <input class="form-control" id="firstname"
-                         value=" @userdetails.FirstName">
+                  <input type="text" asp-for="FirstName" class="form-control" id="firstname" value="@userdetails.FirstName">
                </div>
                <div class="col-md-4">
                   <label for="lastname" class="form-label">last name</label>
-                  <input type="name" class="form-control" id="lastname"
-                         value=" @userdetails.LastName">
+                  <input type="text" asp-for="LastName" class="form-control" id="lastname" value="@userdetails.LastName">
                </div>
                <div class="col-md-4">
                   <label for="staticEmail" class="form-label ">E-mail-Address</label>
-                  <input type="text" class="form-control-plaintext email-setting"
-                         id="staticEmail" value=" @userdetails.Email" readonly>
+                  <input type="text" readonly asp-for="Email" class="form-control-plaintext email-setting" id="staticEmail" value=" @userdetails.Email">
                </div>
                <div class="col-md-4">
                   <label for="number" class="form-label"> Mobile number</label>
-                  <input type="number" class="form-control" id="mobile" value="@userdetails.Mobile">
+                  <input type="number" asp-for="Mobile" class="form-control" id="mobile" value="@userdetails.Mobile">
                </div>
+
                <div class="col-md-4">
                   <label class="control-label normal">Date of Birth</label>
                   <div class="row">
                      <div class="col-md-4">
-                        <select class="form-control" id="birthdate">
+                        <select class="form-select form-control" id="birthdate" asp-for="Day">
                            <option value="">Day</option>
                            <option value="1">01</option>
                            <option value="2">02</option>
@@ -121,7 +133,7 @@
                         </select>
                      </div>
                      <div class="col-md-4">
-                        <select class="form-control" id="birthmonth">
+                        <select class="form-control form-select" id="birthmonth" asp-for="Month">
                            <option value="">Month</option>
                            <option value="1">January</option>
                            <option value="2">February</option>
@@ -139,7 +151,7 @@
 
                      </div>
                      <div class="col-md-4">
-                        <select class="form-control" id="birthyear">
+                        <select class="form-control form-select" id="birthyear" asp-for="Year">
                            <option value="">Year</option>
                            <option value="2012">2012</option>
                            <option value="2011">2011</option>
@@ -244,112 +256,119 @@
                         </select>
                      </div>
                   </div>
+
                </div>
                <div class="col-md-4">
-               </div>
-               <div class="col-md-3">
-                  <label for="Language" class="form-label">
-                     My preffered language
-                  </label>
-                  <select id="Language" class="form-select">
-                     <option> Choose Language</option>
-                     <option value="1"> English</option>
-                     <option value="2"> Germen</option>
+                  <label for="nationalityId" class="form-label">Nationality</label>
+                  <select id="nationalityId" class="form-select" asp-for="NationalityId">
+                     <option selected value="1"> Indian</option>
+                     <option value="2"> German</option>
                   </select>
                </div>
+               <div class="col-md-6">
+                  <label for="Gender" class="form-label"> Gender </label>
+               </div>
+               <div class="row">
+                  <div class="col-md-4">
+                     <input type="radio" asp-for="Gender" id="Gender" value="1" name="Gender">
+                     <label for="Gender">Male</label> &nbsp; &nbsp;
+                     <input type="radio" asp-for="Gender" id="Gender" value="2" name="Gender">
+                     <label for="Gender">Female</label> &nbsp; &nbsp;
+                     <input type="radio" asp-for="Gender" id="Gender" value="3" name="Gender">
+                     <label for="Gender">No Information</label>
+                  </div>
+               </div>
+               <div class="col-md-6">
+                  <label for="avtar" class="form-label"> Choose an avtar </label>
+               </div>
+               <div class="row">
+                  <div class="col-md-12">
+                     <label>
+                        <input type="radio" name="UserProfilePicture" asp-for="UserProfilePicture" value="1" class="d-none" id="avtar" />
+                        <img src="../images/avatar-car.png"> &nbsp;
+                     </label>
+                     <label>
+                        <input type="radio" name="UserProfilePicture" asp-for="UserProfilePicture" value="2" class="d-none" />
+                        <img src="../images/avatar-female.png"> &nbsp;
+                     </label>
+                     <label>
+                        <input type="radio" name="UserProfilePicture" asp-for="UserProfilePicture" value="3" class="d-none" />
+                        <img src="../images/avatar-hat.png"> &nbsp;
+                     </label>
+                     <label>
+                        <input type="radio" name="UserProfilePicture" asp-for="UserProfilePicture" value="4" class="d-none" />
+                        <img src="../images/avatar-iron.png"> &nbsp;
+                     </label>
+                     <label>
+                        <input type="radio" name="UserProfilePicture" asp-for="UserProfilePicture" value="5" class="d-none" />
+                        <img src="../images/avatar-male.png"> &nbsp;
+                     </label>
+                     <label>
+                        <input type="radio" name="UserProfilePicture" asp-for="UserProfilePicture" value="6" class="d-none" />
+                        <img src="../images/avatar-ship.png"> &nbsp;
+                     </label>
+                  </div>
+               </div>
+               <div class="row-heading2 row mt-4">
+                  <span style="font-size: 18px; "> <strong> My Address </strong> </span>
+                  <hr class="mt-2">
+               </div>
+                  <div class="col-md-4">
+                     <label for="Street" class="form-label">Street</label>
+                     <input type="text" asp-for="AddressLine2" class="form-control" id="Street" value="@Address.AddressLine2">
+
+                  </div>
+                  <div class="col-md-4">
+                     <label for="Housenumber" class="form-label">House number</label>
+                     <input type="number" asp-for="AddressLine1" class="form-control" id="Housenumber" value="@Address.AddressLine1">
+                  </div>
+                  <div class="col-md-4">
+                     <label for="postalcode" class="form-label ">Postal code</label>
+                     <input type="number" asp-for="PostalCode" class="form-control" id="postalcode" value="@Address.PostalCode">
+                  </div>
+                  <div class="col-md-4">
+                     <label for="city" class="form-label">Location</label>
+                     <input type="text" asp-for="City" class="form-control" value="@Address.City" id="city">
+                  </div>
+               
                <div class="row mt-4">
                   <div class="col-md-3">
-                     <button type="button" class="btn save-detail-button" onclick="updatedetails()">
+                     <button type="submit" class="btn save-detail-button">
                         Save Details
                      </button>
                   </div>
                </div>
             </form>
          </div>
-
-         <!--address tab-->
-         <div class="tab-pane text" id="for-service" role="tabpanel"
-              aria-labelledby="for-service-tab">
-            <table class="table address-table-setting">
-               <thead class="table-light address-table-head-setting">
-                  <tr>
-                     <th scope="col" class="col-md-3 address-table-head1-setting"> Billing address </th>
-                     <th scope="col" class="col-md-6 address-table-head2-setting"> addresses </th>
-                     <th scope="col" class="col-md-3 address-table-head3-setting"> action </th>
-                  </tr>
-               </thead>
-               <tbody>
-                  @foreach (UserAddress dbs in Address)
-                  {
-                  <tr>
-                     <td>
-                        <input class="with-gap" name="group1" type="radio"
-                               id="radio-address" />
-                     </td>
-                     <td>
-                        <span>
-                           <b>Address:</b>@dbs.AddressLine2 , @dbs.AddressLine1 
-                           <br>
-                           <b>Telephone number:</b> @dbs.Mobile
-                        </span>
-                     </td>
-                     <td style="text-align: center;">
-                        <a href="#" data-bs-toggle="modal" onclick="editadd(this);" data-bs-target="#myModalforaddress" data-id="@dbs.AddressId">
-                           <i class="far fa-edit edit-icon-setting"></i>
-                        </a>
-                        <a href="#" data-bs-toggle="modal"onclick="deladd(this);" data-bs-target="#myModaldeleteaddress" data-id="@dbs.AddressId">
-                           <i class="far fa-trash-alt delete-icon-setting"></i>
-                        </a>
-                       
-
-                     </td>
-                  </tr>
-                  }
-
-               </tbody>
-            </table>
-            <div class="row mt-4">
-               <div class="col-md-3">
-                  <button type="button" class="btn save-detail-button"
-                          data-bs-toggle="modal" data-bs-target="#myModalforaddress">
-                     Add new address
-                  </button>
-                  <!-- The Modal address -->
-                 
-                  <!-- The Modal address -->
-               </div>
-            </div>
-         </div>
-
          <!--password tab-->
          <div class="tab-pane text" id="for-change-password" role="tabpanel"
               aria-labelledby="for-change-password-tab">
-            <form class="row g-4 mt-1 details-form-setting" method="post">
+            <form class="row g-4 mt-1 details-form-setting" id="change-password ">
                <input type="hidden" class="form-control" value="@userdetails.Password" name="Password" id="storepassword" style="border-right: none;" required>
-
                <div class="row mt-3">
                   <div class="col-md-4">
                      <label for="oldpassword" class="form-label">Old password</label>
-                     <input type="password" class="form-control" id="oldpassword" placeholder="Current password">
+                     <input type="password" class="form-control" id="oldpassword" placeholder="Current Password">
+
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-md-4">
                      <label for="newpassword" class="form-label">New password </label>
-                     <input type="password" class="form-control" id="newpassword" placeholder=" password">
+                     <input type="password" class="form-control" id="newpassword" placeholder="New Password">
+                     <span asp-validation-for="NewPassword" class="text-danger"> </span>
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-md-4">
-                     <label for="repeatpassword" class="form-label">
-                        Repeat password
-                     </label>
-                     <input type="password" class="form-control" id="repeatpassword" placeholder="Repeat password">
+                     <label for="repeatpassword" class="form-label"> Repeat password  </label>
+                     <input type="password" class="form-control" id="repeatpassword" placeholder="Confirm Password">
+                     <span asp-validation-for="Password" class="text-danger"> </span>
                   </div>
                </div>
                <div class="row mt-4">
                   <div class="col-md-3">
-                     <button type="button" class="btn save-detail-button" onclick="updatepw()">
+                     <button type="submit" class="btn save-detail-button" onclick="updatepw(this)">
                         Save on computer
                      </button>
                   </div>
@@ -357,27 +376,5 @@
             </form>
          </div>
 
-
-         <!--newsletter tab-->
-         <div class="tab-pane text" id="for-newsletter" role="tabpanel"
-              aria-labelledby="for-newsletter-tab">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="form-check newsletter-setting-p">
-                     <input class="form-check-input" type="checkbox" id="myCheck"
-                            name="remember" required>
-                     <label class="form-check-label-1 " for="myCheck">
-                        Yes, I would like to subscribe to the Helperland GmbH newsletter
-                        with vouchers, trends, promotions and individualized offers. I
-                        can unsubscribe from the newsletter at any time in the
-                        newsletter and in my customer account. If you no longer wish to
-                        receive our newsletter, remove the tick.
-                     </label>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!--newsletter tab-->
       </div>
-   </div>
 </section>

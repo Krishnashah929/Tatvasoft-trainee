@@ -1,10 +1,34 @@
 ﻿@*
    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@using Helperland.Models
+ 
 @model Helperland.Models.ServiceRequest
 @{ 
     double time = Convert.ToDouble(Model.ServiceHours + Model.ExtraHours);
+    var extras = Model.Extra.ToString("D5");
+    var array = extras.ToCharArray();
+    var extraservice = " ";
+
+    if (array[0] == '1')
+    {
+       extraservice += "Inside cabinets, ";
+    }
+    if (array[1] == '1')
+    {
+       extraservice += "Inside fridge, ";
+    }
+    if (array[2] == '1')
+    {
+       extraservice += "Inside oven, ";
+    }
+    if (array[3] == '1')
+    {
+       extraservice += "Laundry wash & dry, ";
+    }
+    if (array[4] == '1')
+    {
+       extraservice += "Interioir window, ";
+    }
 }
 <div class="modal model-for-completion-order" id="ServiceDetailes">
    <div class="modal-dialog modal-dialog-centered">
@@ -26,9 +50,7 @@
                <div class="col-12">
                   <div><strong>Service Id : </strong> @Model.ServiceRequestId</div>
                   <div>
-                     <strong>Extras : </strong>Cleaning the fridge,
-                     cleaning the oven, washing and drying
-
+                     <strong>Extras : </strong> @extraservice
                   </div>
                   <div>
                      <strong>Net Amount : </strong>
@@ -66,12 +88,32 @@
                </div>
             </div>
             <hr />
-            <button type="button" class="btn btn-upcoming-service-reschedule" onclick="reschedule(this)" data-bs-toggle="modal" data-bs-target="#RescheduleModal" data-bs-dismiss="modal" data-id="@Model.ServiceRequestId">
-               Reschedule
-            </button>
-            <button type="button" class="btn btn-upcoming-service" onclick="cancel(this)" data-bs-toggle="modal" data-bs-target="#CancelModal" data-bs-dismiss="modal" data-id="@Model.ServiceRequestId">
-               Cancle
-            </button>
+
+            @if (Model.Status == 1)
+             {
+               <button type="button" class="btn btn-rate-service-history" onclick="rating(this)" data-bs-toggle="modal" data-bs-target="#RatingModel " data-id="@Model.ServiceRequestId">
+                  Rate SP
+               </button>
+             }
+            @if (Model.Status == 2)
+             {
+
+             }
+            @if (Model.Status == 3)
+            {
+               <button type="button" class="btn btn-upcoming-service-reschedule" onclick="reschedule(this)" data-bs-toggle="modal" data-bs-target="#RescheduleModal" data-bs-dismiss="modal" data-id="@Model.ServiceRequestId">
+                  Reschedule
+               </button>
+               <button type="button" class="btn btn-upcoming-service" onclick="cancel(this)" data-bs-toggle="modal" data-bs-target="#CancelModal" data-bs-dismiss="modal" data-id="@Model.ServiceRequestId">
+                  Cancle
+               </button>
+            }
+            @if (Model.ServiceStartDate.AddHours(time) < DateTime.Now )
+             {
+               <button type="button" class="btn btn-upcoming-service">
+                  Expired
+               </button>
+             }
          </div>
       </div>
    </div>

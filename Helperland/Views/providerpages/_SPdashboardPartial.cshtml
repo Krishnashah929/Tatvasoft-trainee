@@ -1,0 +1,58 @@
+﻿@{
+   List<ServiceRequest> service = null;
+   if (ViewBag.services != null)
+   {
+      service = ViewBag.services;
+   }
+}
+@model Helperland.Models.ServiceRequest
+<div class="table-upcoming-services tab-pane active" id="v-pills-profile" role="tabpanel"
+     aria-labelledby="v-pills-profile-tab">
+   <table class="table" id="SPexample">
+      <thead class="table-header-upcoming-services">
+         <tr>
+            <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Service date <img src="../images/sort.png" alt=""> </th>
+            <th scope="col">Customer details <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Payment <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Time Conflict <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Actions <img src="../images/sort.png" alt=""></th>
+         </tr>
+      </thead>
+      <tbody class="tbody-upcoming-services text-center">
+
+         @foreach (ServiceRequest spr in service)
+         {
+            double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+            <tr>
+               <td>
+                  <button type="button" class="id-button" data-bs-toggle="modal"
+                          data-bs-target="#ServiceDetailesSP" onclick="opennewreq(this)" data-id="@spr.ServiceRequestId">
+                     @spr.ServiceRequestId
+                  </button>
+               </td>
+               <td>
+                  <button type="button" class="id-button" data-bs-toggle="modal"
+                          data-bs-target="#ServiceDetailesSP" onclick="opennewreq(this)" data-id="@spr.ServiceRequestId">
+                     <img src="../images/calendar2.png" alt="">
+                     @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
+                     <img src="../images/layer-712.png" alt="">
+                     @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+                  </button>
+               </td>
+               <td>
+                  @spr.Name
+                  <br>
+                  <img src="../images/layer-719.png" alt="">
+                  @spr.AddressLine2 , @spr.AddressLine1 <br /> @spr.City , @spr.ZipCode
+               </td>
+               <td>@spr.TotalCost €</td>
+               <td> </td>
+               <td>
+                  <button type="button" class="btn btn-action-sp" onclick="acceptreq(this)" data-id="@spr.ServiceRequestId">Accept</button>
+               </td>
+            </tr>
+         }
+      </tbody>
+   </table>
+</div>

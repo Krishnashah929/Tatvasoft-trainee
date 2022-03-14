@@ -13,9 +13,21 @@
 
 
 <!-- Dashboard tabs-->
+<div class="row mt-3">
+   <div class="col-md-6">
+      <span class="export-btn-heading"> <strong> Current Service Requests </strong> </span>
+   </div>
+   <div class="col-md-6">
+      <a asp-area="" asp-controller="CustomerPages" asp-action="BOOK_NOW">
+         <button type="button" class="btn btn-export-sp float-right">
+            Add New Request
+         </button>
+      </a>
+   </div>
+</div>
 <section id="dashboard1" style="padding-bottom:300px !important;">
    <div class=" table-upcoming-services tab-pane active" id="v-pills-home" role="tabpanel"
-        aria-labelledby="v-pills-home-tab" >
+        aria-labelledby="v-pills-home-tab">
       <table class="table" id="example">
          <thead class="table-header-upcoming-services">
             <tr>
@@ -58,7 +70,7 @@
                               @dbs.Name
                               <br>
                               @{
-                                 int totalstars = Convert.ToInt32(@dbs.ratings);
+                                 int totalstars = Convert.ToInt32(dbs.ratings);
                                  int stars = 5 - totalstars;
                                  for (int i = 1; i <= totalstars; i++)
                                  {
@@ -69,7 +81,7 @@
 
                                     <img src="../images/star2.png" alt="">
                                  }
-                                 @totalstars
+                                 @dbs.ratings
                               }
                            </div>
                         }
@@ -81,14 +93,23 @@
                   </td>
                   <td class="payment-dashboard"> <b> € @dbs.TotalCost </b></td>
                   <td>
-                     <button type="button" class="btn btn-upcoming-service-reschedule"
-                             onclick="reschedule(this)" data-bs-toggle="modal" data-bs-target="#RescheduleModal" data-bs-toggle="modal" data-id="@dbs.ServiceRequestId">
-                        Reschedule
-                     </button>
-                     <button type="button" class="btn btn-upcoming-service"
-                             onclick="cancel(this)" data-bs-toggle="modal" data-bs-target="#CancelModal" data-id="@dbs.ServiceRequestId">
-                        Cancle
-                     </button>
+                     @if (dbs.ServiceStartDate.AddHours(time) < DateTime.Now && dbs.Status != 1)
+                     {
+                        <button type="button" class="btn btn-upcoming-service">
+                           Expired
+                        </button>
+                     }
+                     else
+                     {
+                        <button type="button" class="btn btn-upcoming-service-reschedule"
+                                onclick="reschedule(this)" data-bs-toggle="modal" data-bs-target="#RescheduleModal" data-bs-toggle="modal" data-id="@dbs.ServiceRequestId">
+                           Reschedule
+                        </button>
+                        <button type="button" class="btn btn-upcoming-service"
+                                onclick="cancel(this)" data-bs-toggle="modal" data-bs-target="#CancelModal" data-id="@dbs.ServiceRequestId">
+                           Cancle
+                        </button>
+                     }
                   </td>
                </tr>
             }

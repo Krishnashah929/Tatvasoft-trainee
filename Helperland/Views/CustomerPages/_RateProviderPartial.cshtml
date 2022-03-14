@@ -24,7 +24,7 @@
             <div class="row">
                <div class="col-auto provider-name-inrating ml-5">
                   @{
-                     int totalstars = Convert.ToInt32(ViewBag.rating);
+                     int totalstars = Convert.ToInt32(@ViewBag.rating);
                      int stars = 5 - totalstars;
                      for (int i = 1; i <= totalstars; i++)
                      {
@@ -127,7 +127,7 @@
                </div>
                <div class="row">
                   <div class="col-auto">
-                     <textarea class="form-control" id="exampleFormControlTextarea1" cols="100"></textarea>
+                     <textarea class="form-control" id="Comments" asp-for="Comments" cols="100"></textarea>
                   </div>
                </div>
                <br>

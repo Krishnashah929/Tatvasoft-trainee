@@ -52,6 +52,11 @@ namespace Helperland.Models
         [MaxLength(50)]
         public string ConfirmPassword { get; set; }
 
+        [NotMapped]
+        [DataType(DataType.Password)]
+        [MaxLength(50)]
+        public string NewPassword { get; set; }
+
         [Required(ErrorMessage = "Please Enter Mobile Number")]
         [MaxLength(50)]
         public string Mobile { get; set; }
@@ -76,6 +81,25 @@ namespace Helperland.Models
         public string BankTokenId { get; set; }
         public string TaxNo { get; set; }
 
+        [NotMapped]
+        public decimal? ratings { get; set; }
+        [NotMapped]
+        public string AddressLine1 { get; set; }
+        [NotMapped]
+        public string AddressLine2 { get; set; }
+        [NotMapped]
+        public string City { get; set; }
+        [NotMapped]
+        public string PostalCode { get; set; }
+        [NotMapped]
+        public string Day { get; set; }
+       [NotMapped]
+        public string Month { get; set; }
+       [NotMapped]
+        public string Year { get; set; }
+
+        [NotMapped]
+        public string Comments { get; set; }
         //this line for the mailing services//
         public string ResetPasswordCode { get; set; }
 
@@ -86,5 +110,6 @@ namespace Helperland.Models
         public virtual ICollection<ServiceRequest> ServiceRequestServiceProviders { get; set; }
         public virtual ICollection<ServiceRequest> ServiceRequestUsers { get; set; }
         public virtual ICollection<UserAddress> UserAddresses { get; set; }
+        
     }
 }
