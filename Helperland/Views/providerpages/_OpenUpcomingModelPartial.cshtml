@@ -1,0 +1,112 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Helperland.Models.ServiceRequest
+@{
+    double time = Convert.ToDouble(Model.ServiceHours + Model.ExtraHours);
+    var extras = Model.Extra.ToString("D5");
+    var array = extras.ToCharArray();
+    var extraservice = " ";
+
+    if (array[0] == '1')
+    {
+       extraservice += "Inside cabinets, ";
+    }
+    if (array[1] == '1')
+    {
+       extraservice += "Inside fridge, ";
+    }
+    if (array[2] == '1')
+    {
+       extraservice += "Inside oven, ";
+    }
+    if (array[3] == '1')
+    {
+       extraservice += "Laundry wash & dry, ";
+    }
+    if (array[4] == '1')
+    {
+       extraservice += "Interioir window, ";
+    }
+}
+<!--upcoming service model-->
+<div class="modal model-for-completion-order" id="UpcomingServiceDetailesSP">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+         <div class="card" style="width:700px; margin-left: -110px;">
+            <div class="modal-header">
+               <h6 class="modal-title service-label">Service Detailes</h6>
+               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="font-size: 15px;">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="col-12">
+                        <p> ServiceStartDate: &nbsp; @Model.ServiceStartDate.ToString("dd/MM/yyyy") <br /> @Model.ServiceStartDate.ToString("hh:mm")  - @Model.ServiceStartDate.AddHours(time).ToString("hh:mm")  </p>
+                        <p><strong>Duration : </strong> @Model.SubTotal hr </p>
+                     </div>
+                     <hr />
+                     <div class="col-12">
+                        <div><strong>Service Id : </strong>@Model.ServiceRequestId </div>
+                        <div>
+                           <strong>Extras : </strong> @extraservice
+                        </div>
+                        <div>
+                           <strong>Net Amount : </strong>
+                           <p class="text-center payment-service-history">
+                              €  @Model.TotalCost
+                           </p>
+                        </div>
+                     </div>
+                     <hr />
+                     <div class="col-12">
+                        <div><strong>Service Address : </strong> @Model.AddressLine2 ,@Model.AddressLine1</div>
+                        <div><strong>Phone : </strong> @Model.Mobile </div>
+                        <div><strong>Email : </strong> @Model.Email </div>
+                        <div>
+                           <strong>Billing Address : </strong>Same as Service Address
+                        </div>
+                     </div>
+                     <hr />
+                     <div class="col-12">
+                        <strong>
+                           Do you want to tell your helper somthing?
+                        </strong><br>
+                        @if (@Model.HasPets == true)
+                        {
+                           <p> <img src="~/images/sign2.jpg" /> I have pets at my home.</p>
+                        }
+                        else
+                        {
+                           <p> <img src="~/images/sign3.jpg" /> I don't have pets at my home.</p>
+                        }
+                     </div>
+                     @if (Model.ServiceStartDate.AddHours(time) < DateTime.Now)
+                     {
+                        <button type="button" class="btn btn-upcoming-service-reschedule" data-bs-toggle="modal"
+                             data-bs-target="#CancelModal" data-bs-dismiss="modal" onclick="completereq(this)" data-id="@Model.ServiceRequestId">Completed</button>
+                        <button type="button" class="btn btn-upcoming-service d-none" data-bs-toggle="modal"
+                             data-bs-target="#CancelModal" data-bs-dismiss="modal" onclick="cancelreq(this)" data-id="@Model.ServiceRequestId">Cancel</button>
+                     }
+                     else
+                     {
+                        <button type="button" class="btn btn-upcoming-service" data-bs-toggle="modal"
+                             data-bs-target="#CancelModal" data-bs-dismiss="modal" onclick="cancelreq(this)" data-id="@Model.ServiceRequestId">Cancel</button>
+                     }
+                  </div>
+                  <div class="col-md-6">
+                     <div class="mapouter">
+                        <div class="gmap_canvas">
+                           <iframe width="100%" height="400" id="gmap_canvas"
+                                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235014.25792080228!2d72.43965601422856!3d23.020181763113136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat%2C%20India!5e0!3m2!1sen!2sus!4v1643106448033!5m2!1sen!2sus"
+                                   frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org"></a><br>
+                           <a href="https://www.embedgooglemap.net"> </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

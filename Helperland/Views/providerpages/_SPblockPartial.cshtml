@@ -1,0 +1,32 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<User>
+@{
+   int i = 0;
+}
+<div class="tab-pane active" id="v-pills-Block" role="tabpanel"
+     aria-labelledby="v-pills-Block-tab">
+   @foreach (User user in Model)
+   {
+     <div class="row">
+        <div class="col-md-12">
+           <div class="card text-center mt-3" style="width: 25%;">
+              <img src="../images/cap.png" class="card-img-top mt-5">
+              <div class="card-body">
+                 <h5 class="card-title text-center"> @user.FirstName @user.LastName </h5>
+                 @if (ViewBag.blockedornot[i] == "block")
+                 {
+                    <button class="btn btn-danger  btn-blockSP" onclick="unblocksp(this)" data-id="@user.UserId"> UnBlock </button>
+                 }
+                 @if (ViewBag.blockedornot[i] == "unblock")
+                 {
+                    <button class="btn btn-danger  btn-blockSP" onclick="blocksp(this)" data-id="@user.UserId"> Block </button>
+                 }
+              </div>
+           </div>
+        </div>
+     </div>
+      i = i + 1;
+   }
+   </div>

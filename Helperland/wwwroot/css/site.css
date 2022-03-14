@@ -1399,7 +1399,7 @@ a {
 
 .Welcome {
     color: #4f4f4f;
-    width: 350px;
+    width: 400px;
     height: 29px;
     margin: auto;
     padding-top: 44px;
@@ -3008,3 +3008,88 @@ label {
 #RatingModel .sp .star img {
     position: relative;
 }
+/*****************************Service provider screens css**************************************/
+.btn-action-sp {
+    background-color: #339aaf;
+    color: white;
+    border-radius: 20px;
+}
+
+    .btn-action-sp:hover {
+        background-color: #1D7A8C;
+        color: white;
+        border-radius: 20px;
+    }
+
+.btn-action-model-sp {
+    color: white;
+    border-radius: 20px;
+    background-color: rgb(25, 175, 25);
+}
+
+    .btn-action-model-sp:hover {
+        background-color: green;
+        color: white;
+        border-radius: 20px;
+    }
+
+.btn-blockSP {
+    border-radius: 33px;
+    background-color: #FF6B6B;
+}
+
+.card-img-top {
+    margin: auto;
+    width: 35%;
+    height: 35%;
+    border: 1px solid #646464;
+    border-radius: 100%;
+    padding: 25px 20px 25px 20px;
+}
+
+#v-pills-rating-tab.active {
+    background: #146371;
+}
+
+#v-pills-Block-tab.active {
+    background: #146371;
+}
+.provider-rating {
+   border: 1px solid #4f4f4f;
+   padding-left:15px;
+}
+.hr-rating {
+    width:95%;
+}
+.provider-setting-hr {
+    width:98%;
+}
+.provider-main-img-avtar {
+   width: 10%;  
+   height: 10%; 
+   padding: 18px 10px 18px 10px; 
+   margin-left: 98%; 
+   margin-top: -10%; 
+}
+.btn-export-sp {
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 20px;
+}
+.btn-export-sp:hover {
+    background-color: #1d7a8c;
+    color: white;
+    border-radius: 20px;
+}
+ 
+.export-btn-heading{
+    font-size : 20px;
+    color : #646464;
+}
+
+input[type=radio]:checked + img {
+    border: 2px solid #1d7a8c;
+    border-radius: 50%;
+}
+
+ 

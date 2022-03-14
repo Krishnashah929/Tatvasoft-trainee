@@ -1,0 +1,66 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+   List<ServiceRequest> service = null;
+   if (ViewBag.services != null)
+   {
+      service = ViewBag.services;
+   }
+}
+@model Helperland.Models.ServiceRequest
+<!--upcoming service-->
+<div class="table-upcoming-services tab-pane active" id="v-pills-upcoming" role="tabpanel"
+     aria-labelledby="v-pills-upcoming-tab">
+   <table class="table" id="SPexample1">
+      <thead class="table-header-upcoming-services">
+         <tr>
+            <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Service date <img src="../images/sort.png" alt=""> </th>
+            <th scope="col">Customer details <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Payment <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Actions <img src="../images/sort.png" alt=""></th>
+         </tr>
+      </thead>
+      <tbody class="tbody-upcoming-services text-center">
+         @foreach (ServiceRequest spr in service)
+         {
+            double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+             
+            <tr>
+               <td>
+                  <button type="button" class="id-button" data-bs-toggle="modal" data-bs-target="#UpcomingServiceDetailesSP" onclick="openupcomingreq(this)" data-id="@spr.ServiceRequestId">
+                    @spr.ServiceRequestId
+                  </button>
+               </td>
+               <td>
+                  <img src="../images/calendar2.png" alt="">
+                  @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
+                  <img src="../images/layer-712.png" alt="">
+                  @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+               </td>
+               <td>
+                  @spr.Name
+                  <br>
+                  <img src="../images/layer-719.png" alt="">
+                  @spr.AddressLine2 , @spr.AddressLine1 <br /> @spr.City ,@spr.ZipCode
+               </td>
+               <td> € @spr.TotalCost</td>
+
+               <td>
+                  @if (spr.ServiceStartDate.AddHours (time) < DateTime.Now)
+                  {
+                     <button type="button" class="btn btn-upcoming-service-reschedule" onclick="completereq(this)" data-id="@spr.ServiceRequestId">Completed</button>
+                     <button type="button" class="btn btn-upcoming-service d-none" onclick="cancelreq(this)" data-id="@spr.ServiceRequestId">Cancel</button>
+                  }
+                  else 
+                  {
+                     <button type="button" class="btn btn-upcoming-service" onclick="cancelreq(this)" data-id="@spr.ServiceRequestId">Cancel</button>
+                  }
+               </td>
+            </tr>
+         }
+         </tbody>
+   </table>
+</div>
+ 

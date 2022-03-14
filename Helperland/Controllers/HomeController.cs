@@ -52,7 +52,7 @@ namespace Helperland.Controllers
                      else if (p.FirstOrDefault().UserTypeId == 2)
                     {
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
-                        return RedirectToAction("service_provider", "Home");
+                        return RedirectToAction("Provider_Dashboard", "ProviderPages");
                     }
                 }
                 else 
