@@ -79,6 +79,9 @@ namespace Helperland.Models
       
 
 
+        [NotMapped]
+        public int UserTypeId { get; set; }
+
         public virtual User ServiceProvider { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }

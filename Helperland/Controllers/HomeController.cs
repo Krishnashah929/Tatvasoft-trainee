@@ -53,6 +53,14 @@ namespace Helperland.Controllers
                     {
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("Provider_Dashboard", "ProviderPages");
+<<<<<<< HEAD
+                    }
+                    else if (p.FirstOrDefault().UserTypeId == 3)
+                    {
+                        HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
+                        return RedirectToAction("Admin_Index", "AdminPages");
+=======
+>>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
                     }
                 }
                 else 
@@ -189,6 +197,9 @@ namespace Helperland.Controllers
                     signup.ModifiedDate = DateTime.Now;
                     signup.IsRegisteredUser = true;
                     signup.ModifiedBy = 123;
+                    signup.IsActive = true;
+                    signup.IsApproved = false;
+                    signup.Status = 1; // status 1 is true or active
 
                     _helperlandContext.Users.Add(signup);
                     _helperlandContext.SaveChanges();
@@ -220,6 +231,9 @@ namespace Helperland.Controllers
                     register.ModifiedDate = DateTime.Now;
                     register.IsRegisteredUser = true;
                     register.ModifiedBy = 123;
+                    register.IsActive = false;
+                    register.IsApproved = false;
+                    register.Status = 0; //status 0 for false or inactive 
 
                     _helperlandContext.Users.Add(register);
                     _helperlandContext.SaveChanges();

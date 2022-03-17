@@ -1,0 +1,296 @@
+﻿ <!--Serch user-->
+<div class="search-bar mt-5 ">
+   <div class="container">
+      <form class="form-inline form1">
+         <div class="form-group left-margin-apply">
+            <input type="number" class="form-control form2" id="number"
+                   placeholder="Service Id">
+         </div>
+         <div class="form-group left-margin-apply">
+            <input type="text" class="form-control form2" id="zipcode"
+                   placeholder="Postal Code ">
+         </div>
+         <div class="form-group left-margin-apply">
+            <input type="text" class="form-control form2" id="email" placeholder="E-mail   ">
+         </div>
+         <div class="form-group ">
+            <select class="form-select form2 left-margin-apply">
+               <option>Select Customer Name</option>
+               <option value="1">One</option>
+               <option value="2">Two</option>
+               <option value="3">Three</option>
+            </select>
+         </div>
+         <div class="form-group left-margin-apply">
+            <select class="form-select form2">
+               <option>Select service provider</option>
+               <option value="1">Customer</option>
+               <option value="2">Service Provider</option>
+            </select>
+         </div>
+         <br> <br>
+         <div class="form-group left-margin-apply">
+            <select class="form-select form2">
+               <option>Choose Status</option>
+               <option value="1">New</option>
+               <option value="2">  Panding</option>
+            </select>
+         </div>
+         <div class="form-group">
+            <input type="date" class="form-control form2  left-margin-apply " id="date"
+                   placeholder="From date">
+         </div>
+         <div class="form-group left-margin-apply ">
+            <input type="date" class="form-control form2" id="date"
+                   placeholder="To date">
+         </div>
+
+         <button class="user-search-btn"> Search </button>
+         <button class="user-clear-btn left-margin-apply"> Clear </button>
+
+      </form>
+   </div>
+
+</div>
+<!--Serch user-->
+<br>
+<!-- Admin Service Request-table for user managment-->
+<div class="table-user-management">
+   <table class="table">
+      <thead class="table-header-admin-usermanagement">
+         <tr>
+            <th scope="col"> Service ID <img src="images\sort.png" alt=""></th>
+            <th scope="col">Service Date <img src="images\sort.png" alt=""> </th>
+            <th scope="col"> Cutomer Details <img src="images\sort.png" alt=""></th>
+            <th scope="col"> Service Provider <img src="images\sort.png" alt=""> </th>
+            <th scope="col"> Status <img src="images\sort.png" alt=""></th>
+            <th scope="col"> Action </th>
+         </tr>
+      </thead>
+      <tbody class="tbody-user-management">
+
+         <tr>
+            <th scope="row" class="th-upcoming-service">323436</th>
+            <td>
+               <img src="images\calendar2.png" alt="">
+               09/04/2018<br>
+               <img src="images\layer-712.png" alt="">
+               12:00 - 18:00
+            </td>
+            <td>
+               David Bough
+               <br>
+               <img src="images\layer-719.png" alt="">
+               Musterstrabe 5,12345 Bonn
+            </td>
+            <td>
+            </td>
+            <td>
+               <button type="button" class="active-btn"
+                       style="background-color: #f2bb37;">
+                  New
+               </button>
+            </td>
+            <td>
+               <div class="dropdown">
+                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                     <img src="images/group-38.png" alt="" style="margin-top: -10px;">
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                      style="background: white;">
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">Edit </a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#"
+                           style="color: #646464;">Deactivate</a>
+                     </li>
+                  </ul>
+               </div>
+            </td>
+         </tr>
+
+         <tr>
+            <th scope="row" class="th-upcoming-service">323436</th>
+            <td>
+               <img src="images\calendar2.png" alt="">
+               09/04/2018<br>
+               <img src="images\layer-712.png" alt="">
+               12:00 - 18:00
+            </td>
+            <td>
+               David Bough
+               <br>
+               <img src="images\layer-719.png" alt="">
+               Musterstrabe 5,12345 Bonn
+            </td>
+            <td>
+               <img src="images\cap.png" alt="">
+               Lyum Watson
+               <br>
+               <img src="images\yellow-small-star.png" alt="" style="margin-left:15%;"><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\grey-small-star.png" alt="">
+               4
+            </td>
+            <td>
+               <button type="button" class="active-btn"
+                       style="background-color: #1fb6ff; width: 72px;">
+                  Pending
+               </button>
+            </td>
+            <td>
+               <div class="dropdown">
+                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                     <img src="../images/group-38.png" alt="" style="margin-top: -10px;">
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                      style="background: white;">
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">
+                           Edit &
+                           Reschedule
+                        </a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">Refund</a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">Cancle</a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">
+                           Change
+                           SP
+                        </a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#"
+                           style="color: #646464;">Escalate</a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">
+                           Hidtory
+                           log
+                        </a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">
+                           Download
+                           Invoice
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </td>
+         </tr>
+         <tr>
+            <th scope="row" class="th-upcoming-service">323436</th>
+            <td>
+               <img src="images\calendar2.png" alt="">
+               09/04/2018<br>
+               <img src="images\layer-712.png" alt="">
+               12:00 - 18:00
+            </td>
+            <td>
+               David Bough
+               <br>
+               <img src="images\layer-719.png" alt="">
+               Musterstrabe 5,12345 Bonn
+            </td>
+            <td>
+               <img src="images\cap.png" alt="">
+               Lyum Watson
+               <br>
+               <img src="images\yellow-small-star.png" alt="" style="margin-left:15%;"><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\grey-small-star.png" alt="">
+               4
+            </td>
+            <td>
+               <button type="button" class="active-btn" style="width: 72px;">Completed</button>
+            </td>
+            <td>
+               <div class="dropdown">
+                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                     <img src="images/group-38.png" alt="" style="margin-top: -10px;">
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                      style="background: white;">
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">Refund</a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#"
+                           style="color: #646464;">Escalate</a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">
+                           Hidtory
+                           log
+                        </a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">
+                           Download
+                           Invoice
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </td>
+         </tr>
+
+         <tr>
+            <th scope="row" class="th-upcoming-service">323436</th>
+            <td>
+               <img src="images\calendar2.png" alt="">
+               09/04/2018<br>
+               <img src="images\layer-712.png" alt="">
+               12:00 - 18:00
+            </td>
+            <td>
+               David Bough
+               <br>
+               <img src="images\layer-719.png" alt="">
+               Musterstrabe 5,12345 Bonn
+            </td>
+            <td>
+               <img src="images\cap.png" alt="">
+               Lyum Watson
+               <br>
+               <img src="images\yellow-small-star.png" alt="" style="margin-left:15%;"><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\grey-small-star.png" alt="">
+               4
+            </td>
+            <td>
+               <button type="button" class="active-btn"
+                       style="background-color: #ff6b6b; width: 72px;">
+                  Cancle
+               </button>
+            </td>
+            <td>
+               <div class="dropdown">
+                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
+                     data-bs-toggle="dropdown" aria-expanded="false">
+                     <img src="images/group-38.png" alt="" style="margin-top: -10px;">
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                      style="background: white;">
+                     <li>
+                        <a class="dropdown-item" href="#" style="color: #646464;">Edit </a>
+                     </li>
+                     <li>
+                        <a class="dropdown-item" href="#"
+                           style="color: #646464;">Deactivate</a>
+                     </li>
+                  </ul>
+               </div>
+            </td>
+         </tr>
+
+
+
+
+      </tbody>
+   </table>
+</div>
+<!--Admin Service Request-table for user managment-->

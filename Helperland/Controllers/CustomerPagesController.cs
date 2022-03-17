@@ -40,14 +40,17 @@ namespace Helperland.Controllers
         [HttpPost]
         public ActionResult ValidZip(Zipcodeviewmodel ForZip)
         {
-            var Zipcode = _helperlandContext.Zipcodes.Where(z => z.ZipcodeValue == ForZip.ZipcodeValue);
             HttpContext.Session.SetString("ForZip.ZipcodeValue", ForZip.ZipcodeValue);
+            var Zipcode = _helperlandContext.Users.Where(z => z.ZipCode == ForZip.ZipcodeValue && z.UserTypeId == 2);
             if (Zipcode.Count() > 0)
             {
                 return Ok(Json("true"));
             }
             return Ok(Json("false"));
         }
+<<<<<<< HEAD
+     
+=======
         //        int? Id = HttpContext.Session.GetInt32("userID");
         //            if (Id != null)
         //            {
@@ -58,6 +61,7 @@ namespace Helperland.Controllers
         //                    return Ok(Json("true"));
         //                }
         //}
+>>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
         [HttpPost]
         public ActionResult Scheduledetails(Scheduledetails scheduledetails)
         {
@@ -484,13 +488,27 @@ namespace Helperland.Controllers
             updatedadd.PostalCode = newadd.PostalCode;
             updatedadd.State = newadd.State;
             updatedadd.Mobile = newadd.Mobile;
+            updatedadd.IsDefault = true;
             var result = _helperlandContext.UserAddresses.Update(updatedadd);
             _helperlandContext.SaveChanges();
+<<<<<<< HEAD
+
+            User users = _helperlandContext.Users.FirstOrDefault(x => x.UserId == updatedadd.UserId);
+            users.ZipCode = updatedadd.PostalCode;
+            var results = _helperlandContext.Users.Update(users);
+            _helperlandContext.SaveChanges();
+
+=======
+>>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
             if (result != null)
             {
                 return Ok(Json("true"));
             }
             return Ok(Json("False"));
+<<<<<<< HEAD
+ 
+=======
+>>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
         }
         [HttpPost]
         public IActionResult DeleteAddress(UserAddress deladd)

@@ -1,30 +1,34 @@
 ﻿@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 * {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
-.submit-password-button{
+
+.submit-password-button {
     background-color: #1d7a8c;
     color: white;
-    font-size:16px;
+    font-size: 16px;
     border-radius: 33px;
     padding: 5px;
-    margin-left:5px;
-    margin-right:5px;
-
+    margin-left: 5px;
+    margin-right: 5px;
 }
+
 .forgot-password-card {
     border: none;
     width: 30%;
-    margin:auto;
-    margin-top:10%;
+    margin: auto;
+    margin-top: 10%;
     box-shadow: 2px 2px 2px 2px;
 }
-.forgot-password-form{
-    width:50%;
+
+.forgot-password-form {
+    width: 50%;
     margin-left: 3%;
 }
+
 body {
     font-family: "Roboto", sans-serif;
     color: #4f4f4f;
@@ -1316,14 +1320,15 @@ a {
     margin-bottom: 20px;
     padding-bottom: 5px;
 }
-.btn-blue-service-provider:hover {
-    background-color: #1D7A8C;
-    color: white;
-    margin-left: 38%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 5px;
-}
+
+    .btn-blue-service-provider:hover {
+        background-color: #1D7A8C;
+        color: white;
+        margin-left: 38%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+    }
 
 #howitwork-service-provider {
     padding-top: 63px;
@@ -1425,18 +1430,17 @@ a {
 
 .nav-services-btn {
     color: white;
-    width:106%;
-}
-
-.nav-services-btn:hover {
-    color: white;
-    background-color: #146371;
     width: 106%;
 }
 
+    .nav-services-btn:hover {
+        color: white;
+        background-color: #146371;
+        width: 106%;
+    }
+
 #v-pills-home-tab.active {
     background: #146371;
-   
 }
 
 #v-pills-profile-tab.active {
@@ -1476,8 +1480,8 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     border-bottom: none !important;
- 
 }
+
 .table.dataTable thead .sorting_desc {
     background-image: none !important;
 }
@@ -1487,7 +1491,6 @@ table {
 }
 
 label {
-    
     display: inline-block;
 }
 
@@ -1539,7 +1542,7 @@ label {
 }
 
 .btn-upcoming-service {
-    background-color:  #ff7b6d;
+    background-color: #ff7b6d;
     color: white;
     border-radius: 20px;
 }
@@ -1578,14 +1581,16 @@ label {
     font-size: 18px;
 }
 
-.Cancle-now-btn:hover {
-  color: white;
-  background-color:#1d7a8c;
-}
+    .Cancle-now-btn:hover {
+        color: white;
+        background-color: #1d7a8c;
+    }
+
 .service-label {
     color: #646464;
     font-size: 24px;
 }
+
 .cancle-booking-title {
     color: #646464;
     font-size: 24px;
@@ -1609,10 +1614,11 @@ label {
     width: 100%;
     font-size: 20px;
 }
-.update-btn:hover {
-   color: white;
-   background-color:#1d7a8c;
-}
+
+    .update-btn:hover {
+        color: white;
+        background-color: #1d7a8c;
+    }
 /* mobile side bar */
 #sidebar .row1 {
     padding: 4px;
@@ -1742,10 +1748,11 @@ label {
     display: inline;
 }
 
-.id-button{
+.id-button {
     background-color: white;
-    border:none;
+    border: none;
 }
+
 .btn-export-service-history {
     background-color: #146371;
     color: white;
@@ -1781,20 +1788,20 @@ label {
     color: white;
     font-size: 13px;
 }
-.btn-status-service-history:hover {
+
+    .btn-status-service-history:hover {
         color: white;
-}
+    }
 
 .btn-status-cancel-service-history {
     background-color: #ff7b6d;
     color: white;
     font-size: 13px;
-
 }
 
-.btn-status-cancel-service-history:hover {
+    .btn-status-cancel-service-history:hover {
         color: white;
-}
+    }
 
 .btn-rate-service-history {
     background-color: #6da9b5;
@@ -2042,20 +2049,18 @@ label {
 /**************************************************My setiing css******************************************************************/
 
 /********************************************************admin > user managment********************************************************/
+
 .helperland-header {
     font-size: 37.5px;
     line-height: 0.65;
     text-align: left;
     color: #FFFFFF;
-    letter-spacing: 2.0;
     padding: 15px;
-    width: 250px;
 }
 
 .admin-name {
     color: #FFFFFF;
-    line-height: 2;
-    margin-left: 8px;
+    margin-right: 30px;
 }
 
 .user-management {
@@ -2064,7 +2069,9 @@ label {
 
 .sidebar-menu {
     background-color: #FFFFFF;
-    width: 272px;
+   height:98%;
+   padding-left:10%;
+
 }
 
 .nav-item-user-management {
@@ -2074,8 +2081,9 @@ label {
     padding: 15px;
 }
 
-    .nav-item-user-management :hover {
-        color: dimgray;
+    .nav-item-user-management:hover {
+        background-color: #FFFFFF;
+        color: black;
     }
 
 .bottom-lines {
@@ -2109,30 +2117,15 @@ label {
     display: inline;
 }
 
-.accordionbtn {
-    height: 30px;
-    color: #868383;
-    font-size: 18px;
-    padding: 30px;
-}
-
-.accordion-button:focus {
-    box-shadow: none;
-}
-
 .navbar-toggler:focus {
     box-shadow: none;
-}
-
-.accordion-button:not(.collapsed) {
-    color: #0c63e4;
-    background-color: white;
-    border: none;
 }
 
 .form1 .form-group {
     display: inline;
     margin-top: 30px;
+    margin-bottom: 30px;
+  
 }
 
 @media (max-width:552px) {
@@ -2272,6 +2265,23 @@ label {
         margin-top: 20px;
     }
 }
+
+/*new css*/
+.User-heading {
+    font-size: 24px;
+    color: #646464;
+    display: inline;
+}
+.search-bar {
+    padding-top: 3%;
+    padding-bottom: 2%;
+    background-color: white;
+}
+
+.left-margin-apply {
+    margin-left: 2%;
+}
+
 /********************************************************admin > service request***************************************************/
 .form2-request-history {
     width: 170px;
@@ -2811,19 +2821,23 @@ label {
     margin-top: -3%;
     margin-left: 3%;
 }
+
 .form-check-label-contact {
     margin-top: -3%;
-     
 }
+
 .form-check-label-create-account {
     margin-top: -3%;
 }
+
 .form-check-label-pets {
     margin-top: -3%;
 }
+
 .payment-acceptance-link {
     color: #339aaf;
 }
+
     .payment-acceptance-link:hover {
         color: #1D7A8C;
     }
@@ -2864,18 +2878,18 @@ label {
     .ok-address-book-now:hover {
         color: white;
     }
- 
+
 
 #RatingModel table {
     margin-bottom: 15px;
-    border:none !important;
+    border: none !important;
 }
 
 #RatingModel .control-label {
     font-size: 16px;
     font-weight: 400;
 }
- 
+
 #RatingModel .rate .rating1 {
     border: none;
     margin-right: 49px
@@ -3000,11 +3014,11 @@ label {
 .rating3 > [id^="star"]:checked ~ label:hover ~ label {
     color: #FFED85
 }
- 
+
 #RatingModel .rate .mt-100 {
     margin-top: 100px
 }
- 
+
 #RatingModel .sp .star img {
     position: relative;
 }
@@ -3054,6 +3068,30 @@ label {
 #v-pills-Block-tab.active {
     background: #146371;
 }
+<<<<<<< HEAD
+
+.provider-rating {
+    border: 1px solid #4f4f4f;
+    padding-left: 15px;
+}
+
+.hr-rating {
+    width: 95%;
+}
+
+.provider-setting-hr {
+    width: 98%;
+}
+
+.provider-main-img-avtar {
+    width: 10%;
+    height: 10%;
+    padding: 18px 10px 18px 10px;
+    margin-left: 98%;
+    margin-top: -10%;
+}
+
+=======
 .provider-rating {
    border: 1px solid #4f4f4f;
    padding-left:15px;
@@ -3071,11 +3109,24 @@ label {
    margin-left: 98%; 
    margin-top: -10%; 
 }
+>>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
 .btn-export-sp {
     background-color: #1d7a8c;
     color: white;
     border-radius: 20px;
 }
+<<<<<<< HEAD
+
+    .btn-export-sp:hover {
+        background-color: #1d7a8c;
+        color: white;
+        border-radius: 20px;
+    }
+
+.export-btn-heading {
+    font-size: 20px;
+    color: #646464;
+=======
 .btn-export-sp:hover {
     background-color: #1d7a8c;
     color: white;
@@ -3085,6 +3136,7 @@ label {
 .export-btn-heading{
     font-size : 20px;
     color : #646464;
+>>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
 }
 
 input[type=radio]:checked + img {
@@ -3092,4 +3144,33 @@ input[type=radio]:checked + img {
     border-radius: 50%;
 }
 
+<<<<<<< HEAD
+.btn-export-sp-admin {
+    background-color: #1FB6FF;
+    color: white;
+    float: right;
+    margin-bottom: 1%;
+}
+
+    .btn-export-sp-admin:hover {
+        background-color: #1FB6FF;
+        color: white;
+        float: right;
+    }
+
+.approveuser-btn-setting {
+    border: 1px solid #339aaf;
+    border-radius: 38px;
+    background-color: #339aaf;
+    color: white;
+    width: 50%;
+    font-size: 18px;
+    margin: auto;
+}
+
+    .approveuser-btn-setting:hover {
+        color: white;
+    }
+=======
  
+>>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
