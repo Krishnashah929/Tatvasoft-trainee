@@ -69,7 +69,13 @@ namespace Helperland.Models
         [NotMapped]
         public string Email { get; set; }
         [NotMapped]
+        public string FirstName { get; set; }
+        [NotMapped]
+        public string LastName { get; set; }
+        [NotMapped]
         public string Name { get; set; }
+        [NotMapped]
+        public string custName { get; set; }
         [NotMapped]
         public string City { get; set; }
         [NotMapped]

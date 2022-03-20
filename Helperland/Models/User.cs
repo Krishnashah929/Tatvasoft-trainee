@@ -82,12 +82,11 @@ namespace Helperland.Models
         public string TaxNo { get; set; }
 
         [NotMapped]
-<<<<<<< HEAD
+ 
         public string Name { get; set; }
 
         [NotMapped]
-=======
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
+ 
         public decimal? ratings { get; set; }
         [NotMapped]
         public string AddressLine1 { get; set; }

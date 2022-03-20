@@ -48,9 +48,7 @@ namespace Helperland.Controllers
             }
             return Ok(Json("false"));
         }
-<<<<<<< HEAD
-     
-=======
+ 
         //        int? Id = HttpContext.Session.GetInt32("userID");
         //            if (Id != null)
         //            {
@@ -61,7 +59,7 @@ namespace Helperland.Controllers
         //                    return Ok(Json("true"));
         //                }
         //}
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
+ 
         [HttpPost]
         public ActionResult Scheduledetails(Scheduledetails scheduledetails)
         {
@@ -491,24 +489,18 @@ namespace Helperland.Controllers
             updatedadd.IsDefault = true;
             var result = _helperlandContext.UserAddresses.Update(updatedadd);
             _helperlandContext.SaveChanges();
-<<<<<<< HEAD
+
 
             User users = _helperlandContext.Users.FirstOrDefault(x => x.UserId == updatedadd.UserId);
             users.ZipCode = updatedadd.PostalCode;
             var results = _helperlandContext.Users.Update(users);
             _helperlandContext.SaveChanges();
 
-=======
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
             if (result != null)
             {
                 return Ok(Json("true"));
             }
             return Ok(Json("False"));
-<<<<<<< HEAD
- 
-=======
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
         }
         [HttpPost]
         public IActionResult DeleteAddress(UserAddress deladd)

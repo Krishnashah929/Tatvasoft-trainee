@@ -205,10 +205,6 @@ namespace Helperland.Controllers
             {
                 var customername = _helperlandContext.Users.Where(x => x.UserId == users.UserId).FirstOrDefault();
                 users.Name = customername.FirstName + " " + customername.LastName;
-<<<<<<< HEAD
-=======
-               
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
                 var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
                 decimal temp = 0;
                 foreach (Rating rating in rate)
@@ -313,10 +309,7 @@ namespace Helperland.Controllers
             {
                 ViewBag.add = address;
             }
-<<<<<<< HEAD
-           
-=======
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
+
             ViewBag.details = ud;
             return PartialView("_SPsettingPartial");
         }

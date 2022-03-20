@@ -35,6 +35,47 @@ namespace Helperland.Controllers
         [HttpGet]
         public IActionResult UserRequest()
         {
+            List<ServiceRequest> serviceRequest = _helperlandContext.ServiceRequests.ToList();
+            List<User> user = new List<User>();
+            foreach (ServiceRequest users in serviceRequest)
+            {
+                var customername = _helperlandContext.Users.Where(x => x.UserId == users.UserId).FirstOrDefault();
+                users.custName = customername.FirstName + " " + customername.LastName;
+                if (users.ServiceProviderId != null)
+                {
+                    var Name = _helperlandContext.Users.Where(x => x.UserId == users.ServiceProviderId).FirstOrDefault();
+                    users.Name = Name.FirstName + " " + Name.LastName;
+                    var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
+                    decimal temp = 0;
+                    foreach (Rating rating in rate)
+                    {
+                        if (rating.Ratings != 0)
+                        {
+                            temp += rating.Ratings;
+                        }
+                    }
+                    if (rate.Count() != 0)
+                    {
+                        temp /= rate.Count();
+                    }
+                    users.ratings = temp;
+                }
+                else
+                {
+                    user.Add(null);
+                }
+            }
+            List<ServiceRequestAddress> address = new List<ServiceRequestAddress>();
+            foreach (ServiceRequest users in serviceRequest)
+            {
+                var addresses = _helperlandContext.ServiceRequestAddresses.Where(x => x.ServiceRequestId == users.ServiceRequestId).FirstOrDefault();
+                users.AddressLine1 = addresses.AddressLine1;
+                users.AddressLine2 = addresses.AddressLine2;
+                users.City = addresses.City;
+                users.ZipCode = addresses.PostalCode;
+            }
+
+            ViewBag.services = serviceRequest;
             return PartialView("User_Request_Partial");
         }
         public IActionResult ApproveUser(int id)

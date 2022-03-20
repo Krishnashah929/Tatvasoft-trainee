@@ -1,4 +1,28 @@
-﻿ <!--Serch user-->
+﻿@{
+   List<ServiceRequest> service = null;
+   if (ViewBag.services != null)
+   {
+      service = ViewBag.services;
+   }
+}
+@model Helperland.Models.ServiceRequest
+
+<div class="row mt-4">
+   <div class="col-md-8">
+      <span class="User-heading">
+         <strong> User Request </strong>
+      </span>
+   </div>
+   <div class="col-md-4">
+      <button class="add-new-user-btn justify-content-end ">
+         <img src="../images/add.png" alt="" style="padding-right: 7px;">
+         Add New User
+      </button>
+   </div>
+</div>
+
+
+<!--Serch user-->
 <div class="search-bar mt-5 ">
    <div class="container">
       <form class="form-inline form1">
@@ -59,237 +83,139 @@
    <table class="table">
       <thead class="table-header-admin-usermanagement">
          <tr>
-            <th scope="col"> Service ID <img src="images\sort.png" alt=""></th>
-            <th scope="col">Service Date <img src="images\sort.png" alt=""> </th>
-            <th scope="col"> Cutomer Details <img src="images\sort.png" alt=""></th>
-            <th scope="col"> Service Provider <img src="images\sort.png" alt=""> </th>
-            <th scope="col"> Status <img src="images\sort.png" alt=""></th>
+            <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
+            <th scope="col">Service Date <img src="../images/sort.png" alt=""> </th>
+            <th scope="col"> Cutomer Details <img src="../images/sort.png" alt=""></th>
+            <th scope="col"> Service Provider <img src="../images/sort.png" alt=""> </th>
+            <th scope="col"> Total Amount  <img src="../images/sort.png" alt=""> </th>
+            <th scope="col"> Status <img src="../images/sort.png" alt=""></th>
             <th scope="col"> Action </th>
          </tr>
       </thead>
       <tbody class="tbody-user-management">
 
-         <tr>
-            <th scope="row" class="th-upcoming-service">323436</th>
-            <td>
-               <img src="images\calendar2.png" alt="">
-               09/04/2018<br>
-               <img src="images\layer-712.png" alt="">
-               12:00 - 18:00
-            </td>
-            <td>
-               David Bough
-               <br>
-               <img src="images\layer-719.png" alt="">
-               Musterstrabe 5,12345 Bonn
-            </td>
-            <td>
-            </td>
-            <td>
-               <button type="button" class="active-btn"
-                       style="background-color: #f2bb37;">
-                  New
-               </button>
-            </td>
-            <td>
-               <div class="dropdown">
-                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
-                     data-bs-toggle="dropdown" aria-expanded="false">
-                     <img src="images/group-38.png" alt="" style="margin-top: -10px;">
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                      style="background: white;">
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">Edit </a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#"
-                           style="color: #646464;">Deactivate</a>
-                     </li>
-                  </ul>
-               </div>
-            </td>
-         </tr>
+         @foreach (ServiceRequest spr in service)
+         {
+            double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+            <tr>
+               <th scope="row" class="th-upcoming-service">@spr.ServiceRequestId</th>
+               <td>
+                  <img src="../images/calendar2.png" alt="">
+                  @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
+                  <img src="../images/layer-712.png" alt="">
+                  @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+               </td>
+               <td>
+                  @spr.custName
+                  <br>
+                  <img src="../images/layer-719.png" alt="">
+                  @spr.AddressLine2 , @spr.AddressLine1 <br /> @spr.City , @spr.ZipCode
+               </td>
+               <td>
+                  @if (spr.Name != null)
+                  {
+                     <div class="row">
+                        <div class="col-md-4 cap-1-image-admin">
+                           <img src="../images/cap.png" alt="" class="cap-customer-history">
+                        </div>
+                        <div class="col-md-8 cap-1-name-admin" style="margin-left:55px; margin-top: -35px;">
+                           @spr.Name
+                           <br />
+                           @{
+                              int totalstars = Convert.ToInt32(spr.ratings);
+                              int stars = 5 - totalstars;
+                              for (int i = 1; i <= totalstars; i++)
+                              {
+                                 <img src="../images/yellow-small-star.png" alt="">
+                              }
+                              for (int j = 1; j <= stars; j++)
+                              {
+                                 <img src="../images/star2.png" alt="">
+                              }
+                              @spr.ratings
+                           }
+                        </div>
+                     </div>
+                  }
+               </td>
+               <td>
+                  @spr.TotalCost
+               </td>
+               <td>
+                  @if (spr.Status == 1)
+                  {
+                     <button type="button" class="active-btn" style="width: 72px;"> Completed</button>
+                  }
+                  else if (spr.Status == 2)
+                  {
+                     <button type="button" class="active-btn" style="background-color: #ff6b6b; "> Cancle </button>
+                  }
+                  else if (spr.Status == 4)
+                  {
+                     <button type="button" class="active-btn" style="background-color: #1fb6ff;"> Pending</button>
+                  }
+                  else if (spr.Status == 3)
+                  {
+                     <button type="button" class="active-btn" style="background-color: #f2bb37;"> New</button>
+                  }
+                  else if (spr.Status == 5)
+                  {
+                     <button type="button" class="active-btn" style="background-color: #fc6b6b;"> Expired </button>
+                  }
 
-         <tr>
-            <th scope="row" class="th-upcoming-service">323436</th>
-            <td>
-               <img src="images\calendar2.png" alt="">
-               09/04/2018<br>
-               <img src="images\layer-712.png" alt="">
-               12:00 - 18:00
-            </td>
-            <td>
-               David Bough
-               <br>
-               <img src="images\layer-719.png" alt="">
-               Musterstrabe 5,12345 Bonn
-            </td>
-            <td>
-               <img src="images\cap.png" alt="">
-               Lyum Watson
-               <br>
-               <img src="images\yellow-small-star.png" alt="" style="margin-left:15%;"><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\grey-small-star.png" alt="">
-               4
-            </td>
-            <td>
-               <button type="button" class="active-btn"
-                       style="background-color: #1fb6ff; width: 72px;">
-                  Pending
-               </button>
-            </td>
-            <td>
-               <div class="dropdown">
-                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
-                     data-bs-toggle="dropdown" aria-expanded="false">
-                     <img src="../images/group-38.png" alt="" style="margin-top: -10px;">
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                      style="background: white;">
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">
-                           Edit &
-                           Reschedule
+               </td>
+               @if (spr.Status == 1)
+               {
+                  <td>
+                     <div class="dropdown">
+                        <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                           <img src="../images/group-38.png" alt="">
                         </a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">Refund</a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">Cancle</a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">
-                           Change
-                           SP
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: white;">
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Refund</a>
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Hidtory log </a>
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Download Invoice </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </td>
+               }
+               else
+               {
+                  <td>
+                     <div class="dropdown">
+                        <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                           <img src="../images/group-38.png" alt="">
                         </a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#"
-                           style="color: #646464;">Escalate</a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">
-                           Hidtory
-                           log
-                        </a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">
-                           Download
-                           Invoice
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-            </td>
-         </tr>
-         <tr>
-            <th scope="row" class="th-upcoming-service">323436</th>
-            <td>
-               <img src="images\calendar2.png" alt="">
-               09/04/2018<br>
-               <img src="images\layer-712.png" alt="">
-               12:00 - 18:00
-            </td>
-            <td>
-               David Bough
-               <br>
-               <img src="images\layer-719.png" alt="">
-               Musterstrabe 5,12345 Bonn
-            </td>
-            <td>
-               <img src="images\cap.png" alt="">
-               Lyum Watson
-               <br>
-               <img src="images\yellow-small-star.png" alt="" style="margin-left:15%;"><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\grey-small-star.png" alt="">
-               4
-            </td>
-            <td>
-               <button type="button" class="active-btn" style="width: 72px;">Completed</button>
-            </td>
-            <td>
-               <div class="dropdown">
-                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
-                     data-bs-toggle="dropdown" aria-expanded="false">
-                     <img src="images/group-38.png" alt="" style="margin-top: -10px;">
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                      style="background: white;">
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">Refund</a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#"
-                           style="color: #646464;">Escalate</a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">
-                           Hidtory
-                           log
-                        </a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">
-                           Download
-                           Invoice
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-            </td>
-         </tr>
-
-         <tr>
-            <th scope="row" class="th-upcoming-service">323436</th>
-            <td>
-               <img src="images\calendar2.png" alt="">
-               09/04/2018<br>
-               <img src="images\layer-712.png" alt="">
-               12:00 - 18:00
-            </td>
-            <td>
-               David Bough
-               <br>
-               <img src="images\layer-719.png" alt="">
-               Musterstrabe 5,12345 Bonn
-            </td>
-            <td>
-               <img src="images\cap.png" alt="">
-               Lyum Watson
-               <br>
-               <img src="images\yellow-small-star.png" alt="" style="margin-left:15%;"><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\yellow-small-star.png" alt=""><img src="images\grey-small-star.png" alt="">
-               4
-            </td>
-            <td>
-               <button type="button" class="active-btn"
-                       style="background-color: #ff6b6b; width: 72px;">
-                  Cancle
-               </button>
-            </td>
-            <td>
-               <div class="dropdown">
-                  <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
-                     data-bs-toggle="dropdown" aria-expanded="false">
-                     <img src="images/group-38.png" alt="" style="margin-top: -10px;">
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                      style="background: white;">
-                     <li>
-                        <a class="dropdown-item" href="#" style="color: #646464;">Edit </a>
-                     </li>
-                     <li>
-                        <a class="dropdown-item" href="#"
-                           style="color: #646464;">Deactivate</a>
-                     </li>
-                  </ul>
-               </div>
-            </td>
-         </tr>
-
-
-
-
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: white;">
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Edit &  Reschedule </a>
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Cancle SR by customer</a>
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Refund</a>
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Hidtory log </a>
+                           </li>
+                           <li>
+                              <a class="dropdown-item" href="#" style="color: #646464;">Download Invoice </a>
+                           </li>
+                        </ul>
+                     </div>
+                  </td>
+               }
+            </tr>
+         }
       </tbody>
    </table>
 </div>

@@ -53,14 +53,13 @@ namespace Helperland.Controllers
                     {
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("Provider_Dashboard", "ProviderPages");
-<<<<<<< HEAD
+
                     }
                     else if (p.FirstOrDefault().UserTypeId == 3)
                     {
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("Admin_Index", "AdminPages");
-=======
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
+ 
                     }
                 }
                 else 

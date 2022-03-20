@@ -1537,6 +1537,7 @@ label {
     text-align: right;
 }
 
+
 .cap-1-name {
     text-align: left;
 }
@@ -3091,7 +3092,7 @@ label {
     margin-top: -10%;
 }
 
-=======
+ 
 .provider-rating {
    border: 1px solid #4f4f4f;
    padding-left:15px;
@@ -3109,13 +3110,13 @@ label {
    margin-left: 98%; 
    margin-top: -10%; 
 }
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
+ 
 .btn-export-sp {
     background-color: #1d7a8c;
     color: white;
     border-radius: 20px;
 }
-<<<<<<< HEAD
+ 
 
     .btn-export-sp:hover {
         background-color: #1d7a8c;
@@ -3126,7 +3127,7 @@ label {
 .export-btn-heading {
     font-size: 20px;
     color: #646464;
-=======
+}
 .btn-export-sp:hover {
     background-color: #1d7a8c;
     color: white;
@@ -3136,7 +3137,7 @@ label {
 .export-btn-heading{
     font-size : 20px;
     color : #646464;
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
+ 
 }
 
 input[type=radio]:checked + img {
@@ -3144,7 +3145,7 @@ input[type=radio]:checked + img {
     border-radius: 50%;
 }
 
-<<<<<<< HEAD
+ 
 .btn-export-sp-admin {
     background-color: #1FB6FF;
     color: white;
@@ -3171,6 +3172,4 @@ input[type=radio]:checked + img {
     .approveuser-btn-setting:hover {
         color: white;
     }
-=======
  
->>>>>>> c9491085483b751e39e6999dba7acf9d3122b592
