@@ -82,11 +82,8 @@ namespace Helperland.Models
         public string TaxNo { get; set; }
 
         [NotMapped]
- 
         public string Name { get; set; }
-
         [NotMapped]
- 
         public decimal? ratings { get; set; }
         [NotMapped]
         public string AddressLine1 { get; set; }
@@ -102,7 +99,6 @@ namespace Helperland.Models
         public string Month { get; set; }
        [NotMapped]
         public string Year { get; set; }
-
         [NotMapped]
         public string Comments { get; set; }
         //this line for the mailing services//

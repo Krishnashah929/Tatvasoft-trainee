@@ -27,7 +27,7 @@
    <div class="container">
       <form class="form-inline form1">
          <div class="form-group left-margin-apply">
-            <input type="number" class="form-control form2" id="number"
+            <input type="number" class="form-control form2" id="ServiceID"
                    placeholder="Service Id">
          </div>
          <div class="form-group left-margin-apply">
@@ -35,41 +35,27 @@
                    placeholder="Postal Code ">
          </div>
          <div class="form-group left-margin-apply">
-            <input type="text" class="form-control form2" id="email" placeholder="E-mail   ">
-         </div>
-         <div class="form-group ">
-            <select class="form-select form2 left-margin-apply">
-               <option>Select Customer Name</option>
-               <option value="1">One</option>
-               <option value="2">Two</option>
-               <option value="3">Three</option>
-            </select>
+            <input type="text" class="form-control form2" id="custName" placeholder="Provider Name">
          </div>
          <div class="form-group left-margin-apply">
-            <select class="form-select form2">
-               <option>Select service provider</option>
-               <option value="1">Customer</option>
-               <option value="2">Service Provider</option>
-            </select>
+            <input type="text" class="form-control form2" id="name" placeholder="Customer Name">
          </div>
-         <br> <br>
          <div class="form-group left-margin-apply">
-            <select class="form-select form2">
-               <option>Choose Status</option>
-               <option value="1">New</option>
-               <option value="2">  Panding</option>
+            <select class="form-select form2-request-history" id="status">
+               <option> Select Status</option>
+               <option value="1">Completed</option>
+               <option value="2">Cancle</option>
+               <option value="3">New</option>
+               <option value="4">Pending</option>
+               <option value="5">Expired</option>
             </select>
          </div>
+         <br> <br> 
          <div class="form-group">
-            <input type="date" class="form-control form2  left-margin-apply " id="date"
-                   placeholder="From date">
-         </div>
-         <div class="form-group left-margin-apply ">
-            <input type="date" class="form-control form2" id="date"
-                   placeholder="To date">
+            <input type="date" class="form-control form2  left-margin-apply " id="startdate" >
          </div>
 
-         <button class="user-search-btn"> Search </button>
+         <button class="user-search-btn left-margin-apply" onclick="searchrequest(this)" type="button"> Search </button>
          <button class="user-clear-btn left-margin-apply"> Clear </button>
 
       </form>
@@ -79,8 +65,9 @@
 <!--Serch user-->
 <br>
 <!-- Admin Service Request-table for user managment-->
+<button type="button" class="btn btn-export-sp-admin" onclick=" ExportToExcel2('xlsx')">Export</button>
 <div class="table-user-management">
-   <table class="table">
+   <table class="table" id="requesttable">
       <thead class="table-header-admin-usermanagement">
          <tr>
             <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
@@ -93,7 +80,6 @@
          </tr>
       </thead>
       <tbody class="tbody-user-management">
-
          @foreach (ServiceRequest spr in service)
          {
             double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
@@ -136,19 +122,23 @@
                            }
                         </div>
                      </div>
-                  }
+                   }
+                else
+                {
+                    <span class="text-success">  Service Provider is not assigned yet. </span>
+                }
                </td>
                <td>
                   @spr.TotalCost
                </td>
                <td>
                   @if (spr.Status == 1)
-                  {
+                   {
                      <button type="button" class="active-btn" style="width: 72px;"> Completed</button>
-                  }
+                   }
                   else if (spr.Status == 2)
                   {
-                     <button type="button" class="active-btn" style="background-color: #ff6b6b; "> Cancle </button>
+                     <button type="button" class="active-btn" style="background-color: #ff6b6b; " > Cancle </button>
                   }
                   else if (spr.Status == 4)
                   {
@@ -196,19 +186,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: white;">
                            <li>
-                              <a class="dropdown-item" href="#" style="color: #646464;">Edit &  Reschedule </a>
+                              <a class="dropdown-item" href="#" style="color: #646464;" onclick="editservice(this);"  data-id="@spr.ServiceRequestId">Edit &  Reschedule </a>
                            </li>
                            <li>
-                              <a class="dropdown-item" href="#" style="color: #646464;">Cancle SR by customer</a>
-                           </li>
-                           <li>
-                              <a class="dropdown-item" href="#" style="color: #646464;">Refund</a>
-                           </li>
-                           <li>
-                              <a class="dropdown-item" href="#" style="color: #646464;">Hidtory log </a>
-                           </li>
-                           <li>
-                              <a class="dropdown-item" href="#" style="color: #646464;">Download Invoice </a>
+                              <a class="dropdown-item" href="#" style="color: #646464;"  onclick="cancel(this);"  data-id="@spr.ServiceRequestId">Cancle SR by customer</a>
                            </li>
                         </ul>
                      </div>

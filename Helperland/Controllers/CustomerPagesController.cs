@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Helperland.Models.ViewModel;
+using System.Net.Mail;
+using System.Net;
 //status 1 is when provider complete that request
 //status 2 is when provider/customer cancel that request
 //status 3 is when  pending that request
@@ -22,6 +24,7 @@ namespace Helperland.Controllers
         {
             _helperlandContext = helperlandContext;
         }
+        #region BOOK_NOW
         [HttpGet]
         public IActionResult BOOK_NOW()
         {
@@ -37,6 +40,9 @@ namespace Helperland.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+        #endregion
+
+        #region ValidZip
         [HttpPost]
         public ActionResult ValidZip(Zipcodeviewmodel ForZip)
         {
@@ -48,18 +54,9 @@ namespace Helperland.Controllers
             }
             return Ok(Json("false"));
         }
- 
-        //        int? Id = HttpContext.Session.GetInt32("userID");
-        //            if (Id != null)
-        //            {
-        //                var Zipcode = _helperlandContext.Zipcodes.Where(x => x.ZipcodeValue == user.PostalCode);
-        //                //HttpContext.Session.SetString("ForZip.ZipcodeValue", user.PostalCode);
-        //                if (Zipcode.Count() > 0)
-        //                {
-        //                    return Ok(Json("true"));
-        //                }
-        //}
- 
+        #endregion
+
+        #region Scheduledetails
         [HttpPost]
         public ActionResult Scheduledetails(Scheduledetails scheduledetails)
         {
@@ -72,6 +69,9 @@ namespace Helperland.Controllers
                 return Ok(Json("false"));
             }
         }
+        #endregion
+
+        #region LoadAddress
         [HttpGet]
         public JsonResult LoadAddress()
         {
@@ -94,6 +94,9 @@ namespace Helperland.Controllers
             }
             return new JsonResult(Address);
         }
+        #endregion
+
+        #region NewAddress
         [HttpPost]
         public ActionResult NewAddress(UserAddress newuseradd)
         {
@@ -112,6 +115,9 @@ namespace Helperland.Controllers
             }
             return Ok(Json("False"));
         }
+        #endregion
+
+        #region Completebooking
         [HttpPost]
         public ActionResult Completebooking(Completebooking Finalbooking)
         {
@@ -185,22 +191,48 @@ namespace Helperland.Controllers
             extraservice.ServiceExtraId = extraids;
             _helperlandContext.ServiceRequestExtras.Add(extraservice);
             _helperlandContext.SaveChanges();
+
+            List<User> ProviderZipcodes = (from u in _helperlandContext.Users
+                                           join fb in _helperlandContext.FavoriteAndBlockeds on u.UserId equals fb.UserId into fb1
+                                           from fb in fb1.DefaultIfEmpty()
+                                           where u.ZipCode == add.ZipCode && u.IsApproved == true && u.UserTypeId == 2 && Convert.ToInt32(add.UserId) != fb.TargetUserId
+                                           select u).ToList();
+
+
+            foreach (User sps in ProviderZipcodes)
+            {
+                var subject = "New Service Request Available!!";
+                var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + add.ServiceRequestId + " has requested for a service.";
+                SendEmail(sps.Email, body, subject);
+            }
+
             if (result != null && serviceaddResult != null)
             {
                 return Ok(Json(result.Entity.ServiceRequestId));
             }
             return Ok(Json("False"));
+
         }
+        #endregion
+
+        #region Customer_Dashboard
         [HttpGet]
         public IActionResult Customer_Dashboard()
         {
             return View();
         }
+        #endregion
+         
+
+        #region Customer_Setting
         [HttpGet]
         public IActionResult Customer_Setting()
         {
             return PartialView("_customerSettingPartial");
         }
+        #endregion
+
+        #region Loaddashboard
         [HttpGet]
         public IActionResult Loaddashboard()
         {
@@ -240,7 +272,10 @@ namespace Helperland.Controllers
                 return PartialView("_dashboardPartial");
             }
         }
+        #endregion
+
         //for open service model onclick row
+        #region ServiceModel
         [HttpGet]
         public IActionResult ServiceModel(int id)
         {
@@ -257,7 +292,10 @@ namespace Helperland.Controllers
                 return PartialView("_CustomerServiceModelPartial", details);
             }
         }
+        #endregion
+
         //to open reschedule modal
+        #region RescheduleServiceModel
         [HttpGet]
         public IActionResult RescheduleServiceModel(int id)
         {
@@ -267,7 +305,10 @@ namespace Helperland.Controllers
                 return PartialView("_CustomerReschedulePartial", details);
             }
         }
+        #endregion
+
         //to open cancel modal
+        #region CancelServiceModel
         [HttpGet]
         public IActionResult CancelServiceModel(int id)
         {
@@ -277,7 +318,10 @@ namespace Helperland.Controllers
                 return PartialView("_CustomerCancelPartial", details);
             }
         }
+        #endregion
+
         //for updating date and time
+        #region UpdateRescheduleeModel
         [HttpPost]
         public IActionResult UpdateRescheduleeModel(ServiceRequest updatedate)
         {
@@ -300,7 +344,10 @@ namespace Helperland.Controllers
             }
             return PartialView("_dashboardPartial");
         }
+        #endregion
+
         //for canceling request
+        #region CancelRequestModel
         [HttpPost]
         public IActionResult CancelRequestModel(ServiceRequest cancelreq)
         {
@@ -320,7 +367,10 @@ namespace Helperland.Controllers
             }
             return PartialView("_dashboardPartial");
         }
+        #endregion
+
         //for get history rows
+        #region history
         [HttpGet]
         public IActionResult history()
         {
@@ -359,16 +409,17 @@ namespace Helperland.Controllers
                 return PartialView("_customerHistoryPartial");
             }
         }
+        #endregion
+
         //for get rating model
+        #region RatingProviderModel
         [HttpGet]
         public IActionResult RatingProviderModel(int id)
         {
             var p = _helperlandContext.ServiceRequests.Where(c => c.ServiceRequestId == id).FirstOrDefault();
             var q = _helperlandContext.Users.Where(x => x.UserId == p.ServiceProviderId).FirstOrDefault();
 
-            var rate = _helperlandContext.Ratings.Where(c => c.RatingTo == p.ServiceProviderId).ToList();
-            var currentrate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == id).FirstOrDefault();
-
+            var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == p.ServiceRequestId).ToList();
             decimal temp = 0;
 
             foreach (Rating rating in rate)
@@ -387,9 +438,12 @@ namespace Helperland.Controllers
             ViewBag.rating = temp;
             ViewBag.Name = q.FirstName + " " + q.LastName;
 
-            return View("_RateProviderPartial", currentrate);
+            return View("_RateProviderPartial");
 
         }
+        #endregion
+
+        #region AddRatings
         [HttpPost]
         public IActionResult AddRatings(Rating rating)
         {
@@ -420,6 +474,9 @@ namespace Helperland.Controllers
             }
             return PartialView("_customerHistoryPartial");
         }
+        #endregion
+
+        #region setting
         [HttpGet]
         public IActionResult setting()
         {
@@ -433,6 +490,9 @@ namespace Helperland.Controllers
                 return PartialView("_customerSettingPartial");
             }
         }
+        #endregion
+
+        #region Updateuserdetails
         [HttpPost]
         public IActionResult Updateuserdetails(User user)
         {
@@ -459,6 +519,9 @@ namespace Helperland.Controllers
             }
             return PartialView("_customerSettingPartial");
         }
+        #endregion
+
+        #region EditAddressModel
         [HttpGet]
         public IActionResult EditAddressModel(int id)
         {
@@ -468,6 +531,9 @@ namespace Helperland.Controllers
                 return PartialView("_CustomerEditAddPArtial", editadd);
             }
         }
+        #endregion
+
+        #region DelAddressModel
         [HttpGet]
         public IActionResult DelAddressModel(int id)
         {
@@ -477,16 +543,19 @@ namespace Helperland.Controllers
                 return PartialView("_CustomerDelAddPartial", deladd);
             }
         }
+        #endregion
+
+        #region UpdateAddress
         [HttpPost]
         public IActionResult UpdateAddress(UserAddress newadd)
         {
             UserAddress updatedadd = _helperlandContext.UserAddresses.FirstOrDefault(x => x.AddressId == newadd.AddressId);
-            updatedadd.AddressLine1 = newadd.AddressLine1;
             updatedadd.AddressLine2 = newadd.AddressLine2;
+            updatedadd.AddressLine1 = newadd.AddressLine1;
             updatedadd.PostalCode = newadd.PostalCode;
             updatedadd.State = newadd.State;
             updatedadd.Mobile = newadd.Mobile;
-            updatedadd.IsDefault = true;
+            updatedadd.IsDefault = newadd.IsDefault;
             var result = _helperlandContext.UserAddresses.Update(updatedadd);
             _helperlandContext.SaveChanges();
 
@@ -502,6 +571,9 @@ namespace Helperland.Controllers
             }
             return Ok(Json("False"));
         }
+        #endregion
+
+        #region DeleteAddress(POST)
         [HttpPost]
         public IActionResult DeleteAddress(UserAddress deladd)
         {
@@ -520,8 +592,11 @@ namespace Helperland.Controllers
             }
             return PartialView("_customerSettingPartial");
         }
+        #endregion
+
+        #region ChangePassword
         [HttpPost]
-        public IActionResult ChangePassword(password pass)
+        public IActionResult ChangePassword(User pass)
         {
             var userid = (int)HttpContext.Session.GetInt32("userID");
             if (userid != null)
@@ -534,8 +609,34 @@ namespace Helperland.Controllers
                     _helperlandContext.SaveChanges();
                 }
             }
-            return PartialView("_SPsettingPartial");
+            return PartialView("_customerSettingPartial");
         }
+        #endregion
+
+        private void SendEmail(string email, string body, string subject)
+        {
+            using (MailMessage mm = new MailMessage("krishnaa9121@gmail.com", email))
+            {
+                mm.Subject = subject;
+                mm.Body = body;
+                mm.IsBodyHtml = true;
+
+                using (SmtpClient smtp = new SmtpClient())
+                {
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential("krishnaa9121@gmail.com", "Kri$hn@91");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                    ViewBag.Message = "Email is succcessfully sent to Providers .";
+                }
+            }
+        }
+
+
+      
     }
 }
 

@@ -3,153 +3,134 @@
 *@
 @{
    List<User> service = null;
-   if (ViewBag.services != null)
+   if (ViewBag.data != null)
    {
-      service = ViewBag.services;
+      service = ViewBag.data;
    }
 }
 @model Helperland.Models.User
 
-   <div class="row mt-4">
-      <div class="col-md-8">
-         <span class="User-heading">
-            <strong> User Management </strong>
-         </span>
-      </div>
-      <div class="col-md-4">
-         <button class="add-new-user-btn justify-content-end ">
-            <img src="../images/add.png" alt="" style="padding-right: 7px;">
-            Add New User
-         </button>
-      </div>
+<div class="row mt-4">
+   <div class="col-md-8">
+      <span class="User-heading">
+         <strong> User Management </strong>
+      </span>
    </div>
-   <!--Serch user-->
-
-   <div class="search-bar mt-5 ">
-      <div class="container">
-         <form class="form-inline form1">
-            <div class="form-group ">
-               <select class="form-select form2">
-                  <option>Select Customer Name</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-               </select>
-            </div>
-            <div class="form-group left-margin-apply">
-               <select class="form-select form2">
-                  <option>User Type</option>
-                  <option value="1">Customer</option>
-                  <option value="2">Service Provider</option>
-               </select>
-            </div>
-            <div class="form-group left-margin-apply">
-               <input type="number" class="form-control form2" id="phonenumber"
-                      placeholder="Phone Number">
-            </div>
-            <div class="form-group left-margin-apply">
-               <input type="text" class="form-control form2" id="zipcode"
-                      placeholder="Postal Code ">
-            </div>
-            <div class="form-group left-margin-apply">
-               <input type="text" class="form-control form2" id="email"
-                      placeholder="E-mail   ">
-            </div>
-            <br>
-            <div class="row mt-3">
-               <div class="col">
-                  <div class="form-group">
-                     <input type="date" class="form-control form2" id="date"
-                            placeholder="From date">
-                  </div>
-                  <div class="form-group left-margin-apply ">
-                     <input type="date" class="form-control form2" id="date"
-                            placeholder="To date">
-                  </div>
-                  <button class="user-search-btn"> Search </button>
-                  <button class="user-clear-btn left-margin-apply"> Clear </button>
-               </div>
-
-            </div>
-         </form>
-      </div>
+   <div class="col-md-4">
+      <button class="add-new-user-btn justify-content-end ">
+         <img src="../images/add.png" alt="" style="padding-right: 7px;">
+         Add New User
+      </button>
    </div>
-   <!--Serch user-->
-   <br>
-   <!--table for user managment-->
-   <button type="button" class="btn btn-export-sp-admin" onclick=" ExportToExcel1('xlsx')">Export</button>
+</div>
+<!--Serch user-->
 
-   <div class="table-user-management">
+<div class="search-bar mt-5 ">
+   <div class="container">
+      <form class="form-inline form1" method="post">
+         <div class="form-group ">
+            <input type="text" class="form-control form2" id="name" placeholder="User Name">
+         </div>
+         <div class="form-group left-margin-apply">
+            <select class="form-select form2" id="usertype">
+               <option>Select User Type</option>
+               <option value="1">Customer</option>
+               <option value="2">Service Provider</option>
+            </select>
+         </div>
+         <div class="form-group left-margin-apply">
+            <input type="number" class="form-control form2" id="phonenumber" placeholder="Phone Number">
+         </div>
+         <div class="form-group left-margin-apply">
+            <input type="text" class="form-control form2" id="zipcode" placeholder="Postal Code ">
+         </div>
+         <div class="form-group left-margin-apply">
+            <input type="date" class="form-control form2" id="createdate">
+         </div>
+         <br>
+         <div class="row mt-3">
+            <div class="col">
+               <button class="user-search-btn" onclick="searchservice(this)" type="button"> Search </button>
+               <button class="user-clear-btn left-margin-apply" onclick="clearservice()" type="button"> Clear </button>
+            </div>
+         </div>
+      </form>
+   </div>
+</div>
+<!--Serch user-->
+<br>
+<!--table for user managment-->
+<button type="button" class="btn btn-export-sp-admin" onclick=" ExportToExcel1('xlsx')">Export</button>
 
-      <table class="table" id="usertable">
-         <thead class="table-header-admin-usermanagement">
+<div class="table-user-management">
+
+   <table class="table mt-2" id="usertable">
+      <thead class="table-header-admin-usermanagement">
+         <tr>
+            <th scope="col"> User Name <img src="../images/sort.png" alt=""></th>
+            <th scope="col">User Type <img src="../images/sort.png" alt=""> </th>
+            <th scope="col"> Registration Date <img src="../images/sort.png" alt=""> </th>
+            <th scope="col"> Phone number <img src="../images/sort.png" alt=""> </th>
+            <th scope="col"> Post Code <img src="../images/sort.png" alt=""></th>
+            <th scope="col"> User Status <img src="../images/sort.png" alt=""></th>
+            <th scope="col"> Action <img src="../images/sort.png" alt=""> </th>
+         </tr>
+      </thead>
+      <tbody class="tbody-user-management">
+
+         @foreach (User spr in service)
+         {
             <tr>
-               <th scope="col"> User Name <img src="../images/sort.png" alt=""></th>
-               <th scope="col">User Type </th>
-               <th scope="col"> Role</th>
-               <th scope="col"> Registration Date</th>
-               <th scope="col"> Phone number  </th>
-               <th scope="col"> Post Code <img src="../images/sort.png" alt=""></th>
-               <th scope="col"> User Status <img src="../images/sort.png" alt=""></th>
-               <th scope="col"> Action </th>
+               <td>  @spr.FirstName @spr.LastName </td>
+               @if (spr.UserTypeId == 1)
+               {
+                  <td>Customer </td>
+               }
+               @if (spr.UserTypeId == 2)
+               {
+                  <td>Service Provider </td>
+               }
+               <td>  <img src="~/images/calendar.png" />  @spr.CreatedDate.ToString("dd/MM/yyyy") </td>
+               <td>@spr.Mobile </td>
+               <td>@spr.ZipCode </td>
+               <td>
+                  @if (spr.IsActive == true)
+                  {
+                     <button type="button" class="active-btn-manage">Active</button>
+                  }
+                  else
+                  {
+                     <button type="button" class="inactive-btn-manage">InActive</button>
+                  }
+               </td>
+               <td>
+                  <div class="dropdown">
+                     <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="../images/group-38.png" alt="">
+                     </a>
+                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: white;">
+
+                        @if (spr.IsApproved == false)
+                        {
+                           <li><a class="dropdown-item" onclick="Approveuser(this);" data-id="@spr.UserId" style="color: black;">Approve</a></li>
+                           <li><a class="dropdown-item" onclick="Deleteuser();" data-id="@spr.UserId" style="color: black;">Deactivate</a></li>
+
+                        }
+                        else if (spr.IsActive == false && spr.UserTypeId == 1 && spr.IsApproved == true)
+                        {
+                           <li><a class="dropdown-item" onclick="Activeuser(this);" data-id="@spr.UserId" style="color: black;">Active</a></li>
+                        }
+                        else
+                        {
+                           <li><a class="dropdown-item" onclick="Deleteuser(this);" data-id="@spr.UserId" style="color: black;">Deactivate</a></li>
+                        }
+                     </ul>
+                  </div>
+               </td>
             </tr>
-         </thead>
-         <tbody class="tbody-user-management">
-
-            @foreach (User spr in service)
-            {
-               <tr>
-                  <td>  @spr.FirstName @spr.LastName </td>
-                  @if (spr.UserTypeId == 1)
-                  {
-                     <td>Customer </td>
-                  }
-                  @if (spr.UserTypeId == 2)
-                  {
-                     <td>Service Provider </td>
-                  }
-                  <td> </td>
-                  <td>  <img src="~/images/calendar.png" />  @spr.CreatedDate.ToString("dd/MM/yyyy") </td>
-                  <td>@spr.Mobile </td>
-                  <td>@spr.ZipCode </td>
-                  <td>
-                     @if (spr.IsActive == true)
-                     {
-                        <button type="button" class="active-btn">Active</button>
-                     }
-                     else
-                     {
-                        <button type="button" class="inactive-btn">InActive</button>
-                     }
-                  </td>
-                  <td>
-                     <div class="dropdown">
-                        <a class="btn threedots" href="#" role="button" id="dropdownMenuLink"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                           <img src="../images/group-38.png" alt="">
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: white;">
-
-                           @if (spr.IsApproved == false)
-                           {
-                              <li><a class="dropdown-item" onclick="Approveuser(this);" data-id="@spr.UserId" style="color: black;">Approve</a></li>
-                              <li><a class="dropdown-item" onclick="Deleteuser();" data-id="@spr.UserId" style="color: black;">Deactivate</a></li>
-
-                           }
-                           else if (spr.IsActive == false && spr.UserTypeId == 1 && spr.IsApproved == true)
-                           {
-                              <li><a class="dropdown-item" onclick="Activeuser(this);" data-id="@spr.UserId" style="color: black;">Active</a></li>
-                           }
-                           else
-                           {
-                              <li><a class="dropdown-item" onclick="Deleteuser(this);" data-id="@spr.UserId" style="color: black;">Deactivate</a></li>
-                           }
-                        </ul>
-                     </div>
-                  </td>
-               </tr>
-            }
-         </tbody>
-      </table>
-   </div>
-   <!--table for user managment-->
+         }
+      </tbody>
+   </table>
+</div>
+<!--table for user managment-->

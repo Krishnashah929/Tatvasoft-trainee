@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Helperland.Models.ViewModel;
+using System.Net.Mail;
+using System.Net;
+using MimeKit;
 
 //status 1 is when provider complete that request
 //status 2 is when provider/customer cancel that request
 //status 3 is when  pending that request
 //status 4 is when provider accept that request
-//status 5 is when service date time is gone ane provider doesn't complete the service 
+//status 5 is when service date time is gone ane provider doesn't complete the service.
 
 namespace Helperland.Controllers
 {
@@ -77,6 +80,16 @@ namespace Helperland.Controllers
             accept.ServiceProviderId = proid;
             var result = _helperlandContext.ServiceRequests.Update(accept);
             _helperlandContext.SaveChanges();
+
+            List<User> users = _helperlandContext.Users.Where(x => x.UserTypeId == 2 && x.UserId != proid && x.ZipCode ==  accept.ZipCode ).ToList();
+ 
+            foreach (User sps in users)
+            {
+                var subject = "accept Service Request Available!!";
+                var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + accept.ServiceRequestId + " has already been accepted by other service provider .";
+                SendEmail(sps.Email, body, subject);
+            }
+
             if (result != null)
             {
                 return Ok(Json("true"));
@@ -139,23 +152,34 @@ namespace Helperland.Controllers
             }
             return Ok(Json("false"));
         }
-        [HttpPost]
-        public IActionResult CancelRequest(int id)
+        [HttpGet]
+        public IActionResult CancelServiceModel(int id)
         {
-            int? proid = HttpContext.Session.GetInt32("userID");
-
-            ServiceRequest cancel = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == id).FirstOrDefault();
-            cancel.Status = 3;
-            cancel.ServiceProviderId = proid;
-            var result = _helperlandContext.ServiceRequests.Update(cancel);
-            _helperlandContext.SaveChanges();
-            if (result != null)
+            using (HelperlandContext ObjHelperlandContext = new HelperlandContext())
             {
-                return Ok(Json("true"));
+                var details = ObjHelperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == id).FirstOrDefault();
+                return PartialView("_CancelRequestModelPartial", details);
             }
-            return Ok(Json("false"));
         }
-
+        [HttpPost]
+        public IActionResult CancelRequestModel(ServiceRequest cancelreq)
+        {
+            int? id = HttpContext.Session.GetInt32("userID");
+            if (id != null)
+            {
+                ServiceRequest cancel = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == cancelreq.ServiceRequestId);
+                cancel.Status = 3;
+                cancel.Comments = cancelreq.Comments;
+                var result = _helperlandContext.ServiceRequests.Update(cancel);
+                _helperlandContext.SaveChanges();
+                if (result != null)
+                {
+                    return Ok(Json("true"));
+                }
+                return Ok(Json("false"));
+            }
+            return PartialView("_SPupcomingPartial");
+        }
         //Provider history service
         [HttpGet]
         public IActionResult SpHistory()
@@ -205,13 +229,16 @@ namespace Helperland.Controllers
             {
                 var customername = _helperlandContext.Users.Where(x => x.UserId == users.UserId).FirstOrDefault();
                 users.Name = customername.FirstName + " " + customername.LastName;
+                users.Comments = customername.Comments;
                 var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
                 decimal temp = 0;
+
                 foreach (Rating rating in rate)
                 {
                     if (rating.Ratings != 0)
                     {
                         temp += rating.Ratings;
+                        users.Comments = rating.Comments;
                     }
                 }
                 if (rate.Count() != 0)
@@ -219,7 +246,9 @@ namespace Helperland.Controllers
                     temp /= rate.Count();
                 }
                 users.ratings = temp;
+
             }
+
             ViewBag.services = serviceRequest;
             return PartialView("_SPratingPartial");
         }
@@ -323,7 +352,6 @@ namespace Helperland.Controllers
                 updated.FirstName = user.FirstName;
                 updated.LastName = user.LastName;
                 updated.Mobile = user.Mobile;
-                updated.Email = user.Email;
                 updated.ZipCode = user.PostalCode;
                 updated.Gender = user.Gender;
                 updated.NationalityId = user.NationalityId;
@@ -379,6 +407,29 @@ namespace Helperland.Controllers
                 }
             }
             return PartialView("_SPsettingPartial");
+        }
+
+        //for sending mail after accept the request
+        private void SendEmail(string email, string body, string subject)
+        {
+            using (MailMessage mm = new MailMessage("krishnaa9121@gmail.com", email))
+            {
+                mm.Subject = subject;
+                mm.Body = body;
+                mm.IsBodyHtml = true;
+
+                using (SmtpClient smtp = new SmtpClient())
+                {
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.EnableSsl = true;
+                    NetworkCredential NetworkCred = new NetworkCredential("krishnaa9121@gmail.com", "Kri$hn@91");
+                    smtp.UseDefaultCredentials = true;
+                    smtp.Credentials = NetworkCred;
+                    smtp.Port = 587;
+                    smtp.Send(mm);
+                    ViewBag.Message = "Email is succcessfully sent to Providers .";
+                }
+            }
         }
     }
 }

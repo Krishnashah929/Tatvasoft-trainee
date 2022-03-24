@@ -23,6 +23,25 @@ function myFunction() {
     var x = document.getElementById("privacy-policy-home");
     x.style.display = "none";
 }
- 
 
-//Customer Dashboard js
+function preventBack() { window.history.forward(); }
+setTimeout("preventBack()", 0);
+window.onunload = function () { null };
+
+//function logoutclick() {
+//    debugger;
+//    $.ajax({
+//        url: '/Home/OnLogOut',
+//        type: 'POST',
+//        success: function (result) {
+//            if (result.value == "true") {
+//                preventBack();
+//            }
+//            else {
+//                alert("Invalid");
+//            }
+//        }
+//    });
+//}
+
+ 

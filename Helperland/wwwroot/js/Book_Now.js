@@ -105,7 +105,6 @@ function schedulesubmit() {
             if (result.value == "true") {
                 getaddress();
                 next();
-                /*alert("valid schedule details");*/
             }
         },
         error: function () {

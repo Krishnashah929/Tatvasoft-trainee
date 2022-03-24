@@ -188,13 +188,27 @@ function acceptreq(cm) {
         }
     });
 }
-function cancelreq(cm) {
-    debugger;
+ 
+function cancel(cm) {
     var id = cm.getAttribute("data-id");
     $.ajax({
-        url: '/ProviderPages/CancelRequest',
-        type: 'POST',
+        url: '/ProviderPages/CancelServiceModel',
+        type: 'GET',
         data: { "id": id },
+        success: function (response) {
+            $('#3Model').html(response);
+            $('#CancelModal').modal("show");
+        }
+    });
+}
+function CancelRequest() {
+    var data = {};
+    data.serviceRequestId = document.getElementById("id").value;
+    data.comments = document.getElementById("cancelrequest").value;
+    $.ajax({
+        url: '/ProviderPages/CancelRequestModel',
+        type: 'POST',
+        data: data,
         success: function (result) {
             if (result.value == "true") {
                 loadSPdb();
@@ -205,6 +219,7 @@ function cancelreq(cm) {
         }
     });
 }
+
 function completereq(cm) {
     debugger;
     var id = cm.getAttribute("data-id");
@@ -222,7 +237,6 @@ function completereq(cm) {
         }
     });
 }
-
 function updatespdetails() {
     debugger;
     var data = {};
@@ -255,44 +269,70 @@ function updatespdetails() {
         }
     })
 }
-
-function updatepw() {
-    debugger;
-    var storepassword = $("#storepassword").val();
-    var oldpass = $("#oldpassword").val();
-    var newpass = $("#newpassword").val();
-    var confirmpass = $("#repeatpassword").val();
-    if (storepassword != oldpass) {
-        alert("You have entered wrong current password !");
-    }
-    if (oldpass != "" && newpass != "" && confirmpass != "") {
-        if (newpass == confirmpass) {
-            var model = {
-                Password: oldpass,
-                NewPassword: newpass,
-            }
-            $.ajax({
-                type: 'POST',
-                url: '/ProviderPages/ChangePassword',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: model,
-                success: function (response) {
-                    alert("valid password");
-                },
-                error: function (response) {
-                    alert("Invalid password");
-                },
-            });
-        }
-        else {
-            alert("Password does not match .");
-        }
+//dynamic function
+function fnRemoveValidationOnChange(event) { //event= argument
+    var control = event;
+    console.log(event);
+    //$("#passwordMatch").css('display', 'none');
+    if ($(control).val().length > 0) {
+        $(control).removeClass("hasError");
+        $(control).next("span").removeClass("colourValidation").css("display", "none");
     }
     else {
-        alert("Null values are not accepted ! ");
+        $(control).removeClass("hasError");
+        $(control).next("span").removeClass("colourValidation").css("display", "none");
     }
 }
+function fnPwdValidation() {
+    var isValid = true;
+    var $storepassword = $("#storepassword");
+    var $oldPassword = $("#oldpassword");
+    var $newPassword = $("#newPassword");
+    var $confirmPassword = $("#repeatpassword");
+    var $oldPwdValidation = $("#oldPwdValidation"); //object declaration
+    var $newPwdValidation = $("#newPwdValidation"); //object declaration
+    var $confirmPwdValidation = $("#confirmPwdValidation"); //object declaration
 
+    if (($oldPassword.val() == undefined || $oldPassword.val() == null || $oldPassword.val() == "") && ($newPassword.val() == undefined || $newPassword.val() == null || $newPassword.val() == "") && ($confirmPassword.val() == undefined || $confirmPassword.val() == null || $confirmPassword.val() == "")) {
+        $oldPassword.addClass("hasError");
+        $oldPwdValidation.text("Please enter this field.").css("display", "block").addClass("colourValidation");
+        $newPassword.addClass("hasError");
+        $newPwdValidation.text("Please enter this field.").css("display", "block").addClass("colourValidation");
+        $confirmPassword.addClass("hasError");
+        $confirmPwdValidation.text("Please enter this field.").css("display", "block").addClass("colourValidation");
+        //$('#generalValidationError').addClass("shown");
+        isValid = false;
+    }
+    else if ($oldPassword.val() != $storepassword.val()) {
+        $oldPassword.addClass("hasError");
+        $oldPwdValidation.text("You have entered wrong current password.").css("display", "block").addClass("colourValidation");
+    }
+    else if ($newPassword.val() != $confirmPassword.val()) {
+        $confirmPassword.addClass("hasError");
+        $confirmPwdValidation.text("Password does not match.").css("display", "block").addClass("colourValidation");
+    }
+    return isValid;
+}
+function updatepw() {
+    debugger;
+    var isValid = fnPwdValidation();
+    var data = {};
+    var storepassword = $("#storepassword").val();
+    data.password = $("#oldpassword").val();
+    data.newPassword = $("#newPassword").val();
+    data.confirmPassword = $("#repeatpassword").val();
+    if (isValid) {
+        $.ajax({
+            type: 'POST',
+            url: '/ProviderPages/ChangePassword',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: data,
+            success: function (response) {
+                alert("valid password");
+            },
+        });
+    }
+}
 function blocksp(sp) {
     debugger;
     var id = sp.getAttribute("data-id");

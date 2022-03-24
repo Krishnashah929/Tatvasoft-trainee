@@ -5,14 +5,13 @@
 @{
    int i = 0;
 }
-<div class="tab-pane active" id="v-pills-Block" role="tabpanel"
-     aria-labelledby="v-pills-Block-tab">
+<div class="tab-pane active" id="v-pills-Block" role="tabpanel" aria-labelledby="v-pills-Block-tab">
    @foreach (User user in Model)
    {
      <div class="row">
         <div class="col-md-12">
            <div class="card text-center mt-3" style="width: 25%;">
-              <img src="../images/cap.png" class="card-img-top mt-5">
+              <img src="../images/cap.png" class="card-img-top-block mt-5">
               <div class="card-body">
                  <h5 class="card-title text-center"> @user.FirstName @user.LastName </h5>
                  @if (ViewBag.blockedornot[i] == "block")

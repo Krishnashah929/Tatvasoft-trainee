@@ -75,22 +75,20 @@
                            <a class="nav-link" asp-area="" asp-controller="#" asp-action="#">Notifications</a>
                         </li>
                      }
-         else
-         { <!-- Modal popup for login -->
+                  else
+                  {   
+                        <!-- Modal popup for login -->
                         <li class="nav-item">
                            <a class="nav-link " href="#" data-bs-toggle="modal" data-bs-target="#myModal">Login </a>
-                           <!-- The Modal -->
                            <div class="modal model-for-completion-order" id="myModal">
                               <div class="modal-dialog modal-dialog-centered">
                                  <div class="modal-content">
-                                    <!-- Modal Header -->
                                     <div class="modal-header">
                                        <h3 class="modal-title" id="popup-loginLabel">
                                           <b>Login to your account</b>
                                        </h3>
                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
-                                    <!-- Modal body -->
                                     <div class="modal-body login-popup">
                                        <div class="text-center text-danger mb-3">
                                           <b>  @ViewBag.Message</b>
@@ -106,7 +104,6 @@
                                              <input type="password" class="form-control" placeholder="Password" name="Password"
                                                     style="border-right: none;" required>
                                              <span class="input-group-text"> <i class="fas fa-lock"></i></span>
-
                                           </div>
                                           <input class="form-check-input ml-1" type="checkbox" id="myCheck" name="remember">
                                           <label class="form-check-label ml-4" for="myCheck">
@@ -133,24 +130,24 @@
                               </div>
                            </div>
                            @if (TempData["FailMsg"] != null)
-                           {
-               <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            {
+                               <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
                               <script type="text/javascript">
                                  $(document).ready(function () {
                                     alert(" Email not found!");
                                     alert(" Check your email.");
                                  });
                               </script>
-}
+                            }
                            @if (TempData["SuccessMsg"] != null)
                            {
-               <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                           <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
                               <script type="text/javascript">
                                  $(document).ready(function () {
                                     alert("Reset password link has been sent to your email id");
                                  });
                               </script>
-}
+                             }
 
                            <!--Second model for forget password-->
                            <div class="modal fade" id="Forgotpasswordmodal" aria-hidden="true"
@@ -187,6 +184,7 @@
                               </div>
                            </div>
                            <!--Second model for forget password-->
+                            
                         </li>
                                     <li class="nav-item">
                                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="service_provider">Become a Helper</a>
@@ -226,31 +224,53 @@
                         </li>
                         @if (Context.Session.GetString("Userlogeddin") != null)
                         {
-               <li class="vr" style="color: white; "> </li>
-                           <li class="nav-item dropdown notification-icon" style="margin-left: 20px;">
+                         <li class="vr" style="color: white; "> </li>
+                         <li class="nav-item dropdown notification-icon" style="margin-left: 20px;">
                               <a class=" nav-notification" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                  aria-expanded="false">
                                  <img src="../images/icon-notification.png" alt="notification">
                               </a>
                            </li>
-                                       <li class="vr" style="color: white;"> </li>
-                                                   <li class="nav-item dropdown" style="margin-left: 20px;">
-                                                      <a class=" " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                         <img src="../images/user.png" alt="Flag"> <i class="bi bi-chevron-down"></i>
-                                                      </a>
-                                                      <ul class="dropdown-menu dropdown-menu-end dropdown-service-history" aria-labelledby="navbarDropdown">
-                                                         <li class="dropdown-service-history-header"> Welcome, ,<br /> <b>@Context.Session.GetString("Name")</b> </li>
-                                                         <hr>
-                                                         <li> <a asp-controller="CustomerPages" asp-action="Customer_Dashboard" style="color: #4f4f4f;">My Dashboard</a></li>
-                                                         <li> <a asp-controller="CustomerPages" asp-action="Customer_Setting" style="color: #4f4f4f;"> My settings </a>  </li>
-                                                         <li> <a asp-controller="Home" asp-action="LogOut" style="color: #4f4f4f;">Logout</a> </li>
-                                                      </ul>
-                                                   </li> }
-                                                            else
-                                                            {
-                                                   <li class="nav-item"><a class="nav-link-login btn btn-primary text-white navbar-login-btn btn-active" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Login</a> </li>
-                                                               <li class="nav-item"><a class="nav-link btn btn-primary text-white become-helper-nav-btn btn-active" asp-area="" asp-controller="Home" asp-action="service_provider">Become a Helper</a>  </li>
-}
+                           <li class="vr" style="color: white;"> </li>
+                           <li class="nav-item dropdown" style="margin-left: 20px;">
+                           <a class=" " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                               <img src="../images/user.png" alt="Flag"> <i class="bi bi-chevron-down"></i>
+                           </a>
+                           <ul class="dropdown-menu dropdown-menu-end dropdown-service-history" aria-labelledby="navbarDropdown">
+                              <li class="dropdown-service-history-header"> Welcome, ,<br /> <b>@Context.Session.GetString("Name")</b> </li>
+                              <hr>
+                              <li> <a asp-controller="CustomerPages" asp-action="Customer_Dashboard" style="color: #4f4f4f;">My Dashboard</a></li>
+                              <li> <a asp-controller="CustomerPages" asp-action="Customer_Setting" style="color: #4f4f4f;"> My settings </a>  </li>
+                              <li> <a asp-controller="Home" asp-action="LogOut" onclick="preventBack(this);" style="color: #4f4f4f;">Logout</a> </li>
+
+                              <!--third model for logout -->
+                              <div class="modal fade" id="Logoutmodel" aria-hidden="true"
+                                   aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
+                                 <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                       </div>
+                                       <div class="modal-body">
+                                          <form method="post" asp-controller="Home">
+                                             <p> You have successfully logged out.</p>
+                                             <br>
+                                             <button type="submit" class="btn  login-btn" asp-action="Index" asp-controller="Home"> OK </button>
+                                             <br><br>
+                                          </form>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!--third model for logout -->
+                           </ul>                          
+                            </li> 
+                            }                        
+                            else
+                            {                                                   
+                            <li class="nav-item"><a class="nav-link-login btn btn-primary text-white navbar-login-btn btn-active" href="#" data-bs-toggle="modal" data-bs-target="#myModal">Login</a> </li>
+                            <li class="nav-item"><a class="nav-link btn btn-primary text-white become-helper-nav-btn btn-active" asp-area="" asp-controller="Home" asp-action="service_provider">Become a Helper</a>  </li>
+                            }                                               
                      </ul>
                   </div>
                </nav>

@@ -21,17 +21,21 @@ namespace Helperland.Controllers
             _helperlandContext = helperlandContext;
         }
 
+        #region Index(GET)
         [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+        #endregion
+
+        #region Index(POST)
         [HttpPost]
         public IActionResult Index(User user)
         {
             using (HelperlandContext ObjHelperlandContext = new HelperlandContext())
             {
-                 
+
                 var p = ObjHelperlandContext.Users.Where(c => c.Email == user.Email && c.Password == user.Password).ToList();
                 ModelState.Clear();
                 if (p.Count == 1)
@@ -49,7 +53,7 @@ namespace Helperland.Controllers
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("Customer_Dashboard", "CustomerPages");
                     }
-                     else if (p.FirstOrDefault().UserTypeId == 2)
+                    else if (p.FirstOrDefault().UserTypeId == 2)
                     {
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("Provider_Dashboard", "ProviderPages");
@@ -59,12 +63,12 @@ namespace Helperland.Controllers
                     {
                         HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
                         return RedirectToAction("Admin_Index", "AdminPages");
- 
+
                     }
                 }
-                else 
+                else
                 {
-                    ViewBag.Message = "Your previous details are Invalid. " +  "Please enter valid details.";
+                    ViewBag.Message = "Your previous details are Invalid. " + "Please enter valid details.";
                 }
                 //forgot password code
                 String ResetCode = Guid.NewGuid().ToString();
@@ -104,7 +108,9 @@ namespace Helperland.Controllers
             TempData["FailMsg"] = "Your Success Message";
             return View();
         }
+        #endregion
 
+        #region SendEmail
         private void SendEmail(string emailaddress, string body, string subject)
         {
             using (MailMessage mm = new MailMessage("krishnaa9121@gmail.com", emailaddress))
@@ -126,7 +132,9 @@ namespace Helperland.Controllers
                 smtp.Send(mm);
             }
         }
+        #endregion
 
+        #region ForgotPassword
         public IActionResult ForgotPassword(String id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -149,6 +157,9 @@ namespace Helperland.Controllers
                 }
             }
         }
+        #endregion
+
+        #region ForgotPassword(POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ForgotPassword(ForgotPassword model)
@@ -178,16 +189,21 @@ namespace Helperland.Controllers
             ViewBag.Message1 = message;
             return View(model);
         }
-    
+        #endregion
+
+        #region CREATE_ACCOUNT(GET)
         [HttpGet]
         public IActionResult CREATE_ACCOUNT()
         {
             return View();
         }
+        #endregion
+
+        #region Create_Account(POST)
         [HttpPost]
         public IActionResult Create_Account(User signup)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 if (_helperlandContext.Users.Where(s => s.Email == signup.Email).Count() == 0 && _helperlandContext.Users.Where(s => s.Mobile == signup.Mobile).Count() == 0)
                 {
@@ -212,12 +228,17 @@ namespace Helperland.Controllers
             }
             return View();
         }
-    
+        #endregion
+
+        #region service_provider(GET)
         [HttpGet]
         public IActionResult service_provider()
         {
             return View();
         }
+        #endregion
+
+        #region service_provider(POST)
         [HttpPost]
         public IActionResult service_provider(User register)
         {
@@ -246,14 +267,25 @@ namespace Helperland.Controllers
             }
             return View("service_provider");
         }
-       
+        #endregion
+
+        #region LogOut
         public IActionResult LogOut()
         {
             HttpContext.Session.Clear();
             TempData["LogOutMsg"] = "Logged out";
             return RedirectToAction("Index", "Home");
-             
         }
+        #endregion
+
+        //[HttpPost]
+        //#region LogOut
+        //public IActionResult OnLogOut()
+        //{
+        //    HttpContext.Session.Clear();
+        //    return PartialView("Index","Home");
+        //}
+        //#endregion
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

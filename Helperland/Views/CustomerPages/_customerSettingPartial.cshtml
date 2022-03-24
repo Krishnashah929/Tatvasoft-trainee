@@ -1,8 +1,7 @@
 ﻿@*
    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@using Helperland.Models
-@model Helperland.Models.User
+@model Helperland.Models.User 
 @{
     List<UserAddress> Address = null;
     if (ViewBag.add != null)
@@ -10,9 +9,7 @@
        Address = ViewBag.add;
     }
     var userdetails = ViewBag.details;
-
 }
-
 <!--Setting panel tabs-->
 <section class="container-fluid mt-3 tab-pane  active" id="v-pills-setting" role="tabpanel"
          aria-labelledby="v-pills-setting-tab">
@@ -85,7 +82,7 @@
                   <label class="control-label normal">Date of Birth</label>
                   <div class="row">
                      <div class="col-md-4">
-                        <select class="form-control" id="birthdate">
+                        <select class="form-control" id="birthdate" >
                            <option value="">Day</option>
                            <option value="1">01</option>
                            <option value="2">02</option>
@@ -273,9 +270,8 @@
             <table class="table address-table-setting">
                <thead class="table-light address-table-head-setting">
                   <tr>
-                     <th scope="col" class="col-md-3 address-table-head1-setting"> Billing address </th>
-                     <th scope="col" class="col-md-6 address-table-head2-setting"> addresses </th>
-                     <th scope="col" class="col-md-3 address-table-head3-setting"> action </th>
+                     <th scope="col" class="col-md-6 address-table-head2-setting"> Addresses </th>
+                     <th scope="col" class="col-md-3 address-table-head3-setting"> Action </th>
                   </tr>
                </thead>
                <tbody>
@@ -283,12 +279,8 @@
                   {
                   <tr>
                      <td>
-                        <input class="with-gap" name="group1" type="radio"
-                               id="radio-address" />
-                     </td>
-                     <td>
                         <span>
-                           <b>Address:</b>@dbs.AddressLine2 , @dbs.AddressLine1 
+                           <b>Address:</b> @dbs.AddressLine1 , @dbs.AddressLine2
                            <br>
                            <b>Telephone number:</b> @dbs.Mobile
                         </span>
@@ -300,8 +292,6 @@
                         <a href="#" data-bs-toggle="modal"onclick="deladd(this);" data-bs-target="#myModaldeleteaddress" data-id="@dbs.AddressId">
                            <i class="far fa-trash-alt delete-icon-setting"></i>
                         </a>
-                       
-
                      </td>
                   </tr>
                   }
@@ -314,9 +304,6 @@
                           data-bs-toggle="modal" data-bs-target="#myModalforaddress">
                      Add new address
                   </button>
-                  <!-- The Modal address -->
-                 
-                  <!-- The Modal address -->
                </div>
             </div>
          </div>
@@ -330,13 +317,15 @@
                <div class="row mt-3">
                   <div class="col-md-4">
                      <label for="oldpassword" class="form-label">Old password</label>
-                     <input type="password" class="form-control" id="oldpassword" placeholder="Current password">
+                     <input type="password" class="form-control" id="oldpassword" placeholder="Current password" onblur="fnRemoveValidationOnChange(this);">
+                     <span style="display:none;" id="oldPwdValidation" class="">   </span>
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-md-4">
                      <label for="newpassword" class="form-label">New password </label>
-                     <input type="password" class="form-control" id="newpassword" placeholder=" password">
+                     <input type="password" class="form-control" id="newPassword" placeholder="New Password" onblur="fnRemoveValidationOnChange(this);">
+                     <span style="display:none;" id="newPwdValidation" class="">  </span>
                   </div>
                </div>
                <div class="row mt-3">
@@ -344,7 +333,8 @@
                      <label for="repeatpassword" class="form-label">
                         Repeat password
                      </label>
-                     <input type="password" class="form-control" id="repeatpassword" placeholder="Repeat password">
+                     <input type="password" class="form-control" id="repeatpassword" placeholder="Repeat password" onblur="fnRemoveValidationOnChange(this);">
+                     <span style="display:none;" id="confirmPwdValidation"> </span>
                   </div>
                </div>
                <div class="row mt-4">
@@ -356,7 +346,6 @@
                </div>
             </form>
          </div>
-
 
          <!--newsletter tab-->
          <div class="tab-pane text" id="for-newsletter" role="tabpanel"
@@ -377,7 +366,15 @@
                </div>
             </div>
          </div>
-         <!--newsletter tab-->
+
       </div>
    </div>
 </section>
+
+@*<script type="text/javascript">
+   debugger;
+   var model = '@ViewBag.details'; 
+   console.log(model);
+   $(document).ready(function () {
+   });
+</script>*@

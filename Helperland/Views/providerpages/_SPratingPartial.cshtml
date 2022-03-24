@@ -8,80 +8,85 @@
       service = ViewBag.services;
    }
 }
-<<<<<<< HEAD
+
 @*@model Helperland.Models.ServiceRequest*@
 @model Helperland.Models.Rating
- 
+
 <div class="tab-pane active" id="v-pills-rating" role="tabpanel" aria-labelledby="v-pills-rating-tab">
- 
-      @foreach (ServiceRequest spr in service)
-      {
-         double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
-         <div class="row provider-rating  mt-3">
-            <div class="col-md-3 mb-3 mt-3">
-               @spr.ServiceRequestId
-               <br>
-               @spr.Name
-            </div>
-            <div class="col-md-3 mb-3 mt-3">
-               <img src="../images/calendar2.png" alt="">
-               @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
-               <img src="../images/layer-712.png" alt="">
-               @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
-            </div>
-            <div class="col-md-6 text-center mb-3 mt-3">
-               Rating
-               <br>
-               <span>
-                  @{
-                     int totalstars = Convert.ToInt32(@spr.ratings);
-                     int stars = 5 - totalstars;
-                     for (int i = 1; i <= totalstars; i++)
-                     {
-                        <img src="../images/yellow-small-star.png" alt="">
-                     }
-                     for (int j = 1; j <= stars; j++)
-                     {
 
-                        <img src="../images/star2.png" alt="">
-                     }
-                     @spr.ratings}
-                     <br />
-                     @if (spr.ratings > 4 && spr.ratings <=5 ) 
-                      {
-                        <span> Awesome </span>
-                     }
-                     else if (spr.ratings > 3 && spr.ratings <= 4)
-                     {
-                        <span> Pretty good </span>
-                     }  
-                     else if (spr.ratings > 2 && spr.ratings <= 3)
-                     {
-                        <span>  Good </span>
-                     }
-                     else if (spr.ratings > 1 && spr.ratings <= 2)
-                     {
-                        <span> Kinda bad </span>
-                     }
-                     else if (spr.ratings == 1 )
-                     {
-                        <span> Sucks big time </span>
-                     }
-                     else
-                     {
-                        <span> Not rated yet !</span>
-                     }
-
-               </span>
-            </div>
-            <hr class="hr-rating">
-            <div class="col-md-12 mb-3">
-               Comments
-               <br />
-               <b> @spr.Comments </b>
-            </div>
-
+   @foreach (ServiceRequest spr in service)
+   {
+      double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+      <div class="row provider-rating  mt-3">
+         <div class="col-md-3 mb-3 mt-3">
+            @spr.ServiceRequestId
+            <br>
+            @spr.Name
          </div>
-      }
-      
+         <div class="col-md-3 mb-3 mt-3">
+            <img src="../images/calendar2.png" alt="">
+            @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
+            <img src="../images/layer-712.png" alt="">
+            @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+         </div>
+         <div class="col-md-6 text-center mb-3 mt-3">
+            Rating
+            <br>
+            <span>
+               @{
+                  int totalstars = Convert.ToInt32(@spr.ratings);
+                  int stars = 5 - totalstars;
+                  for (int i = 1; i <= totalstars; i++)
+                  {
+                     <img src="../images/yellow-small-star.png" alt="">
+                  }
+                  for (int j = 1; j <= stars; j++)
+                  {
+
+                     <img src="../images/star2.png" alt="">
+                  }
+                  @spr.ratings
+                   }
+               <br />
+               @if (spr.ratings > 4 && spr.ratings <= 5)
+               {
+                  <span> Awesome </span>
+               }
+               else if (spr.ratings > 3 && spr.ratings <= 4)
+               {
+                  <span> Pretty good </span>
+               }
+               else if (spr.ratings > 2 && spr.ratings <= 3)
+               {
+                  <span>  Good </span>
+               }
+               else if (spr.ratings > 1 && spr.ratings <= 2)
+               {
+                  <span> Kinda bad </span>
+               }
+               else if (spr.ratings == 1)
+               {
+                  <span> Sucks big time </span>
+               }
+               else
+               {
+                  <span> Not rated yet !</span>
+               }
+            </span>
+         </div>
+         <hr class="hr-rating">
+         <div class="col-md-12 mb-3">
+            @if (spr.Comments != null)
+            {
+               <b> @spr.Comments </b>
+            }
+            else
+            {
+               <span> Comments </span>
+            }
+         </div>
+
+      </div>
+   }
+
 </div>

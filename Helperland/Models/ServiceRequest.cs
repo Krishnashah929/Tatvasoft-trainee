@@ -56,6 +56,9 @@ namespace Helperland.Models
         public bool Extra4 { get; set; }
         [NotMapped]
         public bool Extra5 { get; set; }
+
+        [NotMapped]
+        public int AddressId { get; set; }
         [NotMapped]
         public DateTime ServiceDate { get; set; }
         [NotMapped]
@@ -83,8 +86,6 @@ namespace Helperland.Models
         [NotMapped]
         public decimal? ratings { get; set; }
       
-
-
         [NotMapped]
         public int UserTypeId { get; set; }
 

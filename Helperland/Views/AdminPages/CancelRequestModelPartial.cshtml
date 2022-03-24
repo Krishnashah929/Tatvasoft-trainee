@@ -1,0 +1,42 @@
+﻿@*
+   For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@*
+   For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Helperland.Models
+@model Helperland.Models.ServiceRequest
+<div class="modal model-for-completion-order" id="CancelModal">
+   <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content cancle-model">
+         <div class="modal-header">
+            <p class="modal-title cancle-booking-title"
+               id="popup-loginLabel">
+               <b>
+                  Cancle service request
+               </b>
+            </p>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+         </div>
+         <div class="modal-body book-with-cost-popup">
+            <div class="row">
+               <div class="col-auto">
+                  <p class="book-with-cost-p1-popup">
+                     Why you want to cancle the service request ?
+                  </p>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-auto">
+                  <textarea class="form-control"  id="Comments" cols="100" ></textarea>
+               </div>
+               <input type="hidden" id="id" class="form-control" value="@Model.ServiceRequestId" />
+            </div>
+            <br>
+            <button type="button" class="btn Cancle-now-btn" data-bs-dismiss="modal" onclick="CancelRequest()">
+               Cancle Now
+            </button>
+         </div>
+      </div>
+   </div>
+</div>

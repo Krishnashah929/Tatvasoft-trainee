@@ -98,9 +98,16 @@
                      }
                   </td>
                   <td>
-                     <button type="button" class="btn btn-rate-service-history" onclick="rating(this)" data-bs-toggle="modal" data-bs-target="#RatingModel " data-id="@dbs.ServiceRequestId">
-                        Rate SP
-                     </button>
+                     @if (dbs.Status == 2)
+                     {
+
+                     }
+                     else
+                     {
+                        <button type="button" class="btn btn-rate-service-history" onclick="rating(this)" data-bs-toggle="modal" data-bs-target="#RatingModel " data-id="@dbs.ServiceRequestId">
+                           Rate SP
+                        </button>
+                     }
                   </td>
                </tr>
             }

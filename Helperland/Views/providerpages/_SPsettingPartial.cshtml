@@ -35,13 +35,21 @@
       </ul>
       <!-- Tab panes -->
       <div class="tab-content px-0 mt-3">
-
          <!--details tab-->
          <div class="tab-pane active text" id="for-details" role="tabpanel"
               aria-labelledby="for-details-tab">
             <div class="row-heading1 row">
                <span style="font-size: 20px; ">
-                  <strong>Account Status :</strong> <span class="text-success"> Active </span>
+                  <strong>Account Status :</strong>
+
+                  @if (userdetails.IsApproved == true)
+                  {
+                     <span class="text-success"> Active </span>
+                  }
+                  else
+                  {
+                     <span class="text-danger"> InActive </span>
+                  }
                </span>
             </div>
             <div class="row-heading2 row mt-4">
@@ -313,24 +321,24 @@
                   <span style="font-size: 18px; "> <strong> My Address </strong> </span>
                   <hr class="mt-2">
                </div>
-                  <div class="col-md-4">
-                     <label for="Street" class="form-label">Street</label>
-                     <input type="text" asp-for="AddressLine2" class="form-control" id="Street" value="@Address.AddressLine2">
+               <div class="col-md-4">
+                  <label for="Street" class="form-label">Street</label>
+                  <input type="text" asp-for="AddressLine2" class="form-control" id="Street" value="@Address.AddressLine2">
 
-                  </div>
-                  <div class="col-md-4">
-                     <label for="Housenumber" class="form-label">House number</label>
-                     <input type="number" asp-for="AddressLine1" class="form-control" id="Housenumber" value="@Address.AddressLine1">
-                  </div>
-                  <div class="col-md-4">
-                     <label for="postalcode" class="form-label ">Postal code</label>
-                     <input type="number" asp-for="PostalCode" class="form-control" id="postalcode" value="@Address.PostalCode">
-                  </div>
-                  <div class="col-md-4">
-                     <label for="city" class="form-label">Location</label>
-                     <input type="text" asp-for="City" class="form-control" value="@Address.City" id="city">
-                  </div>
- 
+               </div>
+               <div class="col-md-4">
+                  <label for="Housenumber" class="form-label">House number</label>
+                  <input type="number" asp-for="AddressLine1" class="form-control" id="Housenumber" value="@Address.AddressLine1">
+               </div>
+               <div class="col-md-4">
+                  <label for="postalcode" class="form-label ">Postal code</label>
+                  <input type="number" asp-for="PostalCode" class="form-control" id="postalcode" value="@Address.PostalCode">
+               </div>
+               <div class="col-md-4">
+                  <label for="city" class="form-label">Location</label>
+                  <input type="text" asp-for="City" class="form-control" value="@Address.City" id="city">
+               </div>
+
                <div class="row mt-4">
                   <div class="col-md-3">
                      <button type="submit" class="btn save-detail-button">
@@ -343,32 +351,35 @@
          <!--password tab-->
          <div class="tab-pane text" id="for-change-password" role="tabpanel"
               aria-labelledby="for-change-password-tab">
-            <form class="row g-4 mt-1 details-form-setting" id="change-password ">
+            <form class="row g-4 mt-1 details-form-setting" method="post">
                <input type="hidden" class="form-control" value="@userdetails.Password" name="Password" id="storepassword" style="border-right: none;" required>
+
                <div class="row mt-3">
                   <div class="col-md-4">
                      <label for="oldpassword" class="form-label">Old password</label>
-                     <input type="password" class="form-control" id="oldpassword" placeholder="Current Password">
-
+                     <input type="password" class="form-control" id="oldpassword" placeholder="Current password" onblur="fnRemoveValidationOnChange(this);">
+                     <span style="display:none;" id="oldPwdValidation" class="">   </span>
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-md-4">
                      <label for="newpassword" class="form-label">New password </label>
-                     <input type="password" class="form-control" id="newpassword" placeholder="New Password">
-                     <span asp-validation-for="NewPassword" class="text-danger"> </span>
+                     <input type="password" class="form-control" id="newPassword" placeholder="New Password" onblur="fnRemoveValidationOnChange(this);">
+                     <span style="display:none;" id="newPwdValidation" class="">  </span>
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-md-4">
-                     <label for="repeatpassword" class="form-label"> Repeat password  </label>
-                     <input type="password" class="form-control" id="repeatpassword" placeholder="Confirm Password">
-                     <span asp-validation-for="Password" class="text-danger"> </span>
+                     <label for="repeatpassword" class="form-label">
+                        Repeat password
+                     </label>
+                     <input type="password" class="form-control" id="repeatpassword" placeholder="Repeat password" onblur="fnRemoveValidationOnChange(this);">
+                     <span style="display:none;" id="confirmPwdValidation"> </span>
                   </div>
                </div>
                <div class="row mt-4">
                   <div class="col-md-3">
-                     <button type="submit" class="btn save-detail-button" onclick="updatepw(this)">
+                     <button type="button" class="btn save-detail-button" onclick="updatepw()">
                         Save on computer
                      </button>
                   </div>

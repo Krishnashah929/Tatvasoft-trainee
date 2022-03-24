@@ -19,20 +19,24 @@ namespace Helperland.Controllers
         {
             _helperlandContext = helperlandContext;
         }
-  
+
+        #region FAQ
         public IActionResult FAQ()
         {
             return View();
         }
+        #endregion
 
+        #region CONTACT(GET)
         [HttpGet]
         public IActionResult CONTACT()
         {
             return View();
         }
+        #endregion
 
-
-        private void SendEmail( string body, string subject )
+        #region SendEmail
+        private void SendEmail(string body, string subject)
         {
             using (MailMessage mm = new MailMessage("krishnaa9121@gmail.com", "kdshah929@gmail.com"))
             {
@@ -53,9 +57,11 @@ namespace Helperland.Controllers
                 }
             }
         }
+        #endregion
 
+        #region CONTACT(POST)
         [HttpPost]
-        public IActionResult CONTACT(ContactU contactU,String Lastname)
+        public IActionResult CONTACT(ContactU contactU, String Lastname)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +69,7 @@ namespace Helperland.Controllers
                 {
                     string lastname = Convert.ToString(Lastname);
                     contactU.Name = (contactU.Name + " " + lastname);
-                    contactU.Message = ("This mail is sent by " + contactU.Name  + " . <br/> Email:  " + contactU.Email + "<br/> Phone number:  " + contactU.PhoneNumber + "<br/> The main message of the mail is : " + contactU.Message);
+                    contactU.Message = ("This mail is sent by " + contactU.Name + " . <br/> Email:  " + contactU.Email + "<br/> Phone number:  " + contactU.PhoneNumber + "<br/> The main message of the mail is : " + contactU.Message);
                     contactU.CreatedOn = DateTime.Now;
                     objHelperlandContext.ContactUs.Add(contactU);
                     objHelperlandContext.SaveChanges();
@@ -75,14 +81,21 @@ namespace Helperland.Controllers
             }
             return View("CONTACT");
         }
+        #endregion
+
+        #region ABOUT
         public IActionResult ABOUT()
         {
             return View();
         }
+        #endregion
+
+        #region PRICES
         public IActionResult PRICES()
         {
             return View();
         }
-    
+        #endregion
+
     }
 }

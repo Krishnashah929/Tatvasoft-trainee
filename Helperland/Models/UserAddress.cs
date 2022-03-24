@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -19,6 +20,13 @@ namespace Helperland.Models
         public string Mobile { get; set; }
         public string Email { get; set; }
 
+
+        [NotMapped]
+        public string Day { get; set; }
+        [NotMapped]
+        public string Month { get; set; }
+        [NotMapped]
+        public string Year { get; set; }
         public virtual User User { get; set; }
  
     }

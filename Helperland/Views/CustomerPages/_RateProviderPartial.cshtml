@@ -2,7 +2,7 @@
    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
  
-@model Helperland.Models.Rating;
+@model Helperland.Models.Rating
 
 
 <div class="modal model-for-completion-order" id="RatingModel">
@@ -127,7 +127,7 @@
                </div>
                <div class="row">
                   <div class="col-auto">
-                     <textarea class="form-control" id="Comments" asp-for="Comments" cols="100"></textarea>
+                     <textarea type="text" class="form-control" asp-for="Comments" cols="48" rows="2" ></textarea>
                   </div>
                </div>
                <br>
