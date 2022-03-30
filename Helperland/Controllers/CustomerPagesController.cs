@@ -46,7 +46,7 @@ namespace Helperland.Controllers
         [HttpPost]
         public ActionResult ValidZip(Zipcodeviewmodel ForZip)
         {
-            HttpContext.Session.SetString("ForZip.ZipcodeValue", ForZip.ZipcodeValue);
+            HttpContext.Session.SetString("Zipcode", ForZip.ZipcodeValue);
             var Zipcode = _helperlandContext.Users.Where(z => z.ZipCode == ForZip.ZipcodeValue && z.UserTypeId == 2);
             if (Zipcode.Count() > 0)
             {
@@ -77,8 +77,10 @@ namespace Helperland.Controllers
         {
             List<UserAddress> Address = new List<UserAddress>();
             int? Id = HttpContext.Session.GetInt32("userID");
+            var zipcode = HttpContext.Session.GetString("Zipcode");
 
-            var result = _helperlandContext.UserAddresses.Where(x => x.UserId == Id && x.IsDeleted == false).ToList();
+            var result = _helperlandContext.UserAddresses.Where(x => x.UserId == Id && x.IsDeleted == false && x.PostalCode == zipcode).ToList();
+
             foreach (var add in result)
             {
                 UserAddress useraddress = new UserAddress();
@@ -101,7 +103,7 @@ namespace Helperland.Controllers
         public ActionResult NewAddress(UserAddress newuseradd)
         {
             int? Id = HttpContext.Session.GetInt32("userID");
-
+          
             newuseradd.UserId = (int)Id;
             newuseradd.IsDefault = false;
             newuseradd.IsDeleted = false;
@@ -202,7 +204,8 @@ namespace Helperland.Controllers
             foreach (User sps in ProviderZipcodes)
             {
                 var subject = "New Service Request Available!!";
-                var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + add.ServiceRequestId + " has requested for a service.";
+                var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + add.ServiceRequestId + 
+                    " has requested for a service.  <br/> Additional message from the customer is : " + add.Comments;
                 SendEmail(sps.Email, body, subject);
             }
 
@@ -223,7 +226,6 @@ namespace Helperland.Controllers
         }
         #endregion
          
-
         #region Customer_Setting
         [HttpGet]
         public IActionResult Customer_Setting()
@@ -248,6 +250,7 @@ namespace Helperland.Controllers
                     {
                         var providername = _helperlandContext.Users.Where(x => x.UserId == users.ServiceProviderId).FirstOrDefault();
                         users.Name = providername.FirstName + " " + providername.LastName;
+                        users.UserProfilePicture = providername.UserProfilePicture;
                         var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
                         decimal temp = 0;
                         foreach (Rating rating in rate)
@@ -329,6 +332,24 @@ namespace Helperland.Controllers
             if (id != null)
             {
                 ServiceRequest update = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == updatedate.ServiceRequestId);
+                
+                List<ServiceRequest> acceptreq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == update.ServiceProviderId 
+                && x.Status == 4 && DateTime.Compare(x.ServiceStartDate.Date, updatedate.ServiceDate.Date) == 0).ToList();
+
+                TimeSpan RescheduleStart = updatedate.ServiceTime.TimeOfDay;
+                TimeSpan RescheduleEnd = updatedate.ServiceTime.AddHours(Convert.ToDouble(update.SubTotal)).TimeOfDay;
+
+                foreach (var timeconflict in acceptreq)
+                {
+                    TimeSpan AcceptedStart = timeconflict.ServiceStartDate.TimeOfDay;
+                    TimeSpan AcceptedEnd = timeconflict.ServiceStartDate.AddHours(Convert.ToDouble(timeconflict.SubTotal)).TimeOfDay;
+                   
+                    if ( (RescheduleStart >= AcceptedStart && RescheduleStart <= AcceptedEnd) || 
+                        (RescheduleEnd >= AcceptedStart && RescheduleEnd <= AcceptedEnd))
+                    {
+                        return Ok(Json("false"));
+                    }
+                }
                 string date = updatedate.ServiceDate.ToString("yyyy-MM-dd");
                 string time = updatedate.ServiceTime.ToString("HH:mm:ss");
                 DateTime startDateTime = Convert.ToDateTime(date).Add(TimeSpan.Parse(time));
@@ -336,6 +357,43 @@ namespace Helperland.Controllers
                 update.ModifiedDate = DateTime.Now;
                 var result = _helperlandContext.ServiceRequests.Update(update);
                 _helperlandContext.SaveChanges();
+
+                if (update.ServiceProviderId != null)
+                {
+                    List<User> ProviderZipcodes = (from u in _helperlandContext.Users
+                                                   join fb in _helperlandContext.FavoriteAndBlockeds on u.UserId equals fb.UserId into fb1
+                                                   from fb in fb1.DefaultIfEmpty()
+                                                   where u.ZipCode == update.ZipCode && u.UserId == update.ServiceProviderId && u.IsApproved == true && u.UserTypeId == 2 && Convert.ToInt32(update.UserId) != fb.TargetUserId
+                                                   select u).ToList();
+
+
+                    foreach (User sps in ProviderZipcodes)
+                    {
+                        var subject = "Service Reschedule Notice!!";
+                        var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + update.ServiceRequestId +
+                            " has resheduled service.  <br/> Updated Date is  : " + update.ServiceStartDate;
+                        SendEmail(sps.Email, body, subject);
+                    }
+                }
+                else 
+                {
+                    List<User> ProviderZipcodes = (from u in _helperlandContext.Users
+                                                   join fb in _helperlandContext.FavoriteAndBlockeds on u.UserId equals fb.UserId into fb1
+                                                   from fb in fb1.DefaultIfEmpty()
+                                                   where u.ZipCode == update.ZipCode &&  u.IsApproved == true && u.UserTypeId == 2 && Convert.ToInt32(update.UserId) != fb.TargetUserId
+                                                   select u).ToList();
+
+
+                    foreach (User sps in ProviderZipcodes)
+                    {
+                        var subject = "Service Reschedule Notice!!";
+                        var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + update.ServiceRequestId +
+                            " has resheduled service.  <br/> Updated Date is  : " + update.ServiceStartDate;
+                        SendEmail(sps.Email, body, subject);
+                    }
+                }
+                
+                
                 if (result != null)
                 {
                     return Ok(Json("true"));
@@ -359,6 +417,40 @@ namespace Helperland.Controllers
                 cancel.Comments = cancelreq.Comments;
                 var result = _helperlandContext.ServiceRequests.Update(cancel);
                 _helperlandContext.SaveChanges();
+                if (cancel.ServiceProviderId != null)
+                {
+                    List<User> ProviderZipcodes = (from u in _helperlandContext.Users
+                                                   join fb in _helperlandContext.FavoriteAndBlockeds on u.UserId equals fb.UserId into fb1
+                                                   from fb in fb1.DefaultIfEmpty()
+                                                   where u.ZipCode == cancel.ZipCode && u.UserId == cancel.ServiceProviderId && u.IsApproved == true && u.UserTypeId == 2 && Convert.ToInt32(cancel.UserId) != fb.TargetUserId
+                                                   select u).ToList();
+
+
+                    foreach (User sps in ProviderZipcodes)
+                    {
+                        var subject = "Cancel Service Request !!";
+                        var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + cancel.ServiceRequestId +
+                            "has canceled this service.";
+                        SendEmail(sps.Email, body, subject);
+                    }
+                }
+                else
+                {
+                    List<User> ProviderZipcodes = (from u in _helperlandContext.Users
+                                                   join fb in _helperlandContext.FavoriteAndBlockeds on u.UserId equals fb.UserId into fb1
+                                                   from fb in fb1.DefaultIfEmpty()
+                                                   where u.ZipCode == cancel.ZipCode && u.IsApproved == true && u.UserTypeId == 2 && Convert.ToInt32(cancel.UserId) != fb.TargetUserId
+                                                   select u).ToList();
+
+
+                    foreach (User sps in ProviderZipcodes)
+                    {
+                        var subject = "Cancel Service Request !!";
+                        var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + cancel.ServiceRequestId +
+                            "has canceled this service.";
+                        SendEmail(sps.Email, body, subject);
+                    }
+                }
                 if (result != null)
                 {
                     return Ok(Json("true"));
@@ -373,7 +465,7 @@ namespace Helperland.Controllers
         #region history
         [HttpGet]
         public IActionResult history()
-        {
+            {
             using (HelperlandContext ObjHelperlandContext = new HelperlandContext())
             {
                 int id = (int)HttpContext.Session.GetInt32("userID");
@@ -385,6 +477,7 @@ namespace Helperland.Controllers
                     {
                         var Name = _helperlandContext.Users.Where(x => x.UserId == users.ServiceProviderId).FirstOrDefault();
                         users.Name = Name.FirstName + " " + Name.LastName;
+                        users.UserProfilePicture = Name.UserProfilePicture;
                         var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
                         decimal temp = 0;
                         foreach (Rating rating in rate)
@@ -438,7 +531,7 @@ namespace Helperland.Controllers
             ViewBag.rating = temp;
             ViewBag.Name = q.FirstName + " " + q.LastName;
 
-            return View("_RateProviderPartial");
+            return PartialView("_RateProviderPartial");
 
         }
         #endregion
@@ -472,7 +565,7 @@ namespace Helperland.Controllers
                 _helperlandContext.SaveChanges();
 
             }
-            return PartialView("_customerHistoryPartial");
+            return history();
         }
         #endregion
 
@@ -485,9 +578,19 @@ namespace Helperland.Controllers
                 int id = (int)HttpContext.Session.GetInt32("userID");
                 User ud = ObjHelperlandContext.Users.FirstOrDefault(x => x.UserId == id);
                 List<UserAddress> address = ObjHelperlandContext.UserAddresses.Where(x => x.UserId == id && x.IsDeleted == false).ToList();
+ 
+                if(ud.DateOfBirth != null)
+                {
+                    DateTime DOB = Convert.ToDateTime(ud.DateOfBirth.ToString());
+                    ud.Day = DOB.Day.ToString();
+                    ud.Month = DOB.Month.ToString();
+                    ud.Year = DOB.Year.ToString();
+                }
+
                 ViewBag.details = ud;
                 ViewBag.add = address;
-                return PartialView("_customerSettingPartial");
+               
+                return PartialView("_customerSettingPartial" , ud);
             }
         }
         #endregion
@@ -503,10 +606,11 @@ namespace Helperland.Controllers
                 updated.FirstName = user.FirstName;
                 updated.LastName = user.LastName;
                 updated.Mobile = user.Mobile;
-                updated.Email = user.Email;
-                updated.ZipCode = user.PostalCode;
-                var dob = user.Day + "-" + user.Month + "-" + user.Year;
-                user.DateOfBirth = Convert.ToDateTime(dob);
+                if (user.Day != null && user.Month != null && user.Year != null)
+                {
+                    var DateTime = user.Month + "-" + user.Day + "-" + user.Year;
+                    updated.DateOfBirth = Convert.ToDateTime(DateTime);
+                }
                 updated.LanguageId = user.LanguageId;
                 updated.ModifiedDate = DateTime.Now;
                 var result = _helperlandContext.Users.Update(updated);
@@ -517,6 +621,7 @@ namespace Helperland.Controllers
                 }
                 return Ok(Json("False"));
             }
+           
             return PartialView("_customerSettingPartial");
         }
         #endregion
@@ -613,6 +718,7 @@ namespace Helperland.Controllers
         }
         #endregion
 
+
         private void SendEmail(string email, string body, string subject)
         {
             using (MailMessage mm = new MailMessage("krishnaa9121@gmail.com", email))
@@ -635,8 +741,130 @@ namespace Helperland.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult GetFavPro()
+        {
+            var userid = (int)HttpContext.Session.GetInt32("userID");
+            var serviceRequests = _helperlandContext.ServiceRequests.Where(c => c.UserId == userid && c.Status == 1 && c.ServiceProviderId != null).AsEnumerable().GroupBy(x => x.ServiceProviderId).ToList();
+            List<int> ids = new List<int>();
+            List<int> counts = new List<int>();
 
-      
+            foreach (var i in serviceRequests)
+            {
+                counts.Add(i.Count());
+                ids.Add(Convert.ToInt32(i.Key));
+            }
+            List<FavoriteAndBlocked> favoriteAndBlockeds = new List<FavoriteAndBlocked>();
+            List<bool> hasEntry = new List<bool>();
+
+            foreach (var i in ids)
+            {
+                FavoriteAndBlocked temp = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId.Equals(userid) && x.TargetUserId.Equals(i)).FirstOrDefault();
+                if (temp != null)
+                {
+                    favoriteAndBlockeds.Add(temp);
+                    hasEntry.Add(true);
+                }
+                else
+                {
+                    favoriteAndBlockeds.Add(temp);
+                    hasEntry.Add(false);
+                }
+            }
+
+            ViewBag.favs = favoriteAndBlockeds;
+            ViewBag.hasEntry = hasEntry;
+            ViewBag.counts = counts;
+
+            List<User> SPs = new List<User>();
+
+            foreach (var i in ids)
+            {
+                var sp = _helperlandContext.Users.Find(i);
+                SPs.Add(sp);
+            }
+
+            ViewBag.serviceProviders = SPs;
+            return PartialView("_CustomerFavouritePartial");
+        }
+        [HttpPost]
+        public IActionResult FavoriteProvider(int id)
+        {
+            var userid = (int)HttpContext.Session.GetInt32("userID");
+            var p = _helperlandContext.FavoriteAndBlockeds.Where(c => c.UserId == userid && c.TargetUserId == id).FirstOrDefault();
+            if (p == null)
+            {
+                FavoriteAndBlocked block = new FavoriteAndBlocked
+                {
+                    UserId = userid,
+                    TargetUserId = id,
+                    IsBlocked = false,
+                    IsFavorite = true
+                };
+                var result = _helperlandContext.FavoriteAndBlockeds.Add(block);
+
+                _helperlandContext.SaveChanges();
+                return Ok(Json("true"));
+            }
+            else
+            {
+                p.IsFavorite = true;
+                var result1 = _helperlandContext.SaveChanges();
+                return Ok(Json("true"));
+            }
+        }
+        [HttpPost]
+        public IActionResult UnFavoriteProvider(int id)
+        {
+            var userid = (int)HttpContext.Session.GetInt32("userID");
+            var p = _helperlandContext.FavoriteAndBlockeds.Where(c => c.UserId == userid && c.TargetUserId == id).FirstOrDefault();
+            if (p != null)
+            {
+                p.IsFavorite = false;
+                _helperlandContext.SaveChanges();
+            }
+            return Ok(Json("true"));
+        }
+        [HttpPost]
+        public IActionResult BlockProvider(int id)
+        {
+            var userid = (int)HttpContext.Session.GetInt32("userID");
+            var p = _helperlandContext.FavoriteAndBlockeds.Where(c => c.UserId == userid && c.TargetUserId == id).FirstOrDefault();
+            if (p == null)
+            {
+                FavoriteAndBlocked block = new FavoriteAndBlocked
+                {
+                    UserId = userid,
+                    TargetUserId = id,
+                    IsBlocked = true,
+                    IsFavorite = false
+                };
+                var result = _helperlandContext.FavoriteAndBlockeds.Add(block);
+
+                _helperlandContext.SaveChanges();
+                return Ok(Json("true"));
+            }
+            else
+            {
+                p.IsBlocked = true;
+                var result1 = _helperlandContext.SaveChanges();
+                return Ok(Json("true"));
+            }
+        }
+        [HttpPost]
+        public IActionResult UnBlockProvider(int id)
+        {
+            var userid = (int)HttpContext.Session.GetInt32("userID");
+            var p = _helperlandContext.FavoriteAndBlockeds.Where(c => c.UserId == userid && c.TargetUserId == id).FirstOrDefault();
+            if (p != null)
+            {
+                p.IsBlocked = false;
+                _helperlandContext.SaveChanges();
+            }
+            return Ok(Json("true"));
+        }
+
+
     }
 }
 

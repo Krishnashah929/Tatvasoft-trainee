@@ -18,6 +18,8 @@ namespace Helperland.Models
         public int? UserTypeId { get; set; }
 
         public DateTime? ServiceStartDate { get; set; }
+    
+        public DateTime? ServiceEndDate { get; set; }
 
         public DateTime? CreatedDate { get; set; }
 

@@ -18,19 +18,19 @@
    {
       double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
       <div class="row provider-rating  mt-3">
-         <div class="col-md-3 mb-3 mt-3">
+         <div class="col-md-4 mb-3 mt-3">
             @spr.ServiceRequestId
             <br>
             @spr.Name
          </div>
-         <div class="col-md-3 mb-3 mt-3">
+         <div class="col-md-4 mb-3 mt-3">
             <img src="../images/calendar2.png" alt="">
             @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
             <img src="../images/layer-712.png" alt="">
             @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
          </div>
-         <div class="col-md-6 text-center mb-3 mt-3">
-            Rating
+         <div class="col-md-4 mb-3 mt-3">
+            <span class="text-center"> Rating</span>
             <br>
             <span>
                @{

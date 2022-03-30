@@ -68,7 +68,7 @@
                               <p><b>When do you need the cleaner?</b></p>
                               <div class="row">
                                  <div class="col-auto">
-                                    <input asp-for="ServiceDate" type="Date" class="form-control" id="servicestartdate" onchange="datechange()" placeholder="From Date" required>
+                                    <input asp-for="ServiceDate" type="text" class="form-control" id="servicestartdate" onchange="datechange()" onfocus="(this.type = 'date')" placeholder="Enter Service Date"  required>
                                     <span asp-validation-for="ServiceDate" class="text-danger"></span>
                                  </div>
                                  <div class="col-auto">
@@ -79,6 +79,11 @@
                                        <option value="11:00">11:00</option>
                                        <option value="12:00">12:00</option>
                                        <option value="13:00">13:00</option>
+                                       <option value="14:00">14:00</option>
+                                       <option value="15:00">15:00</option>
+                                       <option value="16:00">16:00</option>
+                                       <option value="17:00">17:00</option>
+                                       <option value="18:00">18:00</option>
                                     </select>
                                     <span asp-validation-for="ServiceTime" class="text-danger"></span>
 
@@ -89,7 +94,11 @@
                               <p><b>How long do you need your cleaner to stay?</b></p>
                               <div class="row">
                                  <div class="col-auto">
-                                    <select asp-for="ServiceHours" id="serviceHours" name="Hours" class="form-select" onchange="hourschange()" required> 
+                                    <select asp-for="ServiceHours" id="serviceHours" name="Hours" class="form-select" onchange="hourschange()" required>
+                                       <option value="1">1 Hrs</option>
+                                       <option value="1.5">1.5 Hrs</option>
+                                       <option value="2">2 Hrs</option>
+                                       <option value="2.5">2.5 Hrs</option>
                                        <option value="3">3 Hrs</option>
                                        <option value="3.5">3.5 Hrs</option>
                                        <option value="4">4 Hrs</option>
@@ -190,9 +199,9 @@
                         <br>
                         <div class="row">
                            <div class="form-check">
-                             
+
                               <label asp-for="HasPets" class="form-check-label-pets" for="checkhaspet">
-                                 <input asp-for="HasPets" type="checkbox" id="checkhaspet" name=""  >
+                                 <input asp-for="HasPets" type="checkbox" id="checkhaspet" name="">
                                  I have pets at home
                               </label>
                            </div>
@@ -210,20 +219,13 @@
                      <div class="row">
                         <p><b>Enter your contact details, so we can serve you in better way!</b></p>
                      </div>
-
                      <div id="gettingalladdress">
                         <div class="row">
-                           <input type="radio" id="address" name="address" value="address" class="address-booknow-radio-btn">
-                           <label for="address" class="address-booknow-label">
-                              Address: Flat No: 13,
-                              iscon park - 365789
-                           </label>
-                           <div class="row">
-                              <label for="address" class="address-booknow-label-1 ml-2">
-                                 Phone
-                                 Number:1234567890
-                              </label>
-                           </div>
+                           <span class="text-danger">
+                              There is no address available with this Zipcode.
+                              <br />
+                              Please enter one address.
+                           </span>
                         </div>
                         <br>
                      </div>
@@ -259,7 +261,10 @@
                                        <label class="label-address-book-now">
                                           Postal Code
                                        </label>
-                                       <input type="number" class="form-control" placeholder=" 364002" value="364002"  id="addPostalCode"  readonly >
+                                       @{
+                                          var zipCode = Context.Session.GetString("Zipcode");
+                                       }
+                                       <input type="number" class="form-control" id="addPostalCode">
                                     </div>
                                     <div class="col">
                                        <label class="label-address-book-now">City</label>
@@ -277,7 +282,7 @@
                                  </div>
                                  <br>
                                  <div class="row ">
-                                    <div class="col-auto">
+                                    <div class="col-auto mt-3">
                                        <button type="button" class="btn save-address-book-now" onclick="addresssubmit()">
                                           Save
                                        </button>
@@ -377,7 +382,7 @@
             </form>
 
          </div>
-         
+
          <!--payment summary card-->
          <div class="col-md-4">
             <div class="card card-book-now">
@@ -452,17 +457,7 @@
                         <b>Total Service Time</b>
                      </div>
                      <div class="col-4">
-                        <b>3.5 Hrs</b>
-                     </div>
-                  </div>
-                  <hr>
-                  <div class="row card-sub-text-book-now">
-                     <div class="col-8">
-                        Per cleaning
-                        <br>Discount
-                     </div>
-                     <div class="col-4">
-                        $87 <br> - $27
+                        <b id="totalhours"> 1  </b>
                      </div>
                   </div>
                   <hr>
@@ -471,7 +466,7 @@
                         Total Payment
                      </div>
                      <div class="col-4">
-                        <b>$63</b>
+                        <b id="totalprice"> 25 $ </b>
                      </div>
                   </div>
                   <div class="row ">
@@ -479,7 +474,7 @@
                         Effective Price
                      </div>
                      <div class="col-4 payment-number">
-                        $50.4
+                        $00.0
                      </div>
                   </div>
                   <div class="row">
@@ -552,16 +547,25 @@
                <hr>
             </div>
             <div class="help-link mb-5">
-               <a href="FAQ.html" class="book-now-help ">
+               <a class="book-now-help " asp-action="FAQ" asp-controller="publicpages">
                   <b> For more help</b>
                </a>
             </div>
-
          </div>
-         
       </div>
    </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="~/js/Book_Now.js"></script>
 
+<script type="text/javascript">
+   $(document).ready(function () {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      today = yyyy + '-' + mm + '-' + dd;
+      $('#servicestartdate').attr('min', today);
+   });
+</script>

@@ -50,7 +50,7 @@
                </p>
                <hr class="rate-hr">
             </div>
-            <form method="post" asp-action="AddRatings" asp-controller="CustomerPages">
+            <form method="post" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#v-pills-tabContent" asp-action="AddRatings" asp-controller="CustomerPages">
                <input class="form-control" type="hidden" readonly value="@ViewBag.servicerequestid" asp-for="ServiceRequestId">
                <input class="form-control" type="hidden" readonly value="@ViewBag.serviceproviderid" asp-for="RatingTo">
                <table>
@@ -131,7 +131,7 @@
                   </div>
                </div>
                <br>
-               <button type="submit" class="btn  submit-btn-rating" data-bs-dismiss="modal">
+               <button type="submit" class="btn submit-btn-rating" data-bs-dismiss="modal">
                   Submit
                </button>
             </form>

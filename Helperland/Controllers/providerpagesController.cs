@@ -17,6 +17,9 @@ using MimeKit;
 //status 3 is when  pending that request
 //status 4 is when provider accept that request
 //status 5 is when service date time is gone ane provider doesn't complete the service.
+//Samarthprovider = 364003
+//DwitiProvider & MayankProvider = 364001
+//ShwetaProvider = 364002
 
 namespace Helperland.Controllers
 {
@@ -36,12 +39,36 @@ namespace Helperland.Controllers
 
         //Provider new service request
         [HttpGet]
-        public IActionResult SpNewRequest()
+        public IActionResult SpNewRequest() 
         {
-            List<ServiceRequest> serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.Status == 3).ToList();
+            int? proid = HttpContext.Session.GetInt32("userID");
+            User SP = _helperlandContext.Users.Where(x => x.UserId == proid).FirstOrDefault();
+            List<ServiceRequest> serviceRequest = new List<ServiceRequest>();
+
+            serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.Status == 3 && x.ZipCode == SP.ZipCode).ToList();
+
             List<User> user = new List<User>();
             foreach (ServiceRequest users in serviceRequest)
             {
+                var FB = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == proid && x.IsBlocked == true).ToList();
+            
+                var SPBlock = _helperlandContext.FavoriteAndBlockeds.Where(x => x.TargetUserId == proid && x.IsBlocked == true).ToList();
+                
+                if (FB != null)
+                { 
+                    foreach(FavoriteAndBlocked Fbblock in FB)
+                    {
+                        serviceRequest = serviceRequest.Where(x => x.UserId != Fbblock.TargetUserId).ToList();
+                    }
+                }
+                if (SPBlock != null)
+                {
+                    foreach (FavoriteAndBlocked SPBlocks in SPBlock)
+                    {
+                        serviceRequest = serviceRequest.Where(x => x.UserId != SPBlocks.UserId).ToList();
+                    }
+                }
+            
                 var customername = _helperlandContext.Users.Where(x => x.UserId == users.UserId).FirstOrDefault();
                 users.Name = customername.FirstName + " " + customername.LastName;
             }
@@ -76,16 +103,36 @@ namespace Helperland.Controllers
             int? proid = HttpContext.Session.GetInt32("userID");
 
             ServiceRequest accept = _helperlandContext.ServiceRequests.Where(x => x.ServiceRequestId == id).FirstOrDefault();
+            List<ServiceRequest> acceptreq = _helperlandContext.ServiceRequests.Where(x => x.ServiceProviderId == proid && x.Status == 4 && DateTime.Compare(x.ServiceStartDate.Date, accept.ServiceStartDate.Date) == 0).ToList();
+           
+            TimeSpan RescheduleStart = accept.ServiceStartDate.TimeOfDay;
+            TimeSpan RescheduleEnd = accept.ServiceStartDate.AddHours(Convert.ToDouble(accept.SubTotal)).TimeOfDay;
+
+            foreach (var timeconflict in acceptreq)
+            {
+                TimeSpan AcceptedStart = timeconflict.ServiceStartDate.TimeOfDay;
+                TimeSpan AcceptedEnd = timeconflict.ServiceStartDate.AddHours(Convert.ToDouble(timeconflict.SubTotal)).TimeOfDay;
+
+                if ((RescheduleStart >= AcceptedStart && RescheduleStart <= AcceptedEnd) ||
+                    (RescheduleEnd >= AcceptedStart && RescheduleEnd <= AcceptedEnd))
+                {
+                    return Ok(Json("false"));
+                }
+            }
+
+
             accept.Status = 4;
             accept.ServiceProviderId = proid;
             var result = _helperlandContext.ServiceRequests.Update(accept);
             _helperlandContext.SaveChanges();
 
+            //for mailing service on accept service.
+
             List<User> users = _helperlandContext.Users.Where(x => x.UserTypeId == 2 && x.UserId != proid && x.ZipCode ==  accept.ZipCode ).ToList();
  
             foreach (User sps in users)
             {
-                var subject = "accept Service Request Available!!";
+                var subject = "Service is already aceepted by someone.";
                 var body = "Hi " + sps.FirstName + " " + sps.LastName + "<br/> The service request Id : " + accept.ServiceRequestId + " has already been accepted by other service provider .";
                 SendEmail(sps.Email, body, subject);
             }
@@ -102,6 +149,7 @@ namespace Helperland.Controllers
         public IActionResult SpUpcomingRequest()
         {
             int? proid = HttpContext.Session.GetInt32("userID");
+
             List<ServiceRequest> serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.Status == 4 && x.ServiceProviderId == proid).ToList();
 
             List<User> user = new List<User>();
@@ -109,7 +157,6 @@ namespace Helperland.Controllers
             {
                 var customername = _helperlandContext.Users.Where(x => x.UserId == users.UserId).FirstOrDefault();
                 users.Name = customername.FirstName + " " + customername.LastName;
-
             }
             List<ServiceRequestAddress> address = new List<ServiceRequestAddress>();
             foreach (ServiceRequest users in serviceRequest)
@@ -312,7 +359,7 @@ namespace Helperland.Controllers
                 p.IsBlocked = true;
                 _helperlandContext.SaveChanges();
             }
-            return PartialView("_SPblockPartial");
+            return SpBlock();
         }
 
         [HttpPost]
@@ -325,7 +372,7 @@ namespace Helperland.Controllers
                 p.IsBlocked = false;
                 _helperlandContext.SaveChanges();
             }
-            return PartialView("_SPblockPartial");
+            return SpBlock();
         }
         //Provider Setting
         [HttpGet]
@@ -338,14 +385,21 @@ namespace Helperland.Controllers
             {
                 ViewBag.add = address;
             }
-
+            if (ud.DateOfBirth != null)
+            {
+                DateTime DOB = Convert.ToDateTime(ud.DateOfBirth.ToString());
+                ud.Day = DOB.Day.ToString();
+                ud.Month = DOB.Month.ToString();
+                ud.Year = DOB.Year.ToString();
+            }
             ViewBag.details = ud;
-            return PartialView("_SPsettingPartial");
+            return PartialView("_SPsettingPartial" , ud);
         }
         [HttpPost]
         public IActionResult Updateproviderdetails(User user)
         {
             int? Id = HttpContext.Session.GetInt32("userID");
+            
             if (Id != null)
             {
                 User updated = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Id);
@@ -355,9 +409,10 @@ namespace Helperland.Controllers
                 updated.ZipCode = user.PostalCode;
                 updated.Gender = user.Gender;
                 updated.NationalityId = user.NationalityId;
+               
                 if (user.Day != null && user.Month != null && user.Year != null)
                 {
-                    var dob = user.Day + "-" + user.Month + "-" + user.Year;
+                    var dob = user.Month + "-" + user.Day + "-" + user.Year;
                     updated.DateOfBirth = Convert.ToDateTime(dob);
                 }
                 updated.UserProfilePicture = user.UserProfilePicture;
@@ -388,6 +443,7 @@ namespace Helperland.Controllers
                     _helperlandContext.SaveChanges();
                 }
             }
+           
             return PartialView("_SPsettingPartial");
         }
 

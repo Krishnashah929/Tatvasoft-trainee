@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    debugger;
+   
     $.ajax({
         url: '/ProviderPages/SpNewRequest',
         type: 'GET',
@@ -26,7 +26,7 @@
 });
 
 function loadSPdb() {
-    debugger;
+    
     $.ajax({
         url: '/ProviderPages/SpNewRequest',
         type: 'GET',
@@ -51,7 +51,7 @@ function loadSPdb() {
 }
 
 function loadSPupcomingsrvice() {
-    debugger;
+  
     $.ajax({
         url: '/ProviderPages/SpUpcomingRequest',
         type: 'GET',
@@ -76,7 +76,7 @@ function loadSPupcomingsrvice() {
 }
 
 function loadSPhistory() {
-    debugger;
+   
     $.ajax({
         url: '/ProviderPages/SpHistory',
         type: 'GET',
@@ -100,7 +100,7 @@ function loadSPhistory() {
     });
 }
 function loadSPrating() {
-    debugger;
+   
     $.ajax({
         url: '/ProviderPages/SpRating',
         type: 'GET',
@@ -111,7 +111,7 @@ function loadSPrating() {
 }
 
 function loadSPblock() {
-    debugger;
+  
     $.ajax({
         url: '/ProviderPages/SpBlock',
         type: 'GET',
@@ -120,8 +120,10 @@ function loadSPblock() {
         }
     });
 }
+
+
 function loadSPsetting() {
-    debugger;
+  
     $.ajax({
         url: '/ProviderPages/SpSetting',
         type: 'GET',
@@ -132,7 +134,7 @@ function loadSPsetting() {
 }
 
 function opennewreq(or) {
-    debugger;
+    
     var id = or.getAttribute("data-id");
     $.ajax({
         url: '/ProviderPages/OpenNewServiceModel',
@@ -145,7 +147,7 @@ function opennewreq(or) {
     });
 }
 function openupcomingreq(or) {
-    debugger;
+   
     var id = or.getAttribute("data-id");
     $.ajax({
         url: '/ProviderPages/OpenUpComingModel',
@@ -158,7 +160,7 @@ function openupcomingreq(or) {
     });
 }
 function openhistory(or) {
-    debugger;
+   
     var id = or.getAttribute("data-id");
     $.ajax({
         url: '/ProviderPages/OpenHistoryModel',
@@ -172,7 +174,7 @@ function openhistory(or) {
 }
 
 function acceptreq(cm) {
-    debugger;
+ 
     var id = cm.getAttribute("data-id");
     $.ajax({
         url: '/ProviderPages/AcceptNewRequest',
@@ -183,7 +185,7 @@ function acceptreq(cm) {
                 loadSPdb();
             }
             else {
-                alert("Invalid");
+                alert("You can't accept it because this service time conflict with your previous servicce time.");
             }
         }
     });
@@ -221,7 +223,7 @@ function CancelRequest() {
 }
 
 function completereq(cm) {
-    debugger;
+   
     var id = cm.getAttribute("data-id");
     $.ajax({
         url: '/ProviderPages/CompleteRequest',
@@ -238,7 +240,7 @@ function completereq(cm) {
     });
 }
 function updatespdetails() {
-    debugger;
+     
     var data = {};
     data.firstName = document.getElementById("firstname").value;
     data.lastName = document.getElementById("lastname").value;
@@ -262,6 +264,7 @@ function updatespdetails() {
         success: function (result) {
             if (result.value == "true") {
                 loadSPsetting();
+                alert("Your details are updated successfully.");
             }
             else {
                 alert("detailes is invalid");
@@ -314,7 +317,7 @@ function fnPwdValidation() {
     return isValid;
 }
 function updatepw() {
-    debugger;
+   
     var isValid = fnPwdValidation();
     var data = {};
     var storepassword = $("#storepassword").val();
@@ -328,34 +331,36 @@ function updatepw() {
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             data: data,
             success: function (response) {
-                alert("valid password");
+                alert("Your password is successfully updated.");
             },
         });
     }
 }
+
+
 function blocksp(sp) {
-    debugger;
+   
     var id = sp.getAttribute("data-id");
     $.ajax({
         url: '/ProviderPages/BlockUser',
         type: 'POST',
         contenttype: 'application/json',
         data: { "id": id },
-        success: function () {
-            loadblockcustomer();
+        success: function (response) {
+            loadSPblock();
         }
     });
 }
 function unblocksp(sp) {
-    debugger;
+  
     var id = sp.getAttribute("data-id");
     $.ajax({
         url: '/ProviderPages/UnBlockUser',
         type: 'POST',
         contenttype: 'application/json',
         data: { "id": id },
-        success: function () {
-            loadblockcustomer();
+        success: function (response) {
+            loadSPblock();
         }
     });
 }
@@ -370,8 +375,4 @@ function ExportToExcel(type, fn, dl) {
         XLSX.writeFile(wb, fn || ('Servicehistory.' + (type || 'xlsx')));
 }
  
-    $(document).ready(function () {
-        $("#change-password form").data("validator", null);
-    $.validator.unobtrusive.parse("#change-password form");
-   });
- 
+   

@@ -40,73 +40,90 @@ namespace Helperland.Controllers
                 ModelState.Clear();
                 if (p.Count == 1)
                 {
-                    User userdetails = ObjHelperlandContext.Users.Where(c => c.Email == user.Email && c.Password == user.Password).FirstOrDefault();
-                    var Name = userdetails.FirstName + " " + userdetails.LastName;
-                    ViewBag.userType = user.UserTypeId;
-
-                    HttpContext.Session.SetString("Userlogeddin", "true");
-                    HttpContext.Session.SetString("Name", Name);
-                    HttpContext.Session.SetInt32("userID", userdetails.UserId);
-
-                    if (p.FirstOrDefault().UserTypeId == 1)
+                    User userdetails = ObjHelperlandContext.Users.Where(c => c.Email == user.Email && c.Password == user.Password && c.IsApproved == true).FirstOrDefault();
+                    if(userdetails!= null)
                     {
-                        HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
-                        return RedirectToAction("Customer_Dashboard", "CustomerPages");
+                        var Name = userdetails.FirstName + " " + userdetails.LastName;
+                        ViewBag.userType = user.UserTypeId;
+
+                        HttpContext.Session.SetString("Userlogeddin", "true");
+
+                        HttpContext.Session.SetString("Name", Name);
+                        HttpContext.Session.SetInt32("userID", userdetails.UserId);
+
+                        if (p.FirstOrDefault().UserTypeId == 1)
+                        {
+                            HttpContext.Session.SetString("UserTypeId", userdetails.UserTypeId.ToString());
+                            return RedirectToAction("Customer_Dashboard", "CustomerPages");
+                        }
+                        else if (p.FirstOrDefault().UserTypeId == 2)
+                        {
+
+                            HttpContext.Session.SetString("UserTypeId", userdetails.UserTypeId.ToString());
+                            return RedirectToAction("Provider_Dashboard", "ProviderPages");
+
+                        }
+                        else if (p.FirstOrDefault().UserTypeId == 3)
+                        {
+                            HttpContext.Session.SetString("UserTypeId", userdetails.UserTypeId.ToString());
+                            return RedirectToAction("Admin_Index", "AdminPages");
+
+                        }
                     }
-                    else if (p.FirstOrDefault().UserTypeId == 2)
+                    else
                     {
-                        HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
-                        return RedirectToAction("Provider_Dashboard", "ProviderPages");
-
-                    }
-                    else if (p.FirstOrDefault().UserTypeId == 3)
-                    {
-                        HttpContext.Session.SetString("UserTypeId", user.UserTypeId.ToString());
-                        return RedirectToAction("Admin_Index", "AdminPages");
-
+                        TempData["NotApprove"] = "Message";
                     }
                 }
                 else
                 {
-                    ViewBag.Message = "Your previous details are Invalid. " + "Please enter valid details.";
+                    TempData["ErrorMsg"] = "Your Error Message"; 
                 }
-                //forgot password code
-                String ResetCode = Guid.NewGuid().ToString();
-
-                var uriBuilder = new UriBuilder
-                {
-                    Scheme = Request.Scheme,
-                    Host = Request.Host.Host,
-                    Port = Request.Host.Port ?? -1, //bydefault -1
-                    Path = $"/Home/ForgotPassword/{ResetCode}"
-                };
-                var link = uriBuilder.Uri.AbsoluteUri;
-
-                var getUser = (from s in ObjHelperlandContext.Users where s.Email == user.Email select s).FirstOrDefault();
-                if (getUser != null)
-                {
-                    getUser.ResetPasswordCode = ResetCode;
-                    ObjHelperlandContext.SaveChanges();
-
-                    var subject = "Password Reset Request";
-                    var body = "Hi " + getUser.FirstName + ", <br/> You recently requested to reset the password for your account. Click the link below to reset ." +
-                     "<br/> <br/><a href='" + link + "'>" + link + "</a> <br/> <br/>" +
-                    "If you did not request for reset password please ignore this mail.";
-
-                    SendEmail(getUser.Email, body, subject);
-
-                    TempData["SuccessMsg"] = "Your Success Message";
-                    return RedirectToAction("Index", "Home");
-                    //ViewBag.Message1 = "Reset password link has been sent to your email id";
-                }
-                //else
-                //{
-                //    TempData["SuccessMsg"] = "Your Success Message";
-                //    return RedirectToAction("Index", "Home");
-                //}
             }
-            TempData["FailMsg"] = "Your Success Message";
             return View();
+        }
+        #endregion
+
+        #region Sendlink
+        [HttpPost]
+        public IActionResult Sendlink(User user)
+        {
+            var p = _helperlandContext.Users.Where(c => c.Email == user.Email && c.Password == user.Password).ToList();
+            ModelState.Clear();
+            //forgot password code
+            String ResetCode = Guid.NewGuid().ToString();
+
+            var uriBuilder = new UriBuilder
+            {
+                Scheme = Request.Scheme,
+                Host = Request.Host.Host,
+                Port = Request.Host.Port ?? -1, //bydefault -1
+                Path = $"/Home/ForgotPassword/{ResetCode}"
+            };
+            var link = uriBuilder.Uri.AbsoluteUri;
+
+            var getUser = (from s in _helperlandContext.Users where s.Email == user.Email select s).FirstOrDefault();
+            if (getUser != null)
+            {
+                getUser.ResetPasswordCode = ResetCode;
+                _helperlandContext.SaveChanges();
+
+                var subject = "Password Reset Request";
+                var body = "Hi " + getUser.FirstName + ", <br/> You recently requested to reset the password for your account. Click the link below to reset ." +
+                 "<br/> <br/><a href='" + link + "'>" + link + "</a> <br/> <br/>" +
+                "If you did not request for reset password please ignore this mail.";
+
+                SendEmail(getUser.Email, body, subject);
+
+                TempData["SuccessMsg"] = "Your Success Message";
+                return RedirectToAction("Index", "Home");
+                //ViewBag.Message1 = "Reset password link has been sent to your email id";
+            }
+            else
+            {
+                TempData["FailMsg"] = "Your Success Message";
+            }
+            return RedirectToAction("Index", "Home");
         }
         #endregion
 
@@ -213,7 +230,7 @@ namespace Helperland.Controllers
                     signup.IsRegisteredUser = true;
                     signup.ModifiedBy = 123;
                     signup.IsActive = true;
-                    signup.IsApproved = false;
+                    signup.IsApproved = true;
                     signup.Status = 1; // status 1 is true or active
 
                     _helperlandContext.Users.Add(signup);
@@ -272,6 +289,7 @@ namespace Helperland.Controllers
         #region LogOut
         public IActionResult LogOut()
         {
+            HttpContext.Session.SetString("Userlogeddin", false.ToString());
             HttpContext.Session.Clear();
             TempData["LogOutMsg"] = "Logged out";
             return RedirectToAction("Index", "Home");

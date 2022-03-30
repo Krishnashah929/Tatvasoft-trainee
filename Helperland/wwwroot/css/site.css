@@ -1489,6 +1489,7 @@ table {
 .table.dataTable thead .sorting_asc {
     background-image: none !important;
 }
+
 table.dataTable thead .sorting {
     background-image: none !important;
 }
@@ -1521,8 +1522,7 @@ label {
 .cap-1-image {
     text-align: right;
 }
-
-
+ 
 .cap-1-name {
     text-align: left;
 }
@@ -1675,13 +1675,13 @@ label {
     color: #464646;
 }
 
-@media (max-width:790px) {
+/*@media (max-width:790px) {
     .main-section-upcoming-services {
         display: none;
     }
-}
+}*/
 /* mobile side bar*/
-#mobile-card .mobile-card {
+/*#mobile-card .mobile-card {
     z-index: -1;
     margin: 15px;
     display: none;
@@ -1700,12 +1700,12 @@ label {
     .main-section-upcoming-services {
         display: none;
     }
-}
+}*/
 
 .upcoming-service-card .list-group-item {
     font-size: 20px;
     color: #646464;
-    padding: 25px;
+    padding: 15px;
 }
 /**************************************************customer_service_history************************************************************/
 .dropdown-service-history {
@@ -1797,7 +1797,21 @@ label {
 }
 
     .btn-rate-service-history:hover {
+        background-color: #1d7a8c;
         color: white;
+    }
+
+.btn-rate-service-history-none {
+    background-color: #6da9b5;
+    font-size: 13px;
+    color: white;
+    border-radius: 20px;
+    cursor: not-allowed;
+}
+
+    .btn-rate-service-history-none:hover {
+        color: white;
+        cursor: not-allowed;
     }
 
 .h4-entry-service-history {
@@ -2054,15 +2068,17 @@ label {
 }
 
 .sidebar-menu {
-   background-color: #FFFFFF;
-   height:98%;
-   padding-left:10%;
+    background-color: #FFFFFF;
+    height: 98%;
+    padding-left: 10%;
 }
-.users-list-btn{
-    margin-left:-22px;
-    margin-top:10px;
-    padding-top:10px;
+
+.users-list-btn {
+    margin-left: -22px;
+    margin-top: 10px;
+    padding-top: 10px;
 }
+
 .nav-item-user-management {
     font-size: 16px;
     color: #646464;
@@ -2116,7 +2132,6 @@ label {
     display: inline;
     margin-top: 30px;
     margin-bottom: 30px;
-  
 }
 
 @media (max-width:552px) {
@@ -2139,7 +2154,6 @@ label {
     border: none;
     color: #FFFFFF;
     border-radius: 4px;
-    
     margin-bottom: 12px;
 }
 
@@ -2200,7 +2214,6 @@ label {
     border: none;
     color: #FFFFFF;
     border-radius: 2px;
-   
 }
 
 .inactive-btn {
@@ -2212,6 +2225,7 @@ label {
     color: #FFFFFF;
     border-radius: 2px;
 }
+
 .active-btn-manage {
     width: 72px;
     height: 24px;
@@ -2241,6 +2255,7 @@ label {
     border-radius: 50%;
     border: none;
 }
+
 .admin-user-footer {
     font-size: 14px;
     color: #A2A6A8;
@@ -2282,6 +2297,7 @@ label {
     color: #646464;
     display: inline;
 }
+
 .search-bar {
     padding-top: 3%;
     padding-bottom: 2%;
@@ -3078,7 +3094,7 @@ label {
 #v-pills-Block-tab.active {
     background: #146371;
 }
-<<<<<<< HEAD
+
 
 .provider-rating {
     border: 1px solid #4f4f4f;
@@ -3101,31 +3117,34 @@ label {
     margin-top: -10%;
 }
 
- 
+
 .provider-rating {
-   border: 1px solid #4f4f4f;
-   padding-left:15px;
+    border: 1px solid #4f4f4f;
+    padding-left: 15px;
 }
+
 .hr-rating {
-    width:95%;
+    width: 95%;
 }
+
 .provider-setting-hr {
-    width:98%;
+    width: 98%;
 }
+
 .provider-main-img-avtar {
-   width: 10%;  
-   height: 10%; 
-   padding: 18px 10px 18px 10px; 
-   margin-left: 98%; 
-   margin-top: -10%; 
+    width: 10%;
+    height: 10%;
+    padding: 18px 10px 18px 10px;
+    margin-left: 98%;
+    margin-top: -10%;
 }
- 
+
 .btn-export-sp {
     background-color: #1d7a8c;
     color: white;
     border-radius: 20px;
 }
- 
+
 
     .btn-export-sp:hover {
         background-color: #1d7a8c;
@@ -3137,16 +3156,16 @@ label {
     font-size: 20px;
     color: #646464;
 }
+
 .btn-export-sp:hover {
     background-color: #1d7a8c;
     color: white;
     border-radius: 20px;
 }
- 
-.export-btn-heading{
-    font-size : 20px;
-    color : #646464;
- 
+
+.export-btn-heading {
+    font-size: 20px;
+    color: #646464;
 }
 
 input[type=radio]:checked + img {
@@ -3154,7 +3173,7 @@ input[type=radio]:checked + img {
     border-radius: 50%;
 }
 
- 
+
 .btn-export-sp-admin {
     background-color: #1FB6FF;
     color: white;
@@ -3196,34 +3215,108 @@ input[type=radio]:checked + img {
     border: solid 1px #E85222 !important;
     background: #FFBAA5 !important;
 }
-.colourValidation{
-    color:red;
+
+.colourValidation {
+    color: red;
 }
 
-.logout-img{
-    width:20%;
-    height:20%;
+#logout-p {
+    margin: 0 0 20px;
+    font-size: 22px;
+    line-height: 26px;
+    font-weight: 400;
 }
-.log-out-text {
-    margin-top: 15%;
-    font-size: 30px;
-    color: #646464;
+
+.logout-ok-button {
+    background-color: #339aaf;
+    color: white;
+    border: solid 1px transparent !important;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 9px 20px;
+    border-radius: 40px;
+    box-shadow: none !important;
+    outline: 0 !important;
 }
-.logout-ok-button{
-    background-color: #1d7a8c;
-    color:white;
-    font-size:24px;
-    border-radius:33px;
-    padding-left:40px;
-    padding-right:40px;
-    margin:auto;
-    height:50px;
+
+    .logout-ok-button:hover {
+        background-color: #1d7a8c;
+        color: white;
+        border: solid 1px transparent !important;
+        font-size: 16px;
+        line-height: 20px;
+        padding: 9px 20px;
+        border-radius: 40px;
+        box-shadow: none !important;
+        outline: 0 !important;
+    }
+
+.success-modal {
+    display: inline-block;
+    background: #67b644;
+    padding: 25px;
+    border-radius: 500px;
+    margin-bottom: 25px;
 }
-.log-out-card {
-    border: none;
-    width: 30%;
-    margin: auto;
-    margin-top: 10%;
-    box-shadow: 2px 2px 2px 2px;
-    text-align:center;
+
+.errorBtn {
+    border-radius: 33px;
+    background-color: #e4dede;
+    color: darkred;
+    width: 80px;
 }
+
+    .errorBtn:hover {
+        border-radius: 33px;
+        background-color: #e4dede;
+        color: darkred;
+        width: 80px;
+    }
+
+.mailBtn {
+    border-radius: 33px;
+    background-color: #e4dede;
+    color: seagreen;
+    width: 80px;
+}
+
+    .mailBtn:hover {
+        border-radius: 33px;
+        background-color: #e4dede;
+        color: seagreen;
+        width: 80px;
+    }
+ 
+#mobile-card .mobile-card {
+    z-index: -1;
+    margin: 5px;
+    display: none;
+}
+
+@media (max-width:592px) {
+    #mobile-card .mobile-card {
+        display: block;
+        margin-right: 15px;
+        margin-top: 40px;
+    }
+    .provider-main-img-avtar {
+        width: 100px;
+        height: 110px;
+        margin-left: 85%;
+        margin-top: -22%;
+    }
+    #settings {
+        width: 100%;
+    }
+}
+
+@media (max-width:922px) {
+    #v-pills-tab, #dashboard1 {
+        display: none;
+    }
+
+    .nav-upcoming-sevices, #servicehistory {
+        display: none;
+    }
+}
+ 

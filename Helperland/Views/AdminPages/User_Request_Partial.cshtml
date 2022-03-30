@@ -44,15 +44,18 @@
             <select class="form-select form2-request-history" id="status">
                <option> Select Status</option>
                <option value="1">Completed</option>
-               <option value="2">Cancle</option>
+               <option value="2">Cancel</option>
                <option value="3">New</option>
                <option value="4">Pending</option>
                <option value="5">Expired</option>
             </select>
          </div>
-         <br> <br> 
+         <br> <br>
          <div class="form-group">
-            <input type="date" class="form-control form2  left-margin-apply " id="startdate" >
+            <input type="text" class="form-control form2  left-margin-apply " id="startdate" onfocus="(this.type = 'date')" placeholder="From Date">
+         </div>
+         <div class="form-group">
+            <input type="text"  class="form-control form2  left-margin-apply " id="Todate" onfocus="(this.type = 'date')" placeholder="To Date">
          </div>
 
          <button class="user-search-btn left-margin-apply" onclick="searchrequest(this)" type="button"> Search </button>
@@ -102,9 +105,39 @@
                   {
                      <div class="row">
                         <div class="col-md-4 cap-1-image-admin">
-                           <img src="../images/cap.png" alt="" class="cap-customer-history">
+                           @if (spr.UserProfilePicture != null)
+                           {
+                              @if (spr.UserProfilePicture == "1")
+                              {
+                                 <img width="50" height="50" src="../images/avatar-car.png">
+                              }
+                              @if (spr.UserProfilePicture == "2")
+                              {
+                                 <img width="50" height="50" src="../images/avatar-female.png">
+                              }
+                              @if (spr.UserProfilePicture == "3")
+                              {
+                                 <img width="50" height="50" src="../images/avatar-hat.png">
+                              }
+                              @if (spr.UserProfilePicture == "4")
+                              {
+                                 <img width="50" height="50" src="../images/avatar-iron.png">
+                              }
+                              @if (spr.UserProfilePicture == "5")
+                              {
+                                 <img width="50" height="50" src="../images/avatar-male.png">
+                              }
+                              @if (spr.UserProfilePicture == "6")
+                              {
+                                 <img width="50" height="50" src="../images/avatar-ship.png">
+                              }
+                           }
+                           else
+                           {
+                              <img src="../images/cap.png" alt="" class="cap-customer-history">
+                           }
                         </div>
-                        <div class="col-md-8 cap-1-name-admin" style="margin-left:55px; margin-top: -35px;">
+                        <div class="col-md-8 cap-1-name-admin" style="margin-left:55px; margin-top: -50px;">
                            @spr.Name
                            <br />
                            @{
@@ -122,23 +155,23 @@
                            }
                         </div>
                      </div>
-                   }
-                else
-                {
-                    <span class="text-success">  Service Provider is not assigned yet. </span>
-                }
+                  }
+                  else
+                  {
+                     <span class="text-success">  Service Provider is not assigned yet. </span>
+                  }
                </td>
                <td>
                   @spr.TotalCost
                </td>
                <td>
                   @if (spr.Status == 1)
-                   {
+                  {
                      <button type="button" class="active-btn" style="width: 72px;"> Completed</button>
-                   }
+                  }
                   else if (spr.Status == 2)
                   {
-                     <button type="button" class="active-btn" style="background-color: #ff6b6b; " > Cancle </button>
+                     <button type="button" class="active-btn" style="background-color: #ff6b6b; "> Cancel </button>
                   }
                   else if (spr.Status == 4)
                   {
@@ -186,10 +219,10 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: white;">
                            <li>
-                              <a class="dropdown-item" href="#" style="color: #646464;" onclick="editservice(this);"  data-id="@spr.ServiceRequestId">Edit &  Reschedule </a>
+                              <a class="dropdown-item" href="#" style="color: #646464;" onclick="editservice(this);" data-id="@spr.ServiceRequestId">Edit &  Reschedule </a>
                            </li>
                            <li>
-                              <a class="dropdown-item" href="#" style="color: #646464;"  onclick="cancel(this);"  data-id="@spr.ServiceRequestId">Cancle SR by customer</a>
+                              <a class="dropdown-item" href="#" style="color: #646464;" onclick="cancel(this);" data-id="@spr.ServiceRequestId">Cancel SR by customer</a>
                            </li>
                         </ul>
                      </div>
@@ -201,3 +234,26 @@
    </table>
 </div>
 <!--Admin Service Request-table for user managment-->
+
+<script type="text/javascript">
+   $(document).ready(function () {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      today = yyyy + '-' + mm + '-' + dd;
+      $('#startdate').attr('min', today);
+   });
+</script>
+<script type="text/javascript">
+   $(document).ready(function () {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      today = yyyy + '-' + mm + '-' + dd;
+      $('#Todate').attr('min', today);
+   });
+</script>

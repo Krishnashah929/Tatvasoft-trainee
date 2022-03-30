@@ -11,6 +11,7 @@
 
 <!--Setting panel tabs-->
 <section class="container-fluid mt-3 tab-pane active" id="v-pills-setting">
+
    <div class="row row-btn">
       <!-- Nav tabs -->
 
@@ -42,7 +43,7 @@
                <span style="font-size: 20px; ">
                   <strong>Account Status :</strong>
 
-                  @if (userdetails.IsApproved == true)
+                  @if (userdetails.IsActive == true)
                   {
                      <span class="text-success"> Active </span>
                   }
@@ -57,7 +58,6 @@
                <hr class="mt-2 provider-setting-hr">
             </div>
             <div class="row">
-
                @if (userdetails.UserProfilePicture == "1")
                {
                   <img class="active provider-main-img-avtar" src="../images/avatar-car.png">
@@ -83,7 +83,7 @@
                   <img class="provider-main-img-avtar" src="../images/avatar-ship.png">
                }
             </div>
-            <form class="row g-4 details-form-setting" asp-action="Updateproviderdetails" asp-controller="ProviderPages">
+            <form class="row g-4 details-form-setting" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#v-pills-tabContent" data-ajax-Success="updatefail()" asp-action="Updateproviderdetails" asp-controller="ProviderPages">
                <div class="col-md-4">
                   <label for="firstname" class="form-label">First name</label>
                   <input type="text" asp-for="FirstName" class="form-control" id="firstname" value="@userdetails.FirstName">
@@ -104,7 +104,7 @@
                <div class="col-md-4">
                   <label class="control-label normal">Date of Birth</label>
                   <div class="row">
-                     <div class="col-md-4">
+                     <div class="col-4">
                         <select class="form-select form-control" id="birthdate" asp-for="Day">
                            <option value="">Day</option>
                            <option value="1">01</option>
@@ -140,7 +140,7 @@
                            <option value="31">31</option>
                         </select>
                      </div>
-                     <div class="col-md-4">
+                     <div class="col-4">
                         <select class="form-control form-select" id="birthmonth" asp-for="Month">
                            <option value="">Month</option>
                            <option value="1">January</option>
@@ -158,7 +158,7 @@
                         </select>
 
                      </div>
-                     <div class="col-md-4">
+                     <div class="col-4">
                         <select class="form-control form-select" id="birthyear" asp-for="Year">
                            <option value="">Year</option>
                            <option value="2012">2012</option>
@@ -321,23 +321,47 @@
                   <span style="font-size: 18px; "> <strong> My Address </strong> </span>
                   <hr class="mt-2">
                </div>
-               <div class="col-md-4">
-                  <label for="Street" class="form-label">Street</label>
-                  <input type="text" asp-for="AddressLine2" class="form-control" id="Street" value="@Address.AddressLine2">
+               @if (Address == null)
+               {
+                  <div class="col-md-4">
+                     <label for="Street" class="form-label">Street</label>
+                     <input type="text" asp-for="AddressLine2" class="form-control" id="Street" placeholder="Street">
 
-               </div>
-               <div class="col-md-4">
-                  <label for="Housenumber" class="form-label">House number</label>
-                  <input type="number" asp-for="AddressLine1" class="form-control" id="Housenumber" value="@Address.AddressLine1">
-               </div>
-               <div class="col-md-4">
-                  <label for="postalcode" class="form-label ">Postal code</label>
-                  <input type="number" asp-for="PostalCode" class="form-control" id="postalcode" value="@Address.PostalCode">
-               </div>
-               <div class="col-md-4">
-                  <label for="city" class="form-label">Location</label>
-                  <input type="text" asp-for="City" class="form-control" value="@Address.City" id="city">
-               </div>
+                  </div>
+                  <div class="col-md-4">
+                     <label for="Housenumber" class="form-label">House number</label>
+                     <input type="number" asp-for="AddressLine1" class="form-control" id="Housenumber" placeholder="House No">
+                  </div>
+                  <div class="col-md-4">
+                     <label for="postalcode" class="form-label ">Postal code</label>
+                     <input type="number" asp-for="PostalCode" class="form-control" id="postalcode" placeholder="Postal Code">
+                  </div>
+                  <div class="col-md-4">
+                     <label for="city" class="form-label">Location</label>
+                     <input type="text" asp-for="City" class="form-control" id="city" placeholder="City">
+                  </div>
+               }
+
+               else
+               {
+                  <div class="col-md-4">
+                     <label for="Street" class="form-label">Street</label>
+                     <input type="text" asp-for="AddressLine2" class="form-control" id="Street" value="@Address.AddressLine2" placeholder="House No">
+                  </div>
+                  <div class="col-md-4">
+                     <label for="Housenumber" class="form-label">House number</label>
+                     <input type="number" asp-for="AddressLine1" class="form-control" id="Housenumber" value="@Address.AddressLine1" placeholder="Street">
+                  </div>
+                  <div class="col-md-4">
+                     <label for="postalcode" class="form-label ">Postal code</label>
+                     <input type="number" asp-for="PostalCode" class="form-control" id="postalcode" value="@Address.PostalCode" placeholder="Postal Code">
+                  </div>
+                  <div class="col-md-4">
+                     <label for="city" class="form-label">Location</label>
+                     <input type="text" asp-for="City" class="form-control" value="@Address.City" id="city" placeholder="City">
+                  </div>
+               }
+
 
                <div class="row mt-4">
                   <div class="col-md-3">
@@ -388,4 +412,5 @@
          </div>
 
       </div>
+ 
 </section>

@@ -24,24 +24,8 @@ function myFunction() {
     x.style.display = "none";
 }
 
-function preventBack() { window.history.forward(); }
-setTimeout("preventBack()", 0);
-window.onunload = function () { null };
-
-//function logoutclick() {
-//    debugger;
-//    $.ajax({
-//        url: '/Home/OnLogOut',
-//        type: 'POST',
-//        success: function (result) {
-//            if (result.value == "true") {
-//                preventBack();
-//            }
-//            else {
-//                alert("Invalid");
-//            }
-//        }
-//    });
-//}
-
+//function preventBack() { window.history.forward(); }
+//setTimeout("preventBack()", 0);
+//window.onunload = function () { null };
+ 
  

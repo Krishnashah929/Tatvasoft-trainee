@@ -47,7 +47,7 @@ namespace Helperland.Models
 
         [NotMapped]
         public bool Extra1 { get; set; }
-      
+
         [NotMapped]
         public bool Extra2 { get; set; }
         [NotMapped]
@@ -62,7 +62,11 @@ namespace Helperland.Models
         [NotMapped]
         public DateTime ServiceDate { get; set; }
         [NotMapped]
+        public DateTime ServiceEndDate { get; set; }
+        [NotMapped]
         public DateTime ServiceTime { get; set; }
+       [NotMapped]
+        public DateTime startDateTime { get; set; }
         [NotMapped]
         public string AddressLine1 { get; set; }
         [NotMapped]
@@ -85,9 +89,12 @@ namespace Helperland.Models
         public string PostalCode { get; set; }
         [NotMapped]
         public decimal? ratings { get; set; }
-      
+
         [NotMapped]
         public int UserTypeId { get; set; }
+
+        [NotMapped]
+        public string UserProfilePicture { get; set; }
 
         public virtual User ServiceProvider { get; set; }
         public virtual User User { get; set; }

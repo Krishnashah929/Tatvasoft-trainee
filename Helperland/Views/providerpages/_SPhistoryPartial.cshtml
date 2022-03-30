@@ -9,57 +9,111 @@
    }
 }
 @model Helperland.Models.ServiceRequest
-   <div class="row mt-3">
-      <div class="col-md-6">
-         <span class="export-btn-heading"> <strong> Service History </strong> </span>
+
+   <section id="dashboard1">
+      <div class="row mt-3">
+         <div class="col-md-6">
+            <span class="export-btn-heading"> <strong> Service History </strong> </span>
+         </div>
+         <div class="col-md-6">
+            <button type="button" class="btn btn-export-sp float-right" onclick="ExportToExcel('xlsx')">Export</button>
+         </div>
       </div>
-      <div class="col-md-6">
-         <button type="button" class="btn btn-export-sp float-right" onclick="ExportToExcel('xlsx')">Export</button>
+      <div class="tab-pane active" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+         <table class="table mt-3 text-center" id="SPexample2">
+            <thead class="table-header-upcoming-services">
+               <tr>
+                  <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
+                  <th scope="col"> Service Date <img src="../images/sort.png" alt=""></th>
+                  <th scope="col"> Customer Details <img src="../images/sort.png" alt=""> </th>
+               </tr>
+            </thead>
+            <tbody class="tbody-upcoming-services">
+               @foreach (ServiceRequest spr in service)
+               {
+                  double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+                  <tr>
+                     <td>
+                        <button type="button" class="id-button" data-bs-toggle="modal"
+                                data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
+                           @spr.ServiceRequestId
+                        </button>
+                     </td>
+                     <td>
+                        <button type="button" class="id-button" data-bs-toggle="modal"
+                                data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
+                           <img src="../images/calendar2.png" alt="">
+                           @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
+                           <img src="../images/layer-712.png" alt="">
+                           @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+                        </button>
+                     </td>
+                     <td>
+                        <button type="button" class="id-button" data-bs-toggle="modal"
+                                data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
+                           @spr.Name
+                           <br>
+                           <span>
+                              <img src="../images/layer-719.png" alt="">
+                              @spr.AddressLine2 , @spr.AddressLine1<br> @spr.City - @spr.ZipCode
+                           </span>
+                        </button>
+                     </td>
+                  </tr>
+
+               }
+            </tbody>
+         </table>
+      </div>
+   </section>
+
+
+   <div class="col col3 mb-3" id="mobile-card" style="margin-left:-10px !important;">
+      <div class="tab-content">
+         <div id="dashboard-sid" class="container tab-pane active">
+            <div class="mobile-card ">
+               <h2><b>Service History </b></h2>
+
+               @foreach (ServiceRequest spr in service)
+               {
+                  double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+                  <div class="card upcoming-service-card">
+                     <ul class="list-group ">
+                        <li class="list-group-item" style="font-size:16px !important;">
+                           <span>
+                              Service Request Id :
+                              <button type="button" class="id-button" data-bs-toggle="modal"
+                                      data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
+                                 @spr.ServiceRequestId
+                              </button>
+                           </span>
+                        </li>
+                        <li class="list-group-item" style="font-size:16px !important;">
+                           <button type="button" class="id-button" data-bs-toggle="modal"
+                                   data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
+                              <img src="../images/calendar2.png" alt="">
+                              @spr.ServiceStartDate.ToString("dd/MM/yyyy") 
+                              <img src="../images/layer-712.png" alt="" class="ml-5">
+                              @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+                           </button>
+                        </li>
+                        <li class="list-group-item">
+                           <div class="col-10" style="font-size:16px !important; text-align:left; ">
+                              <button type="button" class="id-button" data-bs-toggle="modal"
+                                      data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
+                                 @spr.Name
+                                 <br>
+                                 <span>
+                                    <img src="../images/layer-719.png" alt="">
+                                    @spr.AddressLine2 , @spr.AddressLine1<br> @spr.City - @spr.ZipCode
+                                 </span>
+                              </button>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               }
+            </div>
+         </div>
       </div>
    </div>
-<div class="tab-pane active" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
-   <table class="table mt-3 text-center" id="SPexample2">
-      <thead class="table-header-upcoming-services">
-         <tr>
-            <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
-            <th scope="col"> Service Date <img src="../images/sort.png" alt=""></th>
-            <th scope="col"> Customer Details <img src="../images/sort.png" alt=""> </th>
-         </tr>
-      </thead>
-      <tbody class="tbody-upcoming-services">
-         @foreach (ServiceRequest spr in service)
-         {
-            double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
-            <tr>
-               <td>
-                  <button type="button" class="id-button" data-bs-toggle="modal"
-                          data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
-                     @spr.ServiceRequestId
-                     </button>
-               </td>
-               <td>
-                  <button type="button" class="id-button" data-bs-toggle="modal"
-                          data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
-                     <img src="../images/calendar2.png" alt="">
-                     @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
-                     <img src="../images/layer-712.png" alt="">
-                     @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
-                     </button>
-               </td>
-               <td>
-                  <button type="button" class="id-button" data-bs-toggle="modal"
-                          data-bs-target="#ServiceHistorySP" onclick="openhistory(this)" data-id="@spr.ServiceRequestId">
-                     @spr.Name
-                     <br>
-                     <span>
-                        <img src="../images/layer-719.png" alt="">
-                        @spr.AddressLine2 , @spr.AddressLine1<br> @spr.City - @spr.ZipCode
-                     </span>
-                     </button>
-               </td>
-            </tr>
-          
-            }
-         </tbody>
-   </table>
-</div>

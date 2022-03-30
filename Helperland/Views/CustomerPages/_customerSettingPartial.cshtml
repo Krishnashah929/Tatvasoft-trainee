@@ -1,14 +1,14 @@
 ﻿@*
    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@model Helperland.Models.User 
+@model Helperland.Models.User
 @{
-    List<UserAddress> Address = null;
-    if (ViewBag.add != null)
-    {
-       Address = ViewBag.add;
-    }
-    var userdetails = ViewBag.details;
+   List<UserAddress> Address = null;
+   if (ViewBag.add != null)
+   {
+      Address = ViewBag.add;
+   }
+   var userdetails = ViewBag.details;
 }
 <!--Setting panel tabs-->
 <section class="container-fluid mt-3 tab-pane  active" id="v-pills-setting" role="tabpanel"
@@ -55,24 +55,24 @@
       </ul>
       <!-- Tab panes -->
       <div class="tab-content px-0 mt-3">
+         <div class="alert alert-success d-none" role="alert" id="alertmsg">
+            This is a success alert—check it out!
+         </div>
          <!--details tab-->
          <div class="tab-pane active text" id="for-details" role="tabpanel"
               aria-labelledby="for-details-tab">
             <form class="row g-4 details-form-setting">
                <div class="col-md-4">
                   <label for="firstname" class="form-label">First name</label>
-                  <input class="form-control" id="firstname"
-                         value=" @userdetails.FirstName">
+                  <input type="text" class="form-control" id="firstname" value="@userdetails.FirstName">
                </div>
                <div class="col-md-4">
                   <label for="lastname" class="form-label">last name</label>
-                  <input type="name" class="form-control" id="lastname"
-                         value=" @userdetails.LastName">
+                  <input type="text" class="form-control" id="lastname" value="@userdetails.LastName">
                </div>
                <div class="col-md-4">
                   <label for="staticEmail" class="form-label ">E-mail-Address</label>
-                  <input type="text" class="form-control-plaintext email-setting"
-                         id="staticEmail" value=" @userdetails.Email" readonly>
+                  <input type="text" class="form-control-plaintext email-setting" id="staticEmail" value="@userdetails.Email" readonly>
                </div>
                <div class="col-md-4">
                   <label for="number" class="form-label"> Mobile number</label>
@@ -81,8 +81,8 @@
                <div class="col-md-4">
                   <label class="control-label normal">Date of Birth</label>
                   <div class="row">
-                     <div class="col-md-4">
-                        <select class="form-control" id="birthdate" >
+                     <div class="col-4">
+                        <select class="form-control" id="birthdate" asp-for="Day">
                            <option value="">Day</option>
                            <option value="1">01</option>
                            <option value="2">02</option>
@@ -117,8 +117,8 @@
                            <option value="31">31</option>
                         </select>
                      </div>
-                     <div class="col-md-4">
-                        <select class="form-control" id="birthmonth">
+                     <div class="col-4">
+                        <select class="form-control" id="birthmonth" asp-for="Month">
                            <option value="">Month</option>
                            <option value="1">January</option>
                            <option value="2">February</option>
@@ -135,8 +135,8 @@
                         </select>
 
                      </div>
-                     <div class="col-md-4">
-                        <select class="form-control" id="birthyear">
+                     <div class="col-4">
+                        <select class="form-control" id="birthyear" asp-for="Year">
                            <option value="">Year</option>
                            <option value="2012">2012</option>
                            <option value="2011">2011</option>
@@ -248,7 +248,7 @@
                   <label for="Language" class="form-label">
                      My preffered language
                   </label>
-                  <select id="Language" class="form-select">
+                  <select id="Language" class="form-select" asp-for="LanguageId">
                      <option> Choose Language</option>
                      <option value="1"> English</option>
                      <option value="2"> Germen</option>
@@ -277,23 +277,23 @@
                <tbody>
                   @foreach (UserAddress dbs in Address)
                   {
-                  <tr>
-                     <td>
-                        <span>
-                           <b>Address:</b> @dbs.AddressLine1 , @dbs.AddressLine2
-                           <br>
-                           <b>Telephone number:</b> @dbs.Mobile
-                        </span>
-                     </td>
-                     <td style="text-align: center;">
-                        <a href="#" data-bs-toggle="modal" onclick="editadd(this);" data-bs-target="#myModalforaddress" data-id="@dbs.AddressId">
-                           <i class="far fa-edit edit-icon-setting"></i>
-                        </a>
-                        <a href="#" data-bs-toggle="modal"onclick="deladd(this);" data-bs-target="#myModaldeleteaddress" data-id="@dbs.AddressId">
-                           <i class="far fa-trash-alt delete-icon-setting"></i>
-                        </a>
-                     </td>
-                  </tr>
+                     <tr>
+                        <td>
+                           <span>
+                              <b>Address:</b> @dbs.AddressLine1 , @dbs.AddressLine2
+                              <br>
+                              <b>Telephone number:</b> @dbs.Mobile
+                           </span>
+                        </td>
+                        <td style="text-align: center;">
+                           <a href="#" data-bs-toggle="modal" onclick="editadd(this);" data-bs-target="#myModalforaddress" data-id="@dbs.AddressId">
+                              <i class="far fa-edit edit-icon-setting"></i>
+                           </a>
+                           <a href="#" data-bs-toggle="modal" onclick="deladd(this);" data-bs-target="#myModaldeleteaddress" data-id="@dbs.AddressId">
+                              <i class="far fa-trash-alt delete-icon-setting"></i>
+                           </a>
+                        </td>
+                     </tr>
                   }
 
                </tbody>
@@ -371,10 +371,4 @@
    </div>
 </section>
 
-@*<script type="text/javascript">
-   debugger;
-   var model = '@ViewBag.details'; 
-   console.log(model);
-   $(document).ready(function () {
-   });
-</script>*@
+ 

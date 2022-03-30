@@ -95,12 +95,13 @@ namespace Helperland.Models
         public string PostalCode { get; set; }
         [NotMapped]
         public string Day { get; set; }
-       [NotMapped]
-        public string Month { get; set; }
-       [NotMapped]
+        [NotMapped]
+        public string Month { get; set; } 
+        [NotMapped]
         public string Year { get; set; }
         [NotMapped]
         public string Comments { get; set; }
+        
         //this line for the mailing services//
         public string ResetPasswordCode { get; set; }
 
@@ -111,6 +112,6 @@ namespace Helperland.Models
         public virtual ICollection<ServiceRequest> ServiceRequestServiceProviders { get; set; }
         public virtual ICollection<ServiceRequest> ServiceRequestUsers { get; set; }
         public virtual ICollection<UserAddress> UserAddresses { get; set; }
-        
+
     }
 }

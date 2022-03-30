@@ -25,10 +25,10 @@
             </div>
             <div class="row">
                <div class="col-auto">
-                  <input type="Date" class="form-control" id="Date" placeholder="From Date">
+                  <input type="text" class="form-control" id="ServiceDate" placeholder="Service Date" onfocus="(this.type = 'date')">
                </div>
                <div class="col-auto">
-                  <select id="Time"  class="form-select"  >
+                  <select id="Time" class="form-select">
                      <option value="08:00">08:00</option>
                      <option value="09:00">09:00</option>
                      <option value="10:00">10:00</option>
@@ -47,3 +47,17 @@
       </div>
    </div>
 </div>
+
+
+
+<script type="text/javascript">
+   $(document).ready(function () {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      today = yyyy + '-' + mm + '-' + dd;
+      $('#ServiceDate').attr('min', today);
+   });
+</script>

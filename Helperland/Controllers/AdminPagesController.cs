@@ -46,6 +46,7 @@ namespace Helperland.Controllers
                 {
                     var Name = _helperlandContext.Users.Where(x => x.UserId == users.ServiceProviderId).FirstOrDefault();
                     users.Name = Name.FirstName + " " + Name.LastName;
+                    users.UserProfilePicture = Name.UserProfilePicture;
                     var rate = _helperlandContext.Ratings.Where(c => c.ServiceRequestId == users.ServiceRequestId).ToList();
                     decimal temp = 0;
                     foreach (Rating rating in rate)
@@ -83,7 +84,12 @@ namespace Helperland.Controllers
                                                   (string.IsNullOrEmpty(data.Name) || (!string.IsNullOrEmpty(x.Name) ? x.Name.ToLower().Contains(data.Name.ToLower()) : false)) &&
                                                   (string.IsNullOrEmpty(data.ZipCode) || (!string.IsNullOrEmpty(x.ZipCode) ? x.ZipCode.ToLower().Contains(data.ZipCode.ToLower()) : false)) &&
                                                   (!data.Status.HasValue || x.Status == data.Status) &&
-                                                  (!data.ServiceStartDate.HasValue || x.ServiceStartDate.Date == data.ServiceStartDate.Value.Date)).ToList();
+                                                  //(!data.ServiceStartDate.HasValue || x.ServiceStartDate.Date == data.ServiceStartDate.Value.Date))
+                                                  (
+                                                  (data.ServiceStartDate.HasValue && data.ServiceEndDate.HasValue) ? x.ServiceStartDate.Date >= data.ServiceStartDate.Value.Date && x.ServiceStartDate.Date <= data.ServiceEndDate : false ||
+                                                  (data.ServiceStartDate.HasValue && !data.ServiceEndDate.HasValue) ? x.ServiceStartDate.Date >= data.ServiceStartDate.Value.Date : false ||
+                                                  (!data.ServiceStartDate.HasValue && data.ServiceEndDate.HasValue) ? x.ServiceStartDate.Date <= data.ServiceEndDate : false ||
+                                                  (!data.ServiceStartDate.HasValue && !data.ServiceEndDate.HasValue) ? true : true)).ToList();
             }
             ViewBag.services = serviceRequest;
             return PartialView("User_Request_Partial");

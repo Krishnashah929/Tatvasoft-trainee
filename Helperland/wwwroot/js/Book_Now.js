@@ -87,8 +87,7 @@ function zipsubmit() {
             }
         },
         error: function () {
-            alert('Failed to receive the Data');
-            console.log('Failed ');
+            alert('Please enter PostalCode');
         }
     })
 }
@@ -157,8 +156,6 @@ function addresssubmit() {
         success: function (result) {
             if (result.value == "true") {
                 getaddress();
-
-                alert("address is valid");
             }
             else {
                 alert("address is invalid");
@@ -173,7 +170,6 @@ function addresssubmit() {
 
 function afteraddress() {
     next();
-    alert("valid address details");
 }
 
 function completebooking() {
@@ -255,6 +251,9 @@ function etc1change() {
         $("#etc-1").addClass("d-none");
         $("#etc1").addClass("d-none");
     }
+    hourschange();
+    totalprice();
+    
 }
 function etc2change() {
     $("#Insidefridge").checked
@@ -267,6 +266,8 @@ function etc2change() {
         $("#etc-2").addClass("d-none");
         $("#etc2").addClass("d-none");
     }
+    hourschange();
+    totalprice();
 }
 function etc3change() {
     $("#Insideoven").checked
@@ -279,6 +280,8 @@ function etc3change() {
         $("#etc-3").addClass("d-none");
         $("#etc3").addClass("d-none");
     }
+    hourschange();
+    totalprice();
 }
 function etc4change() {
     $("#Insidelaundry").checked
@@ -291,6 +294,8 @@ function etc4change() {
         $("#etc-4").addClass("d-none");
         $("#etc4").addClass("d-none");
     }
+    hourschange();
+    totalprice();
 }
 function etc5change() {
     $("#Insidewindows").checked
@@ -303,6 +308,8 @@ function etc5change() {
         $("#etc-5").addClass("d-none");
         $("#etc5").addClass("d-none");
     }
+    hourschange();
+    totalprice();
 }
 function datechange() {
     var date = document.getElementById("servicestartdate").value;
@@ -313,8 +320,71 @@ function timechange() {
     var time = document.getElementById("serviceTime").value;
     document.getElementById("servicecardtime").innerHTML = time;
 }
-
 function hourschange() {
-    var hour = document.getElementById("serviceHours").value;
+    debugger;
+    //var hour = document.getElementById("serviceHours").value;
+    var hour = parseFloat(document.getElementById("serviceHours").value);
+    var extrahours = 0;
+   
+    var c = document.getElementById("Insidecabinets");
+    var f = document.getElementById("Insidefridge");
+    var o = document.getElementById("Insideoven");
+    var l = document.getElementById("Insidelaundry");
+    var w = document.getElementById("Insidewindows");
+    if (c.checked) {
+        extrahours += 0.5;
+        
+    }
+    if (f.checked) {
+        extrahours += 0.5;
+        
+    }
+    if (o.checked) {
+        extrahours += 0.5;
+         
+    }
+    if (l.checked) {
+        extrahours += 0.5;
+       
+    }
+    if (w.checked) {
+        extrahours += 0.5;
+        
+    }
     document.getElementById("servicecardhour").innerHTML = hour;
+    var total = hour + extrahours;
+    document.getElementById("totalhours").innerHTML = total;
+    totalprice();
+}
+
+function totalprice() {
+    var hour = parseFloat(document.getElementById("serviceHours").value);
+    var extrahours = 0;
+    var c = document.getElementById("Insidecabinets");
+    var f = document.getElementById("Insidefridge");
+    var o = document.getElementById("Insideoven");
+    var l = document.getElementById("Insidelaundry");
+    var w = document.getElementById("Insidewindows");
+    if (c.checked) {
+        extrahours += 0.5;
+
+    }
+    if (f.checked) {
+        extrahours += 0.5;
+
+    }
+    if (o.checked) {
+        extrahours += 0.5;
+
+    }
+    if (l.checked) {
+        extrahours += 0.5;
+
+    }
+    if (w.checked) {
+        extrahours += 0.5;
+
+    }
+    var totalprice = (hour + extrahours) * 25;
+    document.getElementById("totalprice").innerHTML = totalprice;
 }

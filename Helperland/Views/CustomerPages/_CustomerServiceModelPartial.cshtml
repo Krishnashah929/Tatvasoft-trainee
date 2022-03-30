@@ -108,7 +108,7 @@
                   Cancle
                </button>
             }
-            @if (Model.ServiceStartDate.AddHours(time) < DateTime.Now )
+            @if (Model.ServiceStartDate.AddHours(time) < DateTime.Now && Model.Status != 1 && Model.Status != 2 )
              {
                <button type="button" class="btn btn-upcoming-service">
                   Expired

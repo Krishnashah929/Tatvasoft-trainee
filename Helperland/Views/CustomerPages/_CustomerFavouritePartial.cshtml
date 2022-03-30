@@ -1,0 +1,92 @@
+﻿@{
+    var ids = ViewBag.counts;
+    var serviceProviders = ViewBag.serviceProviders;
+    int i = 0;
+    var favs = ViewBag.favs;
+    var ratings = ViewBag.history;
+    var hasEntry = ViewBag.hasEntry;
+}
+
+<div class="tab-pane active" id="v-pills-fav" role="tabpanel" aria-labelledby="v-pills-fav-tab">
+   @foreach (User sp in serviceProviders)
+   {
+ <div class="row">
+    <div class="col-md-4 col-sm-12">
+       <div class="card mt-3 "  >
+          @if (sp.UserProfilePicture != null)
+          {
+
+             if (sp.UserProfilePicture == "1")
+             {
+
+                <img class="mt-2 m-auto" src="~/Images/avatar-car.png" alt="" width="90" height="90">
+             }
+             if (sp.UserProfilePicture == "2")
+             {
+
+                <img class="mt-2 m-auto" src="~/Images/avatar-female.png" alt="" width="90" height="90">
+             }
+             if (sp.UserProfilePicture == "3")
+             {
+
+                <img class="mt-2 m-auto" src="~/Images/avatar-hat.png" alt="" width="90" height="90">
+             }
+             if (sp.UserProfilePicture == "4")
+             {
+
+                <img class="mt-2 m-auto" src="~/Images/avatar-iron.png" alt="" width="90" height="90">
+             }
+             if (sp.UserProfilePicture == "5")
+             {
+
+                <img class="mt-2 m-auto" src="~/Images/avatar-male.png" alt="" width="90" height="90">
+             }
+             if (sp.UserProfilePicture == "6")
+             {
+
+                <img class="mt-2 m-auto" src="~/Images/avatar-ship.png" alt="" width="90" height="90">
+             }
+          }
+          else
+          {
+
+             <img class="mt-2 m-auto" src="~/Images/cap.png" alt="" width="90" height="90">
+          }
+          @*<img src="../images/avatar-hat.png" alt="" style="width:30%;margin:auto" />*@
+          <div class="card-body text-center">
+             <h5 class="card-title text-center"> @sp.FirstName @sp.LastName</h5>
+             <br>
+             <span>
+                @ids[i] Cleanings
+             </span>
+             <br>
+             @if (hasEntry[i] != false)
+             {
+                if (favs[i].IsFavorite == true)
+                {
+                   <button class="btn btn-upcoming-service-reschedule mt-3 mb-3" data-id="@sp.UserId" onclick="unfavoriteProvider(this)">Unfavourite</button>
+                   <button class="btn btn-upcoming-service mt-3 mb-3 " disabled>Block</button>
+                }
+                else if (favs[i].IsBlocked == true)
+                {
+                   <button class="btn btn-upcoming-service-reschedule mt-3 mb-3" disabled>Favourite</button>
+                   <button class="btn btn-upcoming-service mt-3 mb-3  " data-id="@sp.UserId" onclick="unblockProvider(this)">Unblock</button>
+                }
+                else if (favs[i].IsFavorite == false)
+                {
+                   <button class="btn btn-upcoming-service-reschedule mt-3 mb-3" data-id="@sp.UserId" onclick="favoriteProvider(this)">Favourite</button>
+                   <button class="btn btn-upcoming-service mt-3 mb-3 " data-id="@sp.UserId" onclick="blockProvider(this)">Block</button>
+                }
+             }
+             else
+             {
+                <button class="btn btn-upcoming-service-reschedule mt-3 mb-3" data-id="@sp.UserId" onclick="favoriteProvider(this)">Favourite</button>
+                <button class="btn btn-upcoming-service mt-3 mb-3" data-id="@sp.UserId" onclick="blockProvider(this)">Block</button>
+             }
+          </div>
+       </div>
+    </div>
+ </div>
+      i = i + 1;
+   }
+</div>

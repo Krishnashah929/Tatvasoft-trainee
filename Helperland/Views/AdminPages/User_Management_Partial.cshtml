@@ -45,7 +45,7 @@
             <input type="text" class="form-control form2" id="zipcode" placeholder="Postal Code ">
          </div>
          <div class="form-group left-margin-apply">
-            <input type="date" class="form-control form2" id="createdate">
+            <input type="text" class="form-control form2" id="createdate" onfocus="(this.type = 'date')" placeholder="Registered Date">
          </div>
          <br>
          <div class="row mt-3">
@@ -63,9 +63,8 @@
 <button type="button" class="btn btn-export-sp-admin" onclick=" ExportToExcel1('xlsx')">Export</button>
 
 <div class="table-user-management">
-
    <table class="table mt-2" id="usertable">
-      <thead class="table-header-admin-usermanagement">
+      <thead class="table-header-admin-usermanagement" data-ajax="true" data-ajax-mode="replace" data-ajax-update="#v-pills-tabContent">
          <tr>
             <th scope="col"> User Name <img src="../images/sort.png" alt=""></th>
             <th scope="col">User Type <img src="../images/sort.png" alt=""> </th>
@@ -111,13 +110,12 @@
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="background: white;">
 
-                        @if (spr.IsApproved == false)
+                        @if (spr.IsApproved == false && spr.IsActive == false)
                         {
                            <li><a class="dropdown-item" onclick="Approveuser(this);" data-id="@spr.UserId" style="color: black;">Approve</a></li>
-                           <li><a class="dropdown-item" onclick="Deleteuser();" data-id="@spr.UserId" style="color: black;">Deactivate</a></li>
-
+                           <li><a class="dropdown-item" onclick="Activeuser(this);" data-id="@spr.UserId" style="color: black;">Active</a></li>
                         }
-                        else if (spr.IsActive == false && spr.UserTypeId == 1 && spr.IsApproved == true)
+                        else if (spr.IsActive == false && spr.IsApproved == true)
                         {
                            <li><a class="dropdown-item" onclick="Activeuser(this);" data-id="@spr.UserId" style="color: black;">Active</a></li>
                         }
@@ -134,3 +132,16 @@
    </table>
 </div>
 <!--table for user managment-->
+
+<script type="text/javascript">
+   $(document).ready(function () {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+
+      today = yyyy + '-' + mm + '-' + dd;
+      $('#createdate').attr('min', today);
+   });
+</script>
+ 

@@ -25,6 +25,7 @@
     });
 });
 function loadhistory() {
+    
     $.ajax({
         url: '/CustomerPages/history',
         type: 'GET',
@@ -72,7 +73,7 @@ function loaddb() {
     });
 }
 function loadsetting() {
-    debugger;
+   
     $.ajax({
         url: '/CustomerPages/setting',
         type: 'GET',
@@ -82,17 +83,8 @@ function loadsetting() {
         }
     });
 }
-//function loadfav() {
-//    debugger;
-//    $.ajax({
-//        url: '/CustomerPages/GetFavPro',
-//        type: 'GET',
-//        success: function (response) {
-//            $('#v-pills-tabContent').html(response);
 
-//        }
-//    });
-//}
+
 function ServiceDetails(sd) {
     var id = sd.getAttribute("data-id");
     $.ajax({
@@ -128,10 +120,12 @@ function changeschedule() {
         data: data,
         success: function (result) {
             if (result.value == "true") {
+                alert("An email with reschedule date and time has been sent to Provider.");
                 loaddb();
+
             }
             else {
-                alert("Invalid");
+                alert("At this time Service Provider is not available for you, please choose other date or time.");
             }
         }
     });
@@ -167,22 +161,8 @@ function CancelRequest() {
     });
 }
 
-//function fnBlockSp(sp) {
-//    debugger;
-//    var id = sp.getAttribute("data-id");
-//    $.ajax({
-//        url: '/CustomerPages/BlockSp',
-//        type: 'POST',
-//        contenttype: 'application/json',
-//        data: { "id": id },
-//        success: function () {
-//            loadfav();
-//        }
-//    });
-//}
- 
 function rating(cm) {
-    debugger;
+   
     var id = cm.getAttribute("data-id");
     $.ajax({
         url: '/CustomerPages/RatingProviderModel',
@@ -194,28 +174,10 @@ function rating(cm) {
         }
     });
 }
-function saverating() {
-    debugger;
-    var data = {};
-    data.serviceRequestId = document.getElementById("id").value;
-    $.ajax({
-        url: '/CustomerPages/AddRatings',
-        type: 'POST',
-        data: data,
-        success: function (result) {
-            if (result.value == "true") {
-                loadhistory();
-                //window.location.reload();
 
-            }
-            else {
-                alert("Invalid");
-            }
-        }
-    });
-}
+//pending alert work
 function updatedetails() {
-    debugger;
+  
     var data = {};
     data.firstName = document.getElementById("firstname").value;
     data.lastName = document.getElementById("lastname").value;
@@ -233,6 +195,7 @@ function updatedetails() {
         success: function (result) {
             if (result.value == "true") {
                 loadsetting();
+                alert("Your details are updated successfully.");
             }
             else {
                 alert("detailes is invalid");
@@ -240,8 +203,11 @@ function updatedetails() {
         }
     })
 }
+ 
+
+
 function editadd(ed) {
-    debugger;
+   
     var id = ed.getAttribute("data-id");
     $.ajax({
         url: '/CustomerPages/EditAddressModel',
@@ -306,6 +272,67 @@ function delexistadd() {
         }
     });
 }
+
+function loadfav() {
+
+    $.ajax({
+        url: '/CustomerPages/GetFavPro',
+        type: 'GET',
+        success: function (response) {
+            $('#v-pills-tabContent').html(response);
+
+        }
+    });
+}
+function blockProvider(db) {
+
+    var id = db.getAttribute("data-id");
+    $.ajax({
+        url: "/CustomerPages/BlockProvider",
+        type: 'POST',
+        data: { "id": id },
+        success: function () {
+            loadfav();
+        }
+    });
+}
+function unblockProvider(db) {
+
+    var id = db.getAttribute("data-id");
+    $.ajax({
+        url: "/CustomerPages/UnBlockProvider",
+        type: 'POST',
+        data: { "id": id },
+        success: function () {
+            loadfav();
+        }
+    });
+}
+function favoriteProvider(db) {
+
+    var id = db.getAttribute("data-id");
+    $.ajax({
+        url: "/CustomerPages/FavoriteProvider",
+        type: 'POST',
+        data: { "id": id },
+        success: function () {
+            loadfav();
+        }
+    });
+}
+function unfavoriteProvider(db) {
+
+    var id = db.getAttribute("data-id");
+    $.ajax({
+        url: "/CustomerPages/UnFavoriteProvider",
+        type: 'POST',
+        data: { "id": id },
+        success: function () {
+            loadfav();
+        }
+    });
+}
+
 //dynamic function
 function fnRemoveValidationOnChange(event) { //event= argument
     var control = event;
@@ -360,22 +387,13 @@ function fnPwdValidation() {
     //}
 }
 function updatepw() {
-    debugger;
+     
     var isValid = fnPwdValidation();
     var data = {};
     var storepassword = $("#storepassword").val();
     data.password = $("#oldpassword").val();
     data.newPassword = $("#newPassword").val();
     data.confirmPassword = $("#repeatpassword").val();
-    //if (storepassword != oldpass) {
-    //    alert("You have entered wrong current password !");
-    //}
-    //if (oldpass != "" && newpass != "" && confirmpass != "") {
-    //    if (newpass == confirmpass) {
-    //        var model = {
-    //            Password: oldpass,
-    //            NewPassword: newpass,
-    //        }
     if (isValid) {
         $.ajax({
             type: 'POST',
@@ -383,12 +401,12 @@ function updatepw() {
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             data: data,
             success: function (response) {
-                alert("valid password");
+                alert("Your password updated successfully.");
             },
         });
     }
 }
- 
+
 //for downloading the excel file
 function ExportToExcelCust(type, fn, dl) {
     var elt = document.getElementById('example2');
@@ -397,3 +415,5 @@ function ExportToExcelCust(type, fn, dl) {
         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
         XLSX.writeFile(wb, fn || ('Servicehistorycustomer.' + (type || 'xlsx')));
 }
+
+

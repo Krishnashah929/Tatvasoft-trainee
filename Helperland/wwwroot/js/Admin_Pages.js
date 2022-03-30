@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    debugger;
     $.ajax({
         url: '/AdminPages/UserManagement',
         type: 'GET',
@@ -86,7 +85,7 @@ function finalapprove(or) {
         url: '/AdminPages/FinalApproveUser',
         type: 'POST',
         data: data,
-        success: function (response) {
+        success: function (result) {
             if (result.value == "true") {
                 loadusermanage();
             }
@@ -104,7 +103,7 @@ function Deleteuser(or) {
         url: '/AdminPages/DeactivateUser',
         type: 'POST',
         data: { "id": id },
-        success: function (response) {
+        success: function (result) {
             if (result.value == "true") {
                 loadusermanage();
             }
@@ -120,7 +119,7 @@ function Activeuser(or) {
         url: '/AdminPages/ActivateUser',
         type: 'POST',
         data: { "id": id },
-        success: function (response) {
+        success: function (result) {
             if (result.value == "true") {
                 loadusermanage();
             }
@@ -160,6 +159,7 @@ function updateservice() {
         data: data,
         success: function (result) {
             if (result.value == "true") {
+                alert("Service has been reshceduled");
                 loaduserrequest();
             }
             else {
@@ -230,6 +230,7 @@ function searchrequest() {
     data.status = document.getElementById("status").value;
     data.zipCode = document.getElementById("zipcode").value;
     data.serviceStartDate = document.getElementById("startdate").value;
+    data.serviceEndDate = document.getElementById("Todate").value;
 
     $.ajax({
         type: 'GET',
@@ -259,7 +260,7 @@ function ExportToExcel1(type, fn, dl) {
         XLSX.writeFile(wb, fn || ('Servicehistorycustomer.' + (type || 'xlsx')));
 }
 function ExportToExcel2(type, fn, dl) {
-    var elt = document.getElementById('usertable');
+    var elt = document.getElementById('requesttable');
     var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
     return dl ?
         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :

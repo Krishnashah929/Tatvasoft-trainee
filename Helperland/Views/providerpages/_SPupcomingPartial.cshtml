@@ -10,57 +10,125 @@
 }
 @model Helperland.Models.ServiceRequest
 <!--upcoming service-->
-<div class="table-upcoming-services tab-pane active" id="v-pills-upcoming" role="tabpanel"
-     aria-labelledby="v-pills-upcoming-tab">
-   <table class="table" id="SPexample1">
-      <thead class="table-header-upcoming-services">
-         <tr>
-            <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
-            <th scope="col">Service date <img src="../images/sort.png" alt=""> </th>
-            <th scope="col">Customer details <img src="../images/sort.png" alt=""></th>
-            <th scope="col">Payment <img src="../images/sort.png" alt=""></th>
-            <th scope="col">Actions <img src="../images/sort.png" alt=""></th>
-         </tr>
-      </thead>
-      <tbody class="tbody-upcoming-services text-center">
-         @foreach (ServiceRequest spr in service)
-         {
-            double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
-             
+<section id="dashboard1">
+   <div class="table-upcoming-services tab-pane active" id="v-pills-upcoming" role="tabpanel"
+        aria-labelledby="v-pills-upcoming-tab">
+      <table class="table" id="SPexample1">
+         <thead class="table-header-upcoming-services">
             <tr>
-               <td>
-                  <button type="button" class="id-button" data-bs-toggle="modal" data-bs-target="#UpcomingServiceDetailesSP" onclick="openupcomingreq(this)" data-id="@spr.ServiceRequestId">
-                    @spr.ServiceRequestId
-                  </button>
-               </td>
-               <td>
-                  <img src="../images/calendar2.png" alt="">
-                  @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
-                  <img src="../images/layer-712.png" alt="">
-                  @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
-               </td>
-               <td>
-                  @spr.Name
-                  <br>
-                  <img src="../images/layer-719.png" alt="">
-                  @spr.AddressLine2 , @spr.AddressLine1 <br /> @spr.City ,@spr.ZipCode
-               </td>
-               <td> € @spr.TotalCost</td>
-
-               <td>
-                  @if (spr.ServiceStartDate.AddHours (time) < DateTime.Now)
-                  {
-                     <button type="button" class="btn btn-upcoming-service-reschedule" onclick="completereq(this)" data-id="@spr.ServiceRequestId">Completed</button>
-                     <button type="button" class="btn btn-upcoming-service d-none" onclick="cancelreq(this)" data-id="@spr.ServiceRequestId">Cancel</button>
-                  }
-                  else 
-                  {
-                     <button type="button" class="btn btn-upcoming-service" onclick="cancel(this)"  data-id="@spr.ServiceRequestId">Cancel</button>
-                  }
-               </td>
+               <th scope="col"> Service ID <img src="../images/sort.png" alt=""></th>
+               <th scope="col">Service date <img src="../images/sort.png" alt=""> </th>
+               <th scope="col">Customer details <img src="../images/sort.png" alt=""></th>
+               <th scope="col">Payment <img src="../images/sort.png" alt=""></th>
+               <th scope="col">Actions <img src="../images/sort.png" alt=""></th>
             </tr>
-         }
+         </thead>
+         <tbody class="tbody-upcoming-services text-center">
+            @foreach (ServiceRequest spr in service)
+            {
+               double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+
+               <tr>
+                  <td>
+                     <button type="button" class="id-button" data-bs-toggle="modal" data-bs-target="#UpcomingServiceDetailesSP" onclick="openupcomingreq(this)" data-id="@spr.ServiceRequestId">
+                        @spr.ServiceRequestId
+                     </button>
+                  </td>
+                  <td>
+                     <img src="../images/calendar2.png" alt="">
+                     @spr.ServiceStartDate.ToString("dd/MM/yyyy")<br>
+                     <img src="../images/layer-712.png" alt="">
+                     @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+                  </td>
+                  <td>
+                     @spr.Name
+                     <br>
+                     <img src="../images/layer-719.png" alt="">
+                     @spr.AddressLine2 , @spr.AddressLine1 <br /> @spr.City ,@spr.ZipCode
+                  </td>
+                  <td> € @spr.TotalCost</td>
+
+                  <td>
+                     @if (spr.ServiceStartDate.AddHours(time) < DateTime.Now)
+                     {
+                        <button type="button" class="btn btn-upcoming-service-reschedule" onclick="completereq(this)" data-id="@spr.ServiceRequestId">Completed</button>
+                        <button type="button" class="btn btn-upcoming-service d-none" onclick="cancelreq(this)" data-id="@spr.ServiceRequestId">Cancel</button>
+                     }
+                     else
+                     {
+                        <button type="button" class="btn btn-upcoming-service" onclick="cancel(this)" data-id="@spr.ServiceRequestId">Cancel</button>
+                     }
+                  </td>
+               </tr>
+            }
          </tbody>
-   </table>
+      </table>
+   </div>
+</section>
+
+
+
+
+
+
+<div class="col col3 mb-3" id="mobile-card" style="margin-left:-10px !important;">
+   <div class="tab-content">
+      <div id="dashboard-sid" class="container tab-pane active">
+         <div class="mobile-card ">
+            <h2><b> Upcoming Services</b></h2>
+
+            @foreach (ServiceRequest spr in service)
+            {
+               double time = Convert.ToDouble(spr.ServiceHours + spr.ExtraHours);
+               <div class="card upcoming-service-card">
+                  <ul class="list-group ">
+                     <li class="list-group-item" style="font-size:16px !important;">
+                        <span>
+                           Service Request Id :
+                           <button type="button" class="id-button" data-bs-toggle="modal" data-bs-target="#UpcomingServiceDetailesSP" onclick="openupcomingreq(this)" data-id="@spr.ServiceRequestId">
+                              @spr.ServiceRequestId
+                           </button>
+                        </span>
+                     </li>
+                     <div class="border-bottom"></div>
+                     <li class="list-group-item" style="font-size:16px !important;">
+                        <button type="button" class="id-button" data-bs-toggle="modal"
+                                data-bs-target="#ServiceDetailesSP" onclick="opennewreq(this)" data-id="@spr.ServiceRequestId">
+                           <img src="../images/calendar2.png" alt="">
+                           @spr.ServiceStartDate.ToString("dd/MM/yyyy")
+                           <img src="../images/layer-712.png" alt="" class="ml-5">
+                           @spr.ServiceStartDate.ToString("hh:mm") - @spr.ServiceStartDate.AddHours(time).ToString("hh:mm")
+                        </button>
+                     </li>
+                    
+                     <li class="list-group-item">
+                        <div class="col-12" style="font-size:16px !important;">
+                           @spr.Name
+                           <br>
+                           <img src="../images/layer-719.png" alt="">
+                           @spr.AddressLine2 , @spr.AddressLine1 <br /> @spr.City , @spr.ZipCode
+                        </div>
+                     </li>
+                    
+                     <li class="list-group-item">
+                        <p class="payment-service-history">@spr.TotalCost €</p>
+                     </li>
+                     <li class="list-group-item">
+                        @if (spr.ServiceStartDate.AddHours(time) < DateTime.Now)
+                        {
+                           <button type="button" class="btn btn-upcoming-service-reschedule" onclick="completereq(this)" data-id="@spr.ServiceRequestId">Completed</button>
+                           <button type="button" class="btn btn-upcoming-service d-none" onclick="cancelreq(this)" data-id="@spr.ServiceRequestId">Cancel</button>
+                        }
+                        else
+                        {
+                           <button type="button" class="btn btn-upcoming-service" onclick="cancel(this)" data-id="@spr.ServiceRequestId">Cancel</button>
+                        }
+                     </li>
+                  </ul>
+               </div>
+            }
+
+         </div>
+      </div>
+   </div>
 </div>
- 
